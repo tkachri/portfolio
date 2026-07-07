@@ -11,7 +11,91 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
       rel="stylesheet"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
+    <style>
+      .folder-annotation {
+        position: absolute;
+        pointer-events: none;
+        z-index: 20;
+        opacity: 0;
+        transform: translateY(4px);
+        transition: opacity 200ms ease, transform 200ms ease;
+      }
+
+      .folder-annotation.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .folder-annotation-inner {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        max-width: 180px;
+      }
+
+      .folder-annotation-inner.left {
+        flex-direction: row-reverse;
+      }
+
+      .folder-annotation-inner.up-right,
+      .folder-annotation-inner.up-left {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+
+      .folder-annotation-svg {
+        width: 86px;
+        height: 32px;
+        overflow: visible;
+      }
+
+      .folder-annotation-line,
+      .folder-annotation-head {
+        stroke: #2c1f14;
+        stroke-width: 1.5;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 100;
+        stroke-dashoffset: 100;
+        animation: draw-arrow 300ms ease-out forwards;
+      }
+
+      .folder-annotation-head {
+        stroke-dasharray: 16;
+        stroke-dashoffset: 16;
+      }
+
+      .folder-annotation-text {
+        background: #f5f0e6;
+        border: 1px solid #ede8dc;
+        border-radius: 6px;
+        padding: 8px 12px;
+        max-width: 160px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        font-family: "Caveat", cursive;
+        font-size: 15px;
+        line-height: 1.5;
+        color: #2c1f14;
+        opacity: 0;
+        transform: translateY(2px);
+        transition: opacity 200ms ease 300ms, transform 200ms ease 300ms;
+      }
+
+      .folder-annotation.is-visible .folder-annotation-text {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @keyframes draw-arrow {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+    </style>
   </head>
   <body class="page-projects">
     <div class="menu-bar">
@@ -30,7 +114,7 @@
     </div>
 
     <main class="desktop-shell">
-      <a class="folder" href="nereid.html" style="top:14%; left:7%;">
+      <a class="folder" href="nereid.html" data-description="Marina booking platform — trust by design" data-direction="right" style="top:14%; left:7%;">
         <div class="folder-svg-wrap">
           <svg class="folder-icon" viewBox="0 0 80 60" aria-hidden="true">
             <rect x="4" y="12" width="72" height="44" rx="4" ry="4" />
@@ -40,7 +124,7 @@
         <span>NEREID</span>
       </a>
 
-      <a class="folder" href="leaselink.html" style="top:11%; left:70%;">
+      <a class="folder" href="leaselink.html" data-description="AI proptech marketplace — built from zero" data-direction="left" style="top:11%; left:70%;">
         <div class="folder-svg-wrap">
           <svg class="folder-icon" viewBox="0 0 80 60" aria-hidden="true">
             <rect x="4" y="12" width="72" height="44" rx="4" ry="4" />
@@ -50,7 +134,7 @@
         <span>LeaseLink</span>
       </a>
 
-      <a class="folder" href="careguard.html" style="top:44%; left:13%;">
+      <a class="folder" href="careguard.html" data-description="Care coordination — shipped end to end" data-direction="right" style="top:44%; left:13%;">
         <div class="folder-svg-wrap">
           <svg class="folder-icon" viewBox="0 0 80 60" aria-hidden="true">
             <rect x="4" y="12" width="72" height="44" rx="4" ry="4" />
@@ -60,7 +144,7 @@
         <span>CareGuard</span>
       </a>
 
-      <a class="folder" href="sprouts.html" style="top:42%; left:67%;">
+      <a class="folder" href="sprouts.html" data-description="Go-to-market strategy — 2nd of 46 teams" data-direction="left" style="top:42%; left:67%;">
         <div class="folder-svg-wrap">
           <svg class="folder-icon" viewBox="0 0 80 60" aria-hidden="true">
             <rect x="4" y="12" width="72" height="44" rx="4" ry="4" />
@@ -70,7 +154,7 @@
         <span>Sprouts</span>
       </a>
 
-      <a class="folder" href="l3gominds.html" style="top:68%; left:40%;">
+      <a class="folder" href="l3gominds.html" data-description="Team synthesis tool — LEGO concept" data-direction="up-right" style="top:68%; left:40%;">
         <div class="folder-svg-wrap">
           <svg class="folder-icon" viewBox="0 0 80 60" aria-hidden="true">
             <rect x="4" y="12" width="72" height="44" rx="4" ry="4" />
@@ -80,7 +164,7 @@
         <span>L3GOminds</span>
       </a>
 
-      <a class="folder" href="mote.html" style="top:68%; left:18%;">
+      <a class="folder" href="mote.html" data-description="Wearable product — intelligence that wears you" data-direction="up-left" style="top:68%; left:18%;">
         <div class="folder-svg-wrap">
           <svg class="folder-icon" viewBox="0 0 80 60" aria-hidden="true">
             <rect x="4" y="12" width="72" height="44" rx="4" ry="4" />
@@ -111,5 +195,74 @@
 
     <div class="cursor-dot" aria-hidden="true"></div>
     <script src="script.js"></script>
+    <script>
+      const folderLinks = Array.from(document.querySelectorAll('.folder[href]'));
+
+      const buildAnnotation = (folder) => {
+        const description = folder.dataset.description || '';
+        const direction = folder.dataset.direction || 'right';
+        const annotation = document.createElement('div');
+        annotation.className = 'folder-annotation';
+
+        let svgPath = '';
+        let headPath = '';
+        let wrapperClass = 'inner';
+        let wrapperStyle = '';
+
+        if (direction === 'right') {
+          svgPath = 'M 6 16 L 74 16';
+          headPath = 'M 70 10 L 82 16 L 70 22';
+          wrapperClass = 'folder-annotation-inner';
+          wrapperStyle = 'left: calc(100% + 16px); top: 50%; transform: translateY(-50%);';
+        } else if (direction === 'left') {
+          svgPath = 'M 80 16 L 12 16';
+          headPath = 'M 16 10 L 4 16 L 16 22';
+          wrapperClass = 'folder-annotation-inner left';
+          wrapperStyle = 'right: calc(100% + 16px); top: 50%; transform: translateY(-50%);';
+        } else if (direction === 'up-right') {
+          svgPath = 'M 6 24 L 58 8';
+          headPath = 'M 54 10 L 66 4 L 62 16';
+          wrapperClass = 'folder-annotation-inner up-right';
+          wrapperStyle = 'left: calc(100% + 12px); top: -2px;';
+        } else if (direction === 'up-left') {
+          svgPath = 'M 80 24 L 28 8';
+          headPath = 'M 32 10 L 20 4 L 24 16';
+          wrapperClass = 'folder-annotation-inner up-left';
+          wrapperStyle = 'right: calc(100% + 12px); top: -2px;';
+        }
+
+        annotation.innerHTML = `
+          <div class="${wrapperClass}" style="${wrapperStyle}">
+            <svg class="folder-annotation-svg" viewBox="0 0 86 32" aria-hidden="true">
+              <path class="folder-annotation-line" d="${svgPath}" />
+              <path class="folder-annotation-head" d="${headPath}" />
+            </svg>
+            <div class="folder-annotation-text">${description}</div>
+          </div>
+        `;
+
+        return annotation;
+      };
+
+      folderLinks.forEach((folder) => {
+        folder.addEventListener('mouseenter', () => {
+          const existing = folder.querySelector('.folder-annotation');
+          if (existing) {
+            existing.remove();
+          }
+          const annotation = buildAnnotation(folder);
+          folder.appendChild(annotation);
+          requestAnimationFrame(() => annotation.classList.add('is-visible'));
+        });
+
+        folder.addEventListener('mouseleave', () => {
+          const annotation = folder.querySelector('.folder-annotation');
+          if (annotation) {
+            annotation.classList.remove('is-visible');
+            annotation.remove();
+          }
+        });
+      });
+    </script>
   </body>
 </html>
