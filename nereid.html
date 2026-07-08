@@ -1,39 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NEREID — itstheodok</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body class="page-project-detail">
-    <div class="menu-bar">
-      <div class="menu-left">
-        <span class="apple-mark"></span>
-        <span>itstheodok</span>
-        <a class="menu-nav-link" href="projects.html">work</a>
-        <a class="menu-nav-link" href="about.html">about</a>
-        <a class="menu-nav-link" href="index.html#footer">contact</a>
-      </div>
-      <div class="menu-right">
-        <span id="clock">--:--</span>
-        <span>●</span>
-        <span>100%</span>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NEREID, itstheodok</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+rel="stylesheet"
+/>
+<link rel="stylesheet" href="styles.css" />
+<style>
+  /* ---- NEREID case study additions ---- */
+  .cs-shell { max-width: 980px; margin: 0 auto; padding: 100px 24px 120px; font-family: 'Inter', sans-serif; color: #2C1F14; }
+  .cs-tag { display: inline-block; background: #EDE8DC; color: #8A7A6A; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 12px; border-radius: 999px; margin-bottom: 18px; }
+  .cs-title { font-family: 'Playfair Display', serif; font-size: 56px; margin: 0 0 8px; }
+  .cs-subtitle { font-size: 17px; color: #8A7A6A; margin-bottom: 36px; }
+  .cs-proto-link { display: inline-flex; align-items: center; gap: 6px; background: #7EB8C9; color: #2C1F14; font-weight: 600; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 14px; margin-bottom: 60px; }
+  .cs-proto-link:hover { opacity: 0.85; }
+
+  .cs-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 64px; }
+  .cs-stat { background: #F5F0E6; border: 1px solid #EDE8DC; border-radius: 10px; padding: 24px 16px; text-align: center; }
+  .cs-stat-num { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; color: #2C1F14; }
+  .cs-stat-label { font-size: 12px; color: #8A7A6A; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .cs-quote { border-left: 3px solid #7EB8C9; padding: 16px 24px; font-style: italic; font-size: 18px; color: #2C1F14; margin: 48px 0; background: #F5F0E6; border-radius: 0 8px 8px 0; }
+  .cs-quote cite { display: block; font-style: normal; font-size: 13px; color: #8A7A6A; margin-top: 8px; }
+  .cs-quote.placeholder { border-left-color: #D9CBB5; color: #8A7A6A; }
+
+  .cs-section { margin-bottom: 72px; }
+  .cs-section h2 { font-family: 'Playfair Display', serif; font-size: 30px; margin-bottom: 20px; }
+  .cs-section p { line-height: 1.7; font-size: 16px; margin-bottom: 14px; color: #2C1F14; }
+
+  .cs-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 72px; }
+  .cs-card { border-radius: 10px; padding: 32px; }
+  .cs-card.challenge { background: #F5F0E6; border: 1px solid #EDE8DC; }
+  .cs-card.solution { background: #2C1F14; color: #F5F0E6; }
+  .cs-card h3 { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 12px; }
+  .cs-card.solution h3 { color: #7EB8C9; }
+  .cs-card p { font-size: 15px; line-height: 1.7; }
+
+  .cs-img-frame { width: 100%; border-radius: 10px; overflow: hidden; border: 1px solid #EDE8DC; margin: 24px 0; }
+  .cs-img-frame img { width: 100%; display: block; }
+  .cs-img-caption { font-size: 13px; color: #8A7A6A; text-align: center; margin-top: 8px; }
+
+  .cs-persona { display: flex; gap: 32px; background: #F5F0E6; border-radius: 10px; padding: 32px; margin-bottom: 20px; align-items: flex-start; }
+  .cs-persona-emoji { font-size: 40px; }
+  .cs-persona-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 16px; }
+  .cs-persona-col h4 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: #8A7A6A; margin-bottom: 8px; }
+  .cs-persona-col ul { margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.6; }
+
+  .cs-accordion-item { border-bottom: 1px solid #EDE8DC; }
+  .cs-accordion-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 4px; cursor: pointer; font-weight: 600; font-size: 17px; }
+  .cs-accordion-header .num { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; background: #7EB8C9; color: #2C1F14; border-radius: 50%; font-size: 13px; margin-right: 12px; }
+  .cs-accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 14px; color: #4A3F33; line-height: 1.7; }
+  .cs-accordion-body-inner { padding: 0 4px 20px 42px; }
+  .cs-accordion-item.open .cs-accordion-body { max-height: 400px; }
+  .cs-accordion-arrow { transition: transform 0.2s ease; }
+  .cs-accordion-item.open .cs-accordion-arrow { transform: rotate(180deg); }
+
+  .cs-design-grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
+  .cs-design-grid.three-col { grid-template-columns: 1fr; }
+  .cs-design-card { background: #F5F0E6; border: 1px solid #EDE8DC; border-radius: 10px; padding: 28px; }
+  .cs-design-card h3 { font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 10px; }
+  .cs-design-card p { font-size: 14px; line-height: 1.7; color: #4A3F33; }
+
+  .cs-video-wrap { position: relative; width: 100%; padding-top: 56.25%; margin-top: 14px; border-radius: 8px; overflow: hidden; background: #000; }
+  .cs-video-wrap .cs-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+  .cs-process-gallery { display: flex; flex-direction: column; gap: 40px; margin-top: 24px; }
+  .cs-process-item { width: 100%; }
+  .cs-process-item img { width: 100%; border-radius: 8px; border: 1px solid #EDE8DC; display: block; }
+  .cs-process-item .cap { font-size: 15px; color: #8A7A6A; margin-top: 12px; line-height: 1.6; }
+  .cs-process-item .cap strong { color: #2C1F14; display: block; font-size: 18px; margin-bottom: 6px; font-family: 'Playfair Display', serif; }
+
+  .cs-outcome { background: #2C1F14; color: #F5F0E6; border-radius: 12px; padding: 48px; text-align: center; }
+  .cs-outcome h2 { font-family: 'Playfair Display', serif; color: #7EB8C9; font-size: 28px; margin-bottom: 16px; }
+  .cs-outcome p { font-size: 16px; line-height: 1.7; max-width: 640px; margin: 0 auto; }
+
+  @media (max-width: 720px) {
+    .cs-stats, .cs-two-col, .cs-design-grid, .cs-design-grid.three-col { grid-template-columns: 1fr; }
+    .cs-persona { flex-direction: column; }
+    .cs-persona-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body class="page-project-detail">
+<div class="menu-bar">
+  <div class="menu-left">
+    <span class="apple-mark"></span>
+    <span>itstheodok</span>
+    <span>File</span>
+    <span>Edit</span>
+    <span>View</span>
+    <span>·</span>
+    <a class="menu-nav-link" href="index.html">home</a>
+    <a class="menu-nav-link" href="projects.html">work</a>
+    <a class="menu-nav-link" href="about.html">about</a>
+    <a class="menu-nav-link" href="index.html#footer">contact</a>
+  </div>
+  <div class="menu-right">
+    <span id="clock">--:--</span>
+    <span>●</span>
+    <span>100%</span>
+  </div>
+</div>
+
+<main class="cs-shell">
+
+  <span class="cs-tag">UX Research · Product Design</span>
+  <h1 class="cs-title">NEREID</h1>
+  <p class="cs-subtitle">A marina booking platform redesigned around trust, confirmation, and arrival, built from interviews across Greece, the US, and Spain.</p>
+  <a class="cs-proto-link" href="https://nereid.com" target="_blank" rel="noreferrer">Visit NEREID ↗</a>
+
+  <div class="cs-stats">
+    <div class="cs-stat"><div class="cs-stat-num">1st</div><div class="cs-stat-label">Best Client Work, of 20 teams</div></div>
+    <div class="cs-stat"><div class="cs-stat-num">11</div><div class="cs-stat-label">User interviews conducted</div></div>
+    <div class="cs-stat"><div class="cs-stat-num">5</div><div class="cs-stat-label">Countries represented</div></div>
+    <div class="cs-stat"><div class="cs-stat-num">3</div><div class="cs-stat-label">Trust breakdowns identified</div></div>
+  </div>
+
+  <blockquote class="cs-quote">
+    "You never really know what information they'll need until you call."
+    Jason, Greece
+  </blockquote>
+
+  <blockquote class="cs-quote">
+    "Her creative thinking and iterative approach made the overall assignment easier to complete and with real quality."
+    Dhruv Jain, teammate
+  </blockquote>
+
+  <div class="cs-two-col">
+    <div class="cs-card challenge">
+      <h3>The challenge</h3>
+      <p>Digital marina booking systems break down when requirements, confirmation, and arrival ownership are unclear. Boaters kept calling marinas directly because the booking flow didn't tell them what they needed to know, and even after booking, confirmation didn't feel like certainty.</p>
+    </div>
+    <div class="cs-card solution">
+      <h3>The solution</h3>
+      <p>Three research-backed interventions mapped directly to the trust breakdowns we found: a restructured homepage, a verified booking flow, and Arrival Mode, a new feature addressing the post-booking anxiety our interviews surfaced.</p>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <h2>What we found</h2>
+    <p>Three structural trust breakdowns emerged from user interviews and competitive analog research across Greece, the US, and Spain: an inconsistent booking structure, limited transparency in confirmation, and high stress during arrival coordination.</p>
+    <p>Competitive analog research shaped the direction: Dockwa embeds marina rules directly into the booking flow, Airbnb makes booking scope and confirmation explicit, and International SOS clearly owns coordination in time-critical situations. NEREID needed to borrow from all three.</p>
+    <div class="cs-img-frame">
+      <img src="nereid_trust_breakdown.png" alt="Diagram of three trust breakdowns found in marina booking research" />
+    </div>
+    <p class="cs-img-caption">Synthesis of interview findings into three structural trust breakdowns.</p>
+  </div>
+
+  <div class="cs-section">
+    <h2>Who we designed for</h2>
+    <div class="cs-persona">
+      <div class="cs-persona-emoji">🚤</div>
+      <div style="flex:1;">
+        <strong>The Boater</strong>, experienced boat owner (ages 40 to 60), tech-comfortable, 5+ trips/year
+        <div class="cs-persona-grid">
+          <div class="cs-persona-col">
+            <h4>Key goals</h4>
+            <ul>
+              <li>Clear, streamlined information</li>
+              <li>Accurate, real-time availability</li>
+              <li>Knowing marina amenities & things to do</li>
+            </ul>
+          </div>
+          <div class="cs-persona-col">
+            <h4>Biggest struggles</h4>
+            <ul>
+              <li>Using too many apps/channels</li>
+              <li>Not knowing arrival steps beforehand</li>
+              <li>Trusting the slip is actually reserved</li>
+            </ul>
+          </div>
+          <div class="cs-persona-col">
+            <h4>Core tasks</h4>
+            <ul>
+              <li>Finding a slip that fits their boat</li>
+              <li>Navigating the marina</li>
+              <li>Planning the full trip and things to do</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
 
-    <main class="project-detail-shell">
-      <h1>NEREID</h1>
-      <p>Case study coming soon.</p>
-    </main>
+  <div class="cs-section">
+    <h2>The journey, stage by stage</h2>
+    <div class="cs-accordion" id="cs-accordion">
 
-    <div class="cursor-dot" aria-hidden="true"></div>
-    <script src="script.js"></script>
-  </body>
+      <div class="cs-accordion-item open">
+        <div class="cs-accordion-header" onclick="this.parentElement.classList.toggle('open')">
+          <span><span class="num">1</span>Discovery: is this the right marina for me?</span>
+          <span class="cs-accordion-arrow">⌄</span>
+        </div>
+        <div class="cs-accordion-body"><div class="cs-accordion-body-inner">
+          Boaters need to clearly see NEREID's value and quickly understand what the platform offers. Designed to feel <strong>not confusing</strong>, <strong>clear</strong>, and <strong>personal</strong>, the platform should be tailored to every boater, not generic.
+        </div></div>
+      </div>
+
+      <div class="cs-accordion-item">
+        <div class="cs-accordion-header" onclick="this.parentElement.classList.toggle('open')">
+          <span><span class="num">2</span>Booking: is my spot guaranteed?</span>
+          <span class="cs-accordion-arrow">⌄</span>
+        </div>
+        <div class="cs-accordion-body"><div class="cs-accordion-body-inner">
+          The objective isn't just transaction completion, it's risk elimination. We designed for immediacy (confirmation occurs in seconds), transparency (total cost disclosed before payment), and control (clear cancellation rules for every weather scenario).
+        </div></div>
+      </div>
+
+      <div class="cs-accordion-item">
+        <div class="cs-accordion-header" onclick="this.parentElement.classList.toggle('open')">
+          <span><span class="num">3</span>Confirmation: do I know exactly what to expect?</span>
+          <span class="cs-accordion-arrow">⌄</span>
+        </div>
+        <div class="cs-accordion-body"><div class="cs-accordion-body-inner">
+          The platform delivers an instant digital confirmation with berth assignment, arrival window, marina contact, and saved boater details, reducing the need for double-checking or last-minute calls. Boaters reported feeling reassured, and no longer worried about missing information.
+        </div></div>
+      </div>
+
+      <div class="cs-accordion-item">
+        <div class="cs-accordion-header" onclick="this.parentElement.classList.toggle('open')">
+          <span><span class="num">4</span>Arrival: will this go smoothly?</span>
+          <span class="cs-accordion-arrow">⌄</span>
+        </div>
+        <div class="cs-accordion-body"><div class="cs-accordion-body-inner">
+          This is where <strong>Arrival Mode</strong> lives, increasing trust and reducing stress during arrival through a digital berth map, instructional images and videos for docking, prepaid services via QR code, live chat support, and a working hours phone number.
+        </div></div>
+      </div>
+
+      <div class="cs-accordion-item">
+        <div class="cs-accordion-header" onclick="this.parentElement.classList.toggle('open')">
+          <span><span class="num">5</span>Post-booking & retention: why would I use this again?</span>
+          <span class="cs-accordion-arrow">⌄</span>
+        </div>
+        <div class="cs-accordion-body"><div class="cs-accordion-body-inner">
+          CRM tooling tracks repeat bookings, a points engine calculates rewards, and marina APIs sync real-time availability. Boaters can quickly rebook the same marina, easily access past reservations and receipts, and feel recognized as a returning guest.
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <h2>What we designed</h2>
+    <div class="cs-design-grid three-col">
+      <div class="cs-design-card">
+        <h3>Homepage redesign</h3>
+        <p>Restructured the information architecture to clarify the value proposition upfront and reduce confusion at the entry point. Introduced a boater-listed slip feature, giving owners a second pathway into the marketplace.</p>
+        <div class="cs-video-wrap">
+          <iframe class="cs-video" src="https://drive.google.com/file/d/1j2axKy8Zwo1jn2LQPBLjhRa8_gEU0_Eg/preview" allow="autoplay" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="cs-design-card">
+        <h3>Verified booking flow</h3>
+        <p>Instant digital confirmation with berth assignment, arrival window, and marina contact synced in real time, so a confirmed booking actually feels confirmed instead of something boaters need to double-check by phone.</p>
+        <div class="cs-video-wrap">
+          <iframe class="cs-video" src="https://drive.google.com/file/d/1_9oQGUY9QBO_K22DWP2u7GbdrYyEsPPu/preview" allow="autoplay" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="cs-design-card">
+        <h3>Arrival Mode</h3>
+        <p>Gives boaters a single place to access their slip location, QR check-in, marina contact, and real-time support before and during docking, replacing the scattered calls and uncertainty our research surfaced as the biggest source of arrival-stage anxiety.</p>
+        <div class="cs-video-wrap">
+          <iframe class="cs-video" src="https://drive.google.com/file/d/14CytwBM2T7_1mJS1bx7g2bPj_DGxxAv1/preview" allow="autoplay" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <h2>How the work got done</h2>
+    <p>Research, prioritization, and risk tracking behind the design decisions above.</p>
+    <div class="cs-process-gallery">
+      <div class="cs-process-item">
+        <img src="nereid_process_stakeholders.png" alt="Stakeholder map" />
+        <div class="cap"><strong>Stakeholder map</strong>Primary vs. secondary stakeholders across boaters, marina staff, and regulatory bodies.</div>
+      </div>
+      <div class="cs-process-item">
+        <img src="nereid_process_roadmap.png" alt="Sprint roadmap" />
+        <div class="cap"><strong>Sprint roadmap</strong>Four-sprint plan from research objectives through final recommendations.</div>
+      </div>
+      <div class="cs-process-item">
+        <img src="nereid_process_hypotheses.png" alt="Solution hypotheses" />
+        <div class="cap"><strong>Solution hypotheses</strong>If-then hypotheses used to test design direction before building.</div>
+      </div>
+      <div class="cs-process-item">
+        <img src="nereid_process_risks.png" alt="Risks list" />
+        <div class="cap"><strong>Risk tracking</strong>Booking, trust, and adoption risks logged and weighed against research.</div>
+      </div>
+      <div class="cs-process-item">
+        <img src="nereid_process_blueprint.png" alt="Full service blueprint" />
+        <div class="cap"><strong>Service blueprint</strong>Full frontstage/backstage mapping across all five journey phases.</div>
+      </div>
+    </div>
+    <p style="margin-top:20px;">
+      <a href="https://canva.link/4xvi2ilbn9uxk9s" target="_blank" rel="noreferrer" style="color:#7EB8C9; font-weight:600;">View the final presentation ↗</a>
+    </p>
+  </div>
+
+  <div class="cs-outcome">
+    <h2>Outcome</h2>
+    <p>Paris Zoiros has implemented the redesigned homepage, with the verified booking flow and Arrival Mode currently in development as the team builds out the full app. NEREID won Best Client Work out of 20 teams, with the client and teammates citing the trust-breakdown research as the reason the design direction felt inevitable rather than arbitrary.</p>
+  </div>
+
+</main>
+
+<div class="cursor-dot" aria-hidden="true"></div>
+<script src="script.js"></script>
+</body>
 </html>

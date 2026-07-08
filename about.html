@@ -1,171 +1,794 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About — itstheodok</title>
-    <meta name="description" content="About Theodora Kachrimanidi and her experience." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body class="page-about">
-    <nav class="site-nav">
-      <a class="nav-logo" href="index.html">itstheodok</a>
-      <div class="nav-links">
-        <a class="nav-link" data-page="projects" href="projects.html">work</a>
-        <a class="nav-link active" data-page="about" href="about.html">about</a>
-        <a class="nav-link" data-page="contact" href="#footer">contact</a>
-      </div>
-    </nav>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About, itstheodok</title>
+<meta name="description" content="About Theodora Kachrimanidi and her experience." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;1,400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+font-family: 'Inter', sans-serif;
+background: #F7F3E8;
+color: #2C1F14;
+cursor: none;
+      }
+a { text-decoration: none; }
+ul { list-style: none; }
+.site-nav {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+background: #F7F3E8;
+border-bottom: 1px solid #EDE8DC;
+padding: 16px 40px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+z-index: 100;
+      }
+.site-nav .nav-logo {
+font-family: 'Playfair Display', serif;
+font-size: 16px;
+color: #2C1F14;
+      }
+.site-nav .nav-links {
+display: flex;
+gap: 28px;
+align-items: center;
+      }
+.site-nav .nav-links a {
+font-family: 'Inter', sans-serif;
+font-size: 12px;
+color: #8A7A6A;
+letter-spacing: 0.05em;
+text-transform: lowercase;
+      }
+.site-nav .nav-links a:hover { color: #7EB8C9; }
+main {
+padding-top: 100px;
+      }
+.about-section {
+padding: 100px 10%;
+position: relative;
+      }
+.about-section:first-of-type { padding-top: 120px; }
+.section-divider {
+position: relative;
+margin: 0 10% 40px;
+height: 1px;
+display: flex;
+align-items: center;
+justify-content: center;
+      }
+.section-divider::before {
+content: '';
+position: absolute;
+inset: 0;
+border-top: 1px solid #EDE8DC;
+      }
+.section-divider span {
+position: relative;
+z-index: 1;
+font-family: 'Playfair Display', serif;
+font-size: 120px;
+font-weight: 700;
+line-height: 1;
+color: #2C1F14;
+opacity: 0.04;
+background: #F7F3E8;
+padding: 0 20px;
+      }
+.section-label {
+font-family: 'Inter', sans-serif;
+font-size: 11px;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: #8A7A6A;
+margin-bottom: 18px;
+      }
+.section-label.accent {
+color: #B4707E;
+      }
+.section-sublabel {
+font-family: 'Inter', sans-serif;
+font-size: 13px;
+color: #8A7A6A;
+margin-bottom: 28px;
+max-width: 560px;
+line-height: 1.6;
+      }
+.profile-label {
+font-family: 'Inter', sans-serif;
+font-size: 11px;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: #8A7A6A;
+margin-bottom: 12px;
+      }
+.profile-meta {
+font-family: 'Inter', sans-serif;
+font-size: 13px;
+color: #8A7A6A;
+margin-bottom: 32px;
+      }
+.profile-top {
+display: flex;
+gap: 48px;
+align-items: flex-start;
+      }
+.profile-photo {
+flex: 0 0 200px;
+width: 200px;
+height: 200px;
+border-radius: 12px;
+overflow: hidden;
+background: #EDE8DC;
+      }
+.profile-photo img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+      }
+.profile-text { flex: 1; min-width: 0; }
+.pull-quote {
+font-family: 'Playfair Display', serif;
+font-size: clamp(26px,3vw,38px);
+line-height: 1.3;
+color: #2C1F14;
+max-width: 780px;
+margin-bottom: 28px;
+      }
+.profile-copy {
+font-family: 'Inter', sans-serif;
+font-size: 15px;
+line-height: 1.85;
+color: #2C1F14;
+max-width: 680px;
+      }
+.experience-list {
+display: grid;
+gap: 20px;
+      }
+.exp-card {
+background: #F0EBE0;
+border-radius: 12px;
+padding: 32px 36px;
+transition: background 0.2s ease;
+      }
+.exp-card:hover { background: #EAE4D8; }
+.exp-card.exp-placeholder {
+border: 1px dashed #C9BDA6;
+background: transparent;
+      }
+.exp-top {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 16px;
+      }
+.company-pill {
+display: inline-block;
+background: #7EB8C9;
+color: #fff;
+border-radius: 20px;
+padding: 4px 12px;
+font-family: 'Inter', sans-serif;
+font-size: 11px;
+font-weight: 600;
+letter-spacing: 0.06em;
+text-transform: uppercase;
+      }
+.exp-date {
+font-family: 'Inter', sans-serif;
+font-size: 12px;
+color: #8A7A6A;
+      }
+.exp-role {
+font-family: 'Playfair Display', serif;
+font-size: 22px;
+font-weight: 700;
+color: #2C1F14;
+margin: 8px 0 14px;
+      }
+.exp-quote {
+border-left: 3px solid #7EB8C9;
+padding-left: 16px;
+font-family: 'Inter', sans-serif;
+font-size: 14px;
+font-style: italic;
+line-height: 1.75;
+color: #2C1F14;
+margin-bottom: 14px;
+      }
+.exp-card ul { display: grid; gap: 8px; }
+.exp-card li {
+font-family: 'Inter', sans-serif;
+font-size: 13px;
+line-height: 1.7;
+color: #2C1F14;
+padding-left: 4px;
+      }
+.exp-card li::before {
+content: '▸';
+color: #7EB8C9;
+margin-right: 8px;
+      }
+.exp-link {
+display: inline-flex;
+align-items: center;
+gap: 6px;
+margin-top: 18px;
+background: #7EB8C9;
+color: #2C1F14;
+font-family: 'Inter', sans-serif;
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 0.03em;
+padding: 8px 16px;
+border-radius: 6px;
+text-decoration: none;
+transition: opacity 0.15s ease;
+      }
+.exp-link:hover { opacity: 0.75; }
+.education-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 24px;
+      }
+.edu-card {
+background: #F0EBE0;
+border-radius: 12px;
+padding: 28px 30px;
+      }
+.edu-title {
+font-family: 'Playfair Display', serif;
+font-size: 20px;
+color: #2C1F14;
+margin-bottom: 8px;
+      }
+.edu-meta {
+font-family: 'Inter', sans-serif;
+font-size: 13px;
+color: #8A7A6A;
+margin-bottom: 10px;
+      }
+.edu-details {
+font-family: 'Inter', sans-serif;
+font-size: 13px;
+line-height: 1.7;
+color: #2C1F14;
+      }
+.skills-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 36px;
+      }
+.skills-grid h3 {
+font-family: 'Playfair Display', serif;
+font-size: 20px;
+color: #2C1F14;
+margin-bottom: 14px;
+      }
+.skills-grid p {
+font-family: 'Inter', sans-serif;
+font-size: 14px;
+line-height: 2;
+color: #2C1F14;
+      }
+.language-row {
+display: flex;
+gap: 16px;
+flex-wrap: wrap;
+      }
+.lang-pill {
+background: #F0EBE0;
+border-radius: 10px;
+padding: 10px 16px;
+display: flex;
+flex-direction: column;
+gap: 6px;
+min-width: 140px;
+      }
+.lang-pill strong {
+font-family: 'Inter', sans-serif;
+font-size: 13px;
+font-weight: 500;
+color: #2C1F14;
+      }
+.lang-pill span {
+font-family: 'Inter', sans-serif;
+font-size: 10px;
+color: #8A7A6A;
+      }
+.lang-bar {
+width: 100%;
+height: 3px;
+background: #EDE8DC;
+border-radius: 2px;
+overflow: hidden;
+      }
+.lang-bar > i {
+display: block;
+height: 100%;
+background: #7EB8C9;
+border-radius: 2px;
+      }
+footer {
+background: #2C1F14;
+padding: 60px 40px 32px;
+      }
+.footer-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 24px;
+      }
+.footer-left h2 {
+font-family: 'Playfair Display', serif;
+font-size: 42px;
+color: #F7F3E8;
+margin-bottom: 10px;
+      }
+.footer-left p {
+font-family: 'Inter', sans-serif;
+font-size: 13px;
+color: #8A7A6A;
+      }
+.footer-right {
+display: flex;
+flex-direction: column;
+gap: 10px;
+align-items: flex-end;
+      }
+.footer-right a {
+font-family: 'Inter', sans-serif;
+font-size: 13px;
+color: #7EB8C9;
+      }
+.footer-bottom {
+border-top: 1px solid #3A2A1A;
+margin-top: 32px;
+padding-top: 20px;
+display: flex;
+justify-content: space-between;
+      }
+.footer-bottom span {
+font-family: 'Inter', sans-serif;
+font-size: 11px;
+color: #8A7A6A;
+      }
+@media (max-width: 768px) {
+.site-nav { padding: 16px 6%; }
+.about-section { padding: 60px 6%; }
+.section-divider { margin: 0 6% 40px; }
+.education-grid,
+.skills-grid,
+.footer-grid {
+grid-template-columns: 1fr;
+        }
+.footer-right { align-items: flex-start; }
+.exp-top { flex-direction: column; align-items: flex-start; }
+.profile-top { flex-direction: column; }
+.profile-photo { width: 140px; height: 140px; flex-basis: auto; }
+      }
+</style>
+</head>
+<body>
+<nav class="site-nav">
+<a class="nav-logo" href="index.html">itstheodok</a>
+<div class="nav-links">
+<a href="projects.html">work</a>
+<a href="about.html">about</a>
+<a href="#contact">contact</a>
+</div>
+</nav>
+<main>
 
-    <main class="about-page">
-      <section class="about-section intro">
-        <p class="pull-quote">I build things that feel as good as they work.</p>
-        <p class="intro-copy">
-          MS in Management (STEM) from BU Questrom, BA in Psychology with Honors Distinction. I apply
-          behavioral science to product decisions — understanding why people do what they do, then
-          designing around it. Greek roots, lived and worked across Greece, France, the US, Japan,
-          and Chile.
-        </p>
-      </section>
+<div class="section-divider"><span>01</span></div>
+<section class="about-section">
+<div class="profile-top">
+  <div class="profile-photo">
+    <img src="theodora.png" alt="Theodora Kachrimanidi" />
+  </div>
+  <div class="profile-text">
+    <p class="profile-label">Personal Profile</p>
+    <p class="profile-meta">Psychology + Management (STEM), Boston University</p>
+    <p class="pull-quote">I've built products across UX research, venture building, and physical product design, from a marina booking platform that won Best Client Work to an AI proptech startup I'm currently building at Innovate BU.</p>
+    <p class="profile-copy">I started in behavioral science because I wanted to understand why people make the decisions they make. I studied across five countries, tried consulting and marketing, and kept finding myself drawn to the work with real ownership, where you could see the direct line between your decisions and someone's experience. I came back to BU on a full merit scholarship for my MS in Management, and through real client engagements with Fischer Sports and NEREID I fell in love with product and UX. In the past six months, I co-founded LeaseLink, an AI proptech marketplace I'm actively building through Innovate BU, independently shipped CareGuard end to end, and designed Mote, a wearable concept that rethinks how intelligence sits on the body. I'm drawn to consumer-facing roles, products people choose to engage with, not ones they're stuck with.</p>
+  </div>
+</div>
+</section>
 
-      <section class="about-section">
-        <h3 class="section-label">education</h3>
-        <div class="entry-card">
-          <h4>MS in Management (STEM)</h4>
-          <p class="meta">Boston University Questrom School of Business · May 2026</p>
-          <p class="details">
-            Magna Cum Laude, top 10% of cohort, Beta Gamma Sigma, full-tuition merit scholarship, Outstanding Academic Achievement Award.
-          </p>
-        </div>
-        <div class="entry-card">
-          <h4>BA in Psychology, Honors Distinction</h4>
-          <p class="meta">Boston University · GPA 3.86</p>
-          <p class="details">Magna Cum Laude.</p>
-        </div>
-      </section>
+<div class="section-divider"><span>02</span></div>
+<section class="about-section">
+<h3 class="section-label accent">Work Experience</h3>
+<p class="section-sublabel">Formal, paid roles.</p>
+<div class="experience-list">
 
-      <section class="about-section">
-        <h3 class="section-label">experience</h3>
-        <div class="entry-card experience-card">
-          <h4>Digital Product and Communications Specialist</h4>
-          <p class="meta">Deon Policy Institute · 2023–2024</p>
-          <p class="details">Owned end-to-end redesign of a 20-page website, managed 200+ attendee conference logistics, and led a media strategy that secured national press coverage including Kathimerini.</p>
-          <p class="impact">→ Proves I can own a full product lifecycle under real constraints — from information architecture to stakeholder coordination to launch.</p>
-        </div>
-        <div class="entry-card experience-card">
-          <h4>Co-Founder and Product Lead</h4>
-          <p class="meta">LeaseLink · 2025–2026</p>
-          <p class="details">Built an AI-powered proptech marketplace from zero — defined the full PRD, contract-parsing logic, escrow flow, and pricing model. Finished top 40 of 110 teams at BU's Innovation Tournament with a score of 91%.</p>
-          <p class="impact">→ Shows I can go 0 to 1 on a product with real technical and business complexity, not just slide decks.</p>
-        </div>
-        <div class="entry-card experience-card">
-          <h4>UX and Product Strategy Consultant</h4>
-          <p class="meta">Fischer Sports · 2025</p>
-          <p class="details">Led a 7-week client engagement, conducted user research, and delivered a prioritized strategic roadmap directly to senior leadership.</p>
-          <p class="impact">→ Demonstrates I can translate ambiguous briefs into structured recommendations that leadership can act on.</p>
-        </div>
-        <div class="entry-card experience-card">
-          <h4>Strategy and Operations Intern</h4>
-          <p class="meta">Toit de Paris, France · 2023</p>
-          <p class="details">Supported brand operations and client-facing communications across French and English markets in a fast-moving hospitality environment.</p>
-          <p class="impact">→ Early proof of cross-cultural fluency and operating effectively outside familiar systems.</p>
-        </div>
-      </section>
+<article class="exp-card">
+<div class="exp-top">
+<span class="company-pill">Deon Policy Institute</span>
+<span class="exp-date">Oct 2024 to Jun 2025</span>
+</div>
+<h4 class="exp-role">Digital Product and Communications Specialist</h4>
+<p class="exp-quote">"This was the first time I owned a product from start to finish, and I learned that the hardest part usually isn't the design itself, it's getting everyone coordinated around it."</p>
+<ul>
+<li>Owned a 6-month end-to-end website redesign across information architecture, user flows, and stakeholder coordination.</li>
+<li>Managed logistics for a 200+ attendee policy conference while simultaneously running digital communications.</li>
+<li>Led media strategy that secured national press coverage including Kathimerini.</li>
+</ul>
+</article>
 
-      <section class="about-section">
-        <h3 class="section-label">selected work</h3>
-        <div class="project-grid">
-          <a class="project-pill" href="projects.html">
-            <h4>NEREID</h4>
-            <span>UX Research</span>
-            <p>Best Client Work of 20 teams — diagnosed 3 trust breakdowns</p>
-          </a>
-          <a class="project-pill" href="projects.html">
-            <h4>LeaseLink</h4>
-            <span>Product · Startup</span>
-            <p>Top 40 of 110 teams, 91% score</p>
-          </a>
-          <a class="project-pill" href="projects.html">
-            <h4>CareGuard</h4>
-            <span>Product · AI</span>
-            <p>Built end-to-end in Lovable independently</p>
-          </a>
-          <a class="project-pill" href="projects.html">
-            <h4>Sprouts</h4>
-            <span>Strategy · Creative</span>
-            <p>2nd of 46 teams, Best Creative Award, $6,000</p>
-          </a>
-        </div>
-      </section>
+<article class="exp-card">
+<div class="exp-top">
+<span class="company-pill">BU Questrom MiM Admissions</span>
+<span class="exp-date">Dec 2025 to May 2026</span>
+</div>
+<h4 class="exp-role">Admissions Interviewer and Ambassador</h4>
+<p class="exp-quote">"Interviewing around ninety applicants taught me that admissions decisions really come down to who you would want to work with, not who has the most impressive list of accomplishments."</p>
+<ul>
+<li>Managed Salesforce pipeline tracking for around 90 applicants throughout the interview and decision process.</li>
+<li>Served as an admissions ambassador, moderating online panels and meet and greet events for prospective students.</li>
+<li>Evaluated fit for the program by looking at what candidates valued, what they could bring, why they wanted to be there, how clearly they articulated their ideas, and personal qualities like kindness.</li>
+</ul>
+</article>
 
-      <section class="about-section skills-section">
-        <h3 class="section-label">skills and tools</h3>
-        <div class="skills-grid">
-          <div>
-            <h4>Expertise</h4>
-            <ul>
-              <li>User Research & Behavioral Analysis</li>
-              <li>Product Requirements & PRD Writing</li>
-              <li>UX Design & Prototyping</li>
-              <li>Go-to-Market Strategy</li>
-              <li>Cross-functional Team Leadership</li>
-              <li>Data-driven Decision Making</li>
-            </ul>
-          </div>
-          <div>
-            <h4>Tools</h4>
-            <ul>
-              <li>Figma</li>
-              <li>Cursor</li>
-              <li>Claude API</li>
-              <li>Lovable</li>
-              <li>Replit</li>
-              <li>Python & Streamlit</li>
-              <li>Google Analytics</li>
-              <li>HubSpot</li>
-              <li>Notion</li>
-              <li>Miro</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+</div>
+</section>
 
-      <section class="about-section">
-        <h3 class="section-label">languages</h3>
-        <div class="language-list">
-          <span>Greek (native)</span>
-          <span>English (fluent)</span>
-          <span>French (professional)</span>
-          <span>Spanish (conversational)</span>
-          <span>German (basic)</span>
-        </div>
-      </section>
-    </main>
+<div class="section-divider"><span>03</span></div>
+<section class="about-section">
+<h3 class="section-label accent">Internships</h3>
+<p class="section-sublabel">Chronological, most recent first.</p>
+<div class="experience-list">
 
-    <footer id="footer" class="site-footer">
-      <div class="footer-top">
-        <div>
-          <h2>let's talk.</h2>
-          <p>Theodora Kachrimanidi · Product Manager · UX Researcher</p>
-        </div>
-        <div class="footer-links">
-          <a href="mailto:tkachr@bu.edu">tkachr@bu.edu</a>
-          <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn ↗</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>itstheodok · <span id="year"></span></span>
-        <span>built with claude</span>
-      </div>
-    </footer>
+<article class="exp-card">
+<div class="exp-top">
+<span class="company-pill">Th. Nitsiakos S.A</span>
+<span class="exp-date">Jun 2024 to Aug 2024</span>
+</div>
+<h4 class="exp-role">Corporate Strategy Intern</h4>
+<p class="exp-quote">"Working inside a large business taught me how decisions actually get made, not how textbooks say they do."</p>
+<ul>
+<li>Partnered with cross-functional leadership across marketing, sales, and finance in 5+ board-level strategy sessions.</li>
+<li>Turned business needs into data-driven recommendations and supported client negotiations resulting in 2 new contracts.</li>
+</ul>
+</article>
 
-    <div class="cursor-dot" aria-hidden="true"></div>
-    <script src="script.js"></script>
-  </body>
+<article class="exp-card">
+<div class="exp-top">
+<span class="company-pill">Toit de Paris</span>
+<span class="exp-date">Mar 2023 to May 2023</span>
+</div>
+<h4 class="exp-role">Marketing and Communications Intern</h4>
+<p class="exp-quote">"Working in a second language in a market I didn't grow up in forced me to listen more carefully and assume less."</p>
+<ul>
+<li>Conducted performance and competitive analysis across 3 market segments.</li>
+<li>Translated customer needs into a prioritized Q2 content strategy driving a 15% increase in website traffic.</li>
+</ul>
+</article>
+
+</div>
+</section>
+
+<div class="section-divider"><span>04</span></div>
+<section class="about-section">
+<h3 class="section-label accent">Projects</h3>
+<p class="section-sublabel">Team-based, client, and independent work. Chronological, most recent first.</p>
+<div class="experience-list">
+
+<article class="exp-card">
+<div class="exp-top">
+<span class="company-pill">LeaseLink</span>
+<span class="exp-date">Mar 2026 to present</span>
+</div>
+<h4 class="exp-role">Co-Founder and Product Lead</h4>
+<p class="exp-quote">"Building from zero meant I had to make every call myself, since there was no one else to hand it off to."</p>
+<ul>
+<li>Co-founding an AI-powered proptech marketplace for verified lease transfers through Innovate BU.</li>
+<li>Defining full product requirements, contract-parsing logic, escrow flow, and tiered pricing model.</li>
+<li>Top-scoring team at 91% among 110 teams in BU's Innovation Tournament.</li>
+</ul>
+<a class="exp-link" href="leaselink.html">learn more ↗</a>
+</article>
+
+<article class="exp-card">
+<div class="exp-top">
+<span class="company-pill">NEREID</span>
+<span class="exp-date">Mar 2026</span>
+</div>
+<h4 class="exp-role">UX and Product Strategy, Boston University Questrom</h4>
+<p class="exp-quote">"I diagnosed three trust breakdowns before I designed a single screen, because that order is what actually matters."</p>
+<ul>
+<li>Diagnosed 3 trust breakdowns across the boater journey through 11 user interviews across 5 countries and analog analysis.</li>
+<li>Designed end-to-end UX including restructured homepage, verified booking flow, and Arrival Mode feature.</li>
+<li>Won Best Client Work out of 20 teams; client has implemented the redesigned homepage, with the rest in development.</li>
+</ul>
+<a class="exp-link" href="nereid.html">learn more ↗</a>
+</article>
+
+<article class="exp-card">
+<div class="exp-top">
+<span class="company-pill">CareGuard</span>
+<span class="exp-date">Late Jan 2026 to Mar 2026</span>
+</div>
+<h4 class="exp-role">Independent Project, Product Owner and Researcher</h4>
+<p class="exp-quote">"Working on CareGuard on my own meant every decision, from the first user interview to the last screen, was mine to make and mine to defend."</p>
+<ul>
+<li>Ran user interviews to understand how families coordinate care for aging or ill relatives, then used those conversations to shape the product.</li>
+<li>Designed and built the full app in Lovable, handling everything from user flows to visual design without a technical cofounder.</li>
+<li>Learned firsthand how much research should come before design, even on a project with just one person driving it.</li>
+</ul>
+<a class="exp-link" href="careguard.html">learn more ↗</a>
+</article>
+
+<article class="exp-card">
+<div class="exp-top">
+<span class="company-pill">Fischer Sports</span>
+<span class="exp-date">Dec 2025</span>
+</div>
+<h4 class="exp-role">Product Strategy Consultant, Boston University Questrom</h4>
+<p class="exp-quote">"Seven weeks with a real client and real stakes taught me how to turn a messy brief into something leadership could actually act on."</p>
+<ul>
+<li>Conducted user interviews, competitive benchmarking, and feasibility analysis.</li>
+<li>Delivered a prioritized strategic roadmap directly to senior leadership.</li>
+</ul>
+</article>
+
+<article class="exp-card">
+<div class="exp-top">
+<span class="company-pill">Mote</span>
+<span class="exp-date">Oct 2025 to Dec 2025</span>
+</div>
+<h4 class="exp-role">Independent Project, Brand and Product Design</h4>
+<p class="exp-quote">"Designing Mote pushed me to think less like an engineer and more like the person who would actually wear it, which meant starting with mood boards and brand perception before I touched a single interface."</p>
+<ul>
+<li>Designed a wearable concept exploring how intelligence could sit on the body, starting from brand perception and mood boards rather than technical specs.</li>
+<li>Spent significant time on user empathy work, thinking through how someone would want to feel wearing the product before designing what it would do.</li>
+<li>Ran the project independently end to end, from concept through visual direction.</li>
+</ul>
+<a class="exp-link" href="mote.html">learn more ↗</a>
+</article>
+
+</div>
+</section>
+
+<div class="section-divider"><span>05</span></div>
+<section class="about-section">
+<h3 class="section-label accent">Competitions</h3>
+<p class="section-sublabel">Formal case competitions with judged outcomes.</p>
+<div class="experience-list">
+
+<article class="exp-card">
+<div class="exp-top">
+<span class="company-pill">Sprouts</span>
+<span class="exp-date">Jan 2026 to Mar 2026</span>
+</div>
+<h4 class="exp-role">Linder Marketing Case Competition</h4>
+<p class="exp-quote">"Working on Sprouts taught me to start broad instead of narrowing the idea too early, especially in a group, and that talking to more people along the way almost always improves the direction."</p>
+<ul>
+<li>Placed 2nd of 46 teams and won Best Creative Award ($6,000), judged by TD Garden, JP Morgan, and Sprouts executives.</li>
+<li>Full case study under NDA; happy to walk through the work in an interview.</li>
+</ul>
+<a class="exp-link" href="sprouts.html">learn more ↗</a>
+</article>
+
+</div>
+</section>
+
+<div class="section-divider"><span>06</span></div>
+<section class="about-section">
+<h3 class="section-label accent">Global Experience</h3>
+<p class="section-sublabel">Time spent living, studying, and working across different countries.</p>
+<div class="experience-list">
+
+<article class="exp-card">
+<div class="exp-top">
+<span class="company-pill">Conference Week</span>
+<span class="exp-date">Oct 2025</span>
+</div>
+<h4 class="exp-role">Global Learning Experience, Sustainability Focus</h4>
+<p class="exp-quote">"Leading this project taught me how much a week of structured brainstorming can produce when the group commits early to defining the real problem instead of jumping straight to solutions."</p>
+<ul>
+<li>Spent a week working on a sustainability challenge in a country facing real economic and social strain, focused on identifying the actual problem before brainstorming solutions.</li>
+<li>Weighed potential solutions against both feasibility and impact, then presented recommendations at a culminating conference.</li>
+<li>Served as one of two team leads and the main presenter for the group.</li>
+</ul>
+</article>
+
+<article class="exp-card exp-placeholder">
+<div class="exp-top">
+<span class="company-pill">Tokyo</span>
+<span class="exp-date">TODO: add dates</span>
+</div>
+<h4 class="exp-role">Global Management Experience, QST IM475</h4>
+<p class="exp-quote">"Sitting across from executives at seven different Japanese companies taught me more about how culture shapes business decisions than any case study could have."</p>
+<ul>
+<li>Researched and presented on Rakuten's business strategy, innovation, and global expansion, and analyzed its customer retention approach as part of a project that helped around 30 classmates build a deeper understanding of e-commerce strategy.</li>
+<li>Met with leaders from seven Japanese companies during site visits, learning firsthand about corporate culture, management styles, and how operations differ across markets.</li>
+<li>Wrote a research paper on customer retention strategies drawing on those company visits, and came away with a much stronger sense of how to communicate across cultures in a business setting.</li>
+</ul>
+</article>
+
+<article class="exp-card">
+<div class="exp-top">
+<span class="company-pill">Paris</span>
+<span class="exp-date">Mar 2023 to May 2023</span>
+</div>
+<h4 class="exp-role">Study Abroad</h4>
+<p class="exp-quote">"Living and studying in Paris while also working there pushed me to navigate a market and a language that weren't mine, which is probably where my habit of slowing down and listening more carefully started."</p>
+<ul>
+<li>Completed a semester of coursework in Paris alongside my internship at Toit de Paris, splitting time between the classroom and client work in a second language.</li>
+<li>Built comfort operating in an unfamiliar market and language, a skill I still rely on in cross-cultural user research.</li>
+</ul>
+</article>
+
+</div>
+</section>
+
+<div class="section-divider"><span>07</span></div>
+<section class="about-section">
+<h3 class="section-label accent">Campus Leadership</h3>
+<p class="section-sublabel">Undergraduate leadership and research roles at Boston University.</p>
+<div class="experience-list">
+
+<article class="exp-card">
+<div class="exp-top">
+<span class="company-pill">BU Hellenic Association</span>
+<span class="exp-date">May 2023 to May 2024</span>
+</div>
+<h4 class="exp-role">Vice President</h4>
+<ul>
+<li>Liaised with the National Hellenic Student Association and collaborated with the Greek Consulate of Boston to support the local Greek community.</li>
+<li>Built interpersonal, negotiation, and conflict resolution skills leading a student organization.</li>
+</ul>
+</article>
+
+<article class="exp-card">
+<div class="exp-top">
+<span class="company-pill">BU European Society</span>
+<span class="exp-date">May 2023 to May 2024</span>
+</div>
+<h4 class="exp-role">Vice President of Marketing</h4>
+<ul>
+<li>Built targeted, cross-cultural marketing campaigns in collaboration with partners in France, Italy, and Spain.</li>
+<li>Organized a professional networking event for students and professors on the current European market.</li>
+</ul>
+</article>
+
+<article class="exp-card">
+<div class="exp-top">
+<span class="company-pill">BU International Relations Review</span>
+<span class="exp-date">Nov 2021 to May 2023</span>
+</div>
+<h4 class="exp-role">Assistant Business Director, promoted from Business Associate</h4>
+<ul>
+<li>Supported daily operations and budget planning for the journal's business and publishing section, after being offered greater responsibility following an initial year as Business Associate.</li>
+<li>Helped design sponsor outreach materials and strengthened problem-solving skills responding to day-to-day business challenges.</li>
+</ul>
+</article>
+
+<article class="exp-card">
+<div class="exp-top">
+<span class="company-pill">BU College of General Studies</span>
+<span class="exp-date">Oct 2021 to May 2022</span>
+</div>
+<h4 class="exp-role">CGS Correspondent</h4>
+<ul>
+<li>Supported marketing and communication initiatives and developed content for the college's social media accounts, gaining hands-on digital marketing experience.</li>
+</ul>
+</article>
+
+<article class="exp-card">
+<div class="exp-top">
+<span class="company-pill">VETSA</span>
+<span class="exp-date">Feb 2022 to Jan 2023</span>
+</div>
+<h4 class="exp-role">Undergraduate Research Volunteer</h4>
+<ul>
+<li>Volunteered on the Vietnam Era Twin Study of Aging, gaining exposure to research on memory and the development of psychological disorders while strengthening data analysis skills.</li>
+</ul>
+</article>
+
+</div>
+</section>
+
+<div class="section-divider"><span>08</span></div>
+<section class="about-section">
+<h3 class="section-label accent">Education</h3>
+<div class="education-grid">
+<div class="edu-card">
+<h4 class="edu-title">MS in Management (STEM)</h4>
+<p class="edu-meta">Boston University Questrom, May 2026</p>
+<p class="edu-details">Full-tuition merit scholarship, Magna Cum Laude, top 10% of cohort, Beta Gamma Sigma Honor Society, Outstanding Academic Achievement Award.</p>
+</div>
+<div class="edu-card">
+<h4 class="edu-title">BA in Psychology, Honors Distinction</h4>
+<p class="edu-meta">Boston University, May 2024</p>
+<p class="edu-details">GPA 3.86, Magna Cum Laude. Thesis: Problematic Screen Use as an Addiction.</p>
+</div>
+</div>
+</section>
+
+<div class="section-divider"><span>09</span></div>
+<section class="about-section">
+<h3 class="section-label accent">Skills</h3>
+<div class="skills-grid">
+<div>
+<h3>Expertise</h3>
+<p>User Research and Behavioral Analysis<br />Product Requirements and PRD Writing<br />UX Design and Prototyping<br />Go-to-Market Strategy<br />Cross-functional Leadership<br />Data-driven Decision Making</p>
+</div>
+<div>
+<h3>Tools</h3>
+<p>Figma<br />Cursor<br />Claude API<br />Lovable<br />Python and Streamlit<br />Google Analytics<br />HubSpot<br />Notion<br />Miro</p>
+</div>
+</div>
+</section>
+
+<div class="section-divider"><span>10</span></div>
+<section class="about-section">
+<h3 class="section-label accent">Languages</h3>
+<div class="language-row">
+<div class="lang-pill"><strong>Greek</strong><span>native</span><div class="lang-bar"><i style="width:100%"></i></div></div>
+<div class="lang-pill"><strong>English</strong><span>fluent</span><div class="lang-bar"><i style="width:95%"></i></div></div>
+<div class="lang-pill"><strong>Spanish</strong><span>intermediate, stronger</span><div class="lang-bar"><i style="width:70%"></i></div></div>
+<div class="lang-pill"><strong>French</strong><span>intermediate</span><div class="lang-bar"><i style="width:55%"></i></div></div>
+<div class="lang-pill"><strong>German</strong><span>basic</span><div class="lang-bar"><i style="width:25%"></i></div></div>
+</div>
+</section>
+
+</main>
+<footer id="contact">
+<div class="footer-grid">
+<div class="footer-left">
+<h2>let's talk.</h2>
+<p>Theodora Kachrimanidi, Product Manager, UX Researcher</p>
+</div>
+<div class="footer-right">
+<a href="mailto:tkachr@bu.edu">tkachr@bu.edu</a>
+<a href="https://linkedin.com/in/theodorakachrimanidi" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+</div>
+</div>
+<div class="footer-bottom">
+<span>itstheodok, 2026</span>
+<span>built with claude</span>
+</div>
+</footer>
+<script>
+document.body.style.cursor = 'none';
+const cursor = document.createElement('div');
+cursor.style.cssText = 'position:fixed;width:8px;height:8px;background:#7EB8C9;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)';
+document.body.appendChild(cursor);
+document.addEventListener('mousemove', (event) => {
+cursor.style.left = event.clientX + 'px';
+cursor.style.top = event.clientY + 'px';
+const trail = document.createElement('div');
+trail.style.cssText = `position:fixed;width:5px;height:5px;background:#7EB8C9;border-radius:50%;pointer-events:none;z-index:9998;left:${event.clientX}px;top:${event.clientY}px;transform:translate(-50%,-50%);opacity:0.6;transition:opacity 0.4s;`;
+document.body.appendChild(trail);
+setTimeout(() => { trail.style.opacity = 0; }, 50);
+setTimeout(() => trail.remove(), 450);
+      });
+const heatDots = [];
+document.addEventListener('mousemove', (event) => {
+const dot = document.createElement('div');
+dot.style.cssText = `position:fixed;width:14px;height:14px;background:#7EB8C9;border-radius:50%;pointer-events:none;z-index:0;left:${event.clientX}px;top:${event.clientY}px;transform:translate(-50%,-50%);opacity:0.12;transition:opacity 4s linear;`;
+document.body.appendChild(dot);
+heatDots.push(dot);
+if (heatDots.length > 60) {
+const oldest = heatDots.shift();
+if (oldest) oldest.remove();
+        }
+requestAnimationFrame(() => {
+dot.style.opacity = '0';
+        });
+setTimeout(() => dot.remove(), 4000);
+      });
+</script>
+</body>
 </html>

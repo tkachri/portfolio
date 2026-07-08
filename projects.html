@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projects — itstheodok</title>
+    <title>Projects, itstheodok</title>
     <meta name="description" content="Mac-style desktop portfolio for Theodora Kachrimanidi." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -90,21 +90,155 @@
         transform: translateY(0);
       }
 
+      .menu-bar {
+        background: #1c1c1e;
+        color: #f7f3e8;
+      }
+
+      .menu-nav-link {
+        color: #f7f3e8;
+        font-size: 11px;
+        opacity: 0.9;
+        text-decoration: none;
+      }
+
+      .dock-bar {
+        position: fixed;
+        bottom: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: flex-end;
+        gap: 10px;
+        padding: 8px 16px;
+        background: rgba(255, 255, 255, 0.18);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 18px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+      }
+
+      .dock-icon {
+        width: 52px;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        transition: transform 0.2s ease;
+      }
+
+      .dock-icon:hover,
+      .dock-icon:focus-within {
+        transform: translateY(-12px) scale(1.25);
+      }
+
+      .dock-icon + .dock-icon:hover,
+      .dock-icon + .dock-icon:focus-within {
+        transform: translateY(-12px) scale(1.1);
+      }
+
+      .dock-icon svg {
+        width: 28px;
+        height: 28px;
+      }
+
+      .dock-finder {
+        background: linear-gradient(145deg, #5eb5f7, #2d6fd9);
+      }
+
+      .dock-safari {
+        background: white;
+        border: 1px solid #d0d0d0;
+      }
+
+      .dock-notes {
+        background: linear-gradient(145deg, #ffe033, #ffb800);
+      }
+
+      .dock-messages {
+        background: linear-gradient(145deg, #5ee65a, #28c840);
+      }
+
+      .dock-mail {
+        background: linear-gradient(145deg, #4da3ff, #1a6fe0);
+      }
+
+      .dock-photos {
+        background: white;
+      }
+
+      .dock-app-store {
+        background: linear-gradient(145deg, #4dbaff, #007aff);
+      }
+
       @keyframes draw-arrow {
         to {
           stroke-dashoffset: 0;
         }
+      }
+      .menu-nav-link {
+        background-color: #7EB8C9;
+        color: #2C1F14;
+        padding: 2px 10px;
+        border-radius: 4px;
+        margin-left: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: opacity 0.15s ease;
+      }
+
+      .menu-nav-link:hover {
+        opacity: 0.75;
+      }
+
+      .menu-left .apple-mark,
+      .menu-left > span:not(.apple-mark) {
+        opacity: 0.5;
+      }
+
+      /* ---- pending / coming-soon folders ---- */
+      .folder.folder-pending {
+        opacity: 0.42;
+        cursor: default;
+        pointer-events: auto;
+      }
+
+      .folder.folder-pending:hover {
+        opacity: 0.6;
+      }
+
+      .folder-pending .folder-icon rect:first-child {
+        fill: #cfc6b4;
+      }
+
+      .folder-pending .folder-icon rect:last-child {
+        fill: #b8ac93;
+      }
+
+      .folder-soon-badge {
+        display: block;
+        font-size: 10px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #8A7A6A;
+        margin-top: 2px;
       }
     </style>
   </head>
   <body class="page-projects">
     <div class="menu-bar">
       <div class="menu-left">
-        <span class="apple-mark"></span>
+        <span class="apple-mark"></span>
         <span>itstheodok</span>
         <span>File</span>
         <span>Edit</span>
         <span>View</span>
+        <span>·</span>
+        <a class="menu-nav-link" href="index.html">home</a>
+        <a class="menu-nav-link" href="about.html">about</a>
+        <a class="menu-nav-link" href="index.html#footer">contact</a>
       </div>
       <div class="menu-right">
         <span id="clock">--:--</span>
@@ -114,7 +248,9 @@
     </div>
 
     <main class="desktop-shell">
-      <a class="folder" href="nereid.html" data-description="Marina booking platform — trust by design" data-direction="right" style="top:14%; left:7%;">
+
+      <!-- LIVE: real case study built out -->
+      <a class="folder" href="nereid.html" data-description="Marina booking platform, trust by design" data-direction="right" style="top:14%; left:7%;">
         <div class="folder-svg-wrap">
           <svg class="folder-icon" viewBox="0 0 80 60" aria-hidden="true">
             <rect x="4" y="12" width="72" height="44" rx="4" ry="4" />
@@ -124,54 +260,55 @@
         <span>NEREID</span>
       </a>
 
-      <a class="folder" href="leaselink.html" data-description="AI proptech marketplace — built from zero" data-direction="left" style="top:11%; left:70%;">
+      <!-- PENDING: case study not yet built -->
+      <a class="folder folder-pending" href="leaselink.html" data-description="AI proptech marketplace, built from zero" data-direction="left" style="top:11%; left:70%;">
         <div class="folder-svg-wrap">
           <svg class="folder-icon" viewBox="0 0 80 60" aria-hidden="true">
             <rect x="4" y="12" width="72" height="44" rx="4" ry="4" />
             <rect x="4" y="12" width="28" height="12" rx="3" ry="3" fill="#D4607A" />
           </svg>
         </div>
-        <span>LeaseLink</span>
+        <span>LeaseLink<span class="folder-soon-badge">coming soon</span></span>
       </a>
 
-      <a class="folder" href="careguard.html" data-description="Care coordination — shipped end to end" data-direction="right" style="top:44%; left:13%;">
+      <a class="folder folder-pending" href="careguard.html" data-description="Care coordination, shipped end to end" data-direction="right" style="top:44%; left:13%;">
         <div class="folder-svg-wrap">
           <svg class="folder-icon" viewBox="0 0 80 60" aria-hidden="true">
             <rect x="4" y="12" width="72" height="44" rx="4" ry="4" />
             <rect x="4" y="12" width="28" height="12" rx="3" ry="3" fill="#D4607A" />
           </svg>
         </div>
-        <span>CareGuard</span>
+        <span>CareGuard<span class="folder-soon-badge">coming soon</span></span>
       </a>
 
-      <a class="folder" href="sprouts.html" data-description="Go-to-market strategy — 2nd of 46 teams" data-direction="left" style="top:42%; left:67%;">
+      <a class="folder folder-pending" href="sprouts.html" data-description="Go-to-market strategy, 2nd of 46 teams" data-direction="left" style="top:42%; left:67%;">
         <div class="folder-svg-wrap">
           <svg class="folder-icon" viewBox="0 0 80 60" aria-hidden="true">
             <rect x="4" y="12" width="72" height="44" rx="4" ry="4" />
             <rect x="4" y="12" width="28" height="12" rx="3" ry="3" fill="#D4607A" />
           </svg>
         </div>
-        <span>Sprouts</span>
+        <span>Sprouts<span class="folder-soon-badge">coming soon</span></span>
       </a>
 
-      <a class="folder" href="l3gominds.html" data-description="Team synthesis tool — LEGO concept" data-direction="up-right" style="top:68%; left:40%;">
+      <a class="folder folder-pending" href="fischersports.html" data-description="Product strategy for a sports brand client" data-direction="up-right" style="top:68%; left:40%;">
         <div class="folder-svg-wrap">
           <svg class="folder-icon" viewBox="0 0 80 60" aria-hidden="true">
             <rect x="4" y="12" width="72" height="44" rx="4" ry="4" />
             <rect x="4" y="12" width="28" height="12" rx="3" ry="3" fill="#D4607A" />
           </svg>
         </div>
-        <span>L3GOminds</span>
+        <span>Fischer Sports<span class="folder-soon-badge">coming soon</span></span>
       </a>
 
-      <a class="folder" href="mote.html" data-description="Wearable product — intelligence that wears you" data-direction="up-left" style="top:68%; left:18%;">
+      <a class="folder folder-pending" href="mote.html" data-description="Wearable product, intelligence that wears you" data-direction="up-left" style="top:68%; left:18%;">
         <div class="folder-svg-wrap">
           <svg class="folder-icon" viewBox="0 0 80 60" aria-hidden="true">
             <rect x="4" y="12" width="72" height="44" rx="4" ry="4" />
             <rect x="4" y="12" width="28" height="12" rx="3" ry="3" fill="#D4607A" />
           </svg>
         </div>
-        <span>Mote</span>
+        <span>Mote<span class="folder-soon-badge">coming soon</span></span>
       </a>
 
       <a class="folder folder-muted" style="top:70%; left:76%;">
@@ -186,11 +323,53 @@
     </main>
 
     <div class="dock-bar" aria-hidden="true">
-      <span class="dock-icon dock-espresso"></span>
-      <span class="dock-icon dock-sky"></span>
-      <span class="dock-icon dock-rose"></span>
-      <span class="dock-icon dock-mid"></span>
-      <span class="dock-icon dock-linen"></span>
+      <div class="dock-icon dock-finder">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <circle cx="24" cy="24" r="18" fill="none" stroke="white" stroke-width="3" />
+          <circle cx="24" cy="24" r="7" fill="white" />
+          <path d="M18 34c3-2 9-2 12 0" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" />
+        </svg>
+      </div>
+      <div class="dock-icon dock-safari">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <circle cx="24" cy="24" r="16" fill="none" stroke="#1A6FE0" stroke-width="4" />
+          <path d="M18 30L30 18" stroke="#1A6FE0" stroke-width="4" stroke-linecap="round" />
+          <circle cx="24" cy="24" r="3" fill="#1A6FE0" />
+        </svg>
+      </div>
+      <div class="dock-icon dock-notes">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <rect x="12" y="10" width="24" height="28" rx="4" fill="#FFD60A" />
+          <path d="M18 18h12M18 24h8" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+          <path d="M18 30h6" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+        </svg>
+      </div>
+      <div class="dock-icon dock-messages">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <rect x="12" y="12" width="24" height="20" rx="8" fill="white" />
+          <path d="M18 20h12" stroke="#28C840" stroke-width="2.5" stroke-linecap="round" />
+          <path d="M18 24h8" stroke="#28C840" stroke-width="2.5" stroke-linecap="round" />
+        </svg>
+      </div>
+      <div class="dock-icon dock-mail">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <rect x="10" y="12" width="28" height="24" rx="5" fill="#1A6FE0" />
+          <path d="M12 16l12 10 12-10" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+      <div class="dock-icon dock-photos">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <rect x="10" y="10" width="28" height="28" rx="8" fill="white" />
+          <circle cx="20" cy="22" r="4" fill="#FF4D6D" />
+          <circle cx="28" cy="20" r="4" fill="#FFC857" />
+          <path d="M16 32c3-5 8-6 13-3" stroke="#4FC3F7" stroke-width="3" stroke-linecap="round" />
+        </svg>
+      </div>
+      <div class="dock-icon dock-app-store">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M26 12h6l-4 8h6l-12 16 3-10h-6l4-14z" fill="white" />
+        </svg>
+      </div>
     </div>
 
     <div class="cursor-dot" aria-hidden="true"></div>
