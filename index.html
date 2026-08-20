@@ -1,363 +1,341 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Theodora Kachrimanidi</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;1,400;1,500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
-    <style>
-      * { box-sizing: border-box; margin: 0; padding: 0; }
-      body { font-family: 'Inter', sans-serif; background: #F7F3E8; cursor: none; }
-      img { display: block; }
-      a { text-decoration: none; }
-      .photo-item { opacity: 0; transform: translateY(20px); transition: opacity 500ms ease-out, transform 500ms ease-out; }
-      .photo-item.visible { opacity: 1; transform: translateY(0); }
-      @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
-      @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Theodora Kachrimanidi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;1,400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-      .site-nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background: #F7F3E8;
-        border-bottom: 1px solid #EDE8DC;
-        padding: 16px 40px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 100;
-      }
-      .site-nav .nav-logo {
-        font-family: 'Playfair Display', serif;
-        font-size: 16px;
-        color: #2C1F14;
-      }
-      .site-nav .nav-links {
-        display: flex;
-        gap: 28px;
-        align-items: center;
-      }
-      .site-nav .nav-links a {
-        font-family: 'Inter', sans-serif;
-        font-size: 12px;
-        color: #8A7A6A;
-        letter-spacing: 0.05em;
-        text-transform: lowercase;
-      }
-      .site-nav .nav-links a:hover { color: #7EB8C9; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0A0A0F;
+      color: #F5F5F5;
+      height: 100vh;
+      overflow: hidden;
+      cursor: none;
+    }
 
-      .hero-section {
-        height: 55vh;
-        background: #F7F3E8;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        gap: 14px;
-        padding-top: 60px;
-      }
-      .hero-section h1 {
-        font-family: 'Playfair Display', serif;
-        font-size: clamp(38px,6vw,82px);
-        font-weight: 700;
-        color: #2C1F14;
-        letter-spacing: -0.03em;
-      }
-      #typewriter {
-        font-family: 'Inter', sans-serif;
-        font-size: 13px;
-        font-style: italic;
-        color: #8A7A6A;
-        transition: opacity 0.4s;
-      }
-      .hero-pill {
-        display: inline-block;
-        font-family: 'Inter', sans-serif;
-        font-size: 10px;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        border: 1px solid #7EB8C9;
-        color: #7EB8C9;
-        border-radius: 20px;
-        padding: 5px 16px;
-      }
-      .hero-contact-links {
-        display: flex;
-        gap: 16px;
-        margin-top: 8px;
-      }
-      .hero-contact-links a {
-        font-family: 'Inter', sans-serif;
-        font-size: 11px;
-        color: #8A7A6A;
-        letter-spacing: 0.05em;
-      }
-      .hero-contact-links a:hover { color: #7EB8C9; }
-      .hero-arrow {
-        font-family: 'Inter', sans-serif;
-        font-size: 12px;
-        color: #8A7A6A;
-        margin-top: 16px;
-        animation: bounce 1.6s ease-in-out infinite;
-      }
+    #cursor {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: #7EB8C9;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width 0.15s, height 0.15s;
+    }
+    #cursor.hover {
+      width: 20px;
+      height: 20px;
+      background: transparent;
+      border: 1px solid #7EB8C9;
+    }
 
-      #collage-section {
-        position: relative;
-        min-height: 1080px;
-        background: #F7F3E8;
-        overflow: visible;
-      }
-      #water-canvas {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 0;
-        pointer-events: none;
-        display: block;
-      }
-      .theodok-spine {
-        position: absolute;
-        left: 66%;
-        transform: translateX(-50%);
-        top: 90px;
-        z-index: 2;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 3px;
-      }
-      .theodok-spine span {
-        font-family: 'Playfair Display', serif;
-        font-size: 34px;
-        font-weight: 700;
-        color: #B4707E;
-        opacity: 0.55;
-      }
-      .photo-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-      }
-      .photo-container img {
-        position: absolute;
-        object-fit: cover;
-        border: 0;
-        border-radius: 0;
-      }
-      .collage-copy {
-        position: absolute;
-        bottom: -50px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-family: 'Inter', sans-serif;
-        font-size: 11px;
-        color: #8A7A6A;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        white-space: nowrap;
-        opacity: 0;
-        animation: fadeIn 600ms ease-out 1.5s forwards;
-        z-index: 3;
-      }
+    .bg {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(126,184,201,0.04) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(126,184,201,0.03) 0%, transparent 50%),
+        #0A0A0F;
+      z-index: 0;
+    }
 
-      footer {
-        background: #2C1F14;
-        padding: 60px 40px 32px;
-        margin-top: 60px;
-      }
-      .footer-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 24px;
-      }
-      .footer-left h2 {
-        font-family: 'Playfair Display', serif;
-        font-size: 42px;
-        color: #F7F3E8;
-        margin-bottom: 10px;
-      }
-      .footer-left p {
-        font-family: 'Inter', sans-serif;
-        font-size: 13px;
-        color: #8A7A6A;
-      }
-      .footer-right {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        align-items: flex-end;
-      }
-      .footer-right a {
-        font-family: 'Inter', sans-serif;
-        font-size: 13px;
-        color: #7EB8C9;
-      }
-      .footer-bottom {
-        border-top: 1px solid #3A2A1A;
-        margin-top: 32px;
-        padding-top: 20px;
-        display: flex;
-        justify-content: space-between;
-      }
-      .footer-bottom span {
-        font-family: 'Inter', sans-serif;
-        font-size: 11px;
-        color: #8A7A6A;
-      }
+    .bg::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity: 0.4;
+      pointer-events: none;
+    }
 
-      @media (max-width: 768px) {
-        .theodok-spine span { font-size: 22px; }
-        .hero-contact-links { flex-direction: column; gap: 6px; align-items: center; }
-      }
-    </style>
-  </head>
-  <body>
-    <nav class="site-nav">
-      <a class="nav-logo" href="index.html">itstheodok</a>
-      <div class="nav-links">
-        <a href="projects.html">work</a>
-        <a href="about.html">about</a>
-        <a href="#contact">contact</a>
-      </div>
-    </nav>
+    .time-block {
+      position: fixed;
+      top: 48px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      z-index: 2;
+      animation: fadeInSimple 0.8s ease 0.2s both;
+    }
+    .time {
+      font-size: 72px;
+      font-weight: 300;
+      color: #F5F5F5;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .date {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      margin-top: 6px;
+      letter-spacing: 0.04em;
+    }
 
-    <section class="hero-section">
-      <h1>Theodora Kachrimanidi</h1>
-      <div id="typewriter"></div>
-      <span class="hero-pill">available fall 2026</span>
-      <div class="hero-contact-links">
-        <a href="mailto:tkachr@bu.edu">tkachr@bu.edu</a>
-        <a href="https://linkedin.com/in/theodorakachrimanidi" target="_blank" rel="noreferrer">LinkedIn ↗</a>
-      </div>
-      <div class="hero-arrow">↓</div>
-    </section>
+    .login-card {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 2;
+      animation: fadeInUp 0.8s ease 0.5s both;
+    }
 
-    <section id="collage-section">
-      <canvas id="water-canvas" aria-hidden="true"></canvas>
-      <div class="theodok-spine" aria-hidden="true">
-        <span>t</span>
-        <span>h</span>
-        <span>e</span>
-        <span>o</span>
-        <span>d</span>
-        <span>o</span>
-        <span>k</span>
-        <span>.</span>
-      </div>
-      <div class="photo-container">
-        <img class="photo-item" src="p6.jpeg" alt="Italian streets" style="width:340px;height:460px;left:8%;top:60px;z-index:1;" data-delay="0" />
-        <img class="photo-item" src="p7.jpeg" alt="Parisian bar" style="width:260px;height:180px;left:32%;top:40px;z-index:3;" data-delay="120" />
-        <img class="photo-item" src="p1.webp" alt="nyc radio x apartment door" style="width:260px;height:350px;right:6%;top:50px;z-index:2;" data-delay="240" />
-        <img class="photo-item" src="p2.webp" alt="Child in market" style="width:340px;height:220px;left:5%;top:540px;z-index:2;" data-delay="360" />
-        <img class="photo-item" src="p3.webp" alt="Tokyo restaurant" style="width:320px;height:430px;left:34%;top:238px;z-index:4;" data-delay="480" />
-        <img class="photo-item" src="p4.webp" alt="Shadows in Spain" style="width:200px;height:280px;right:8%;top:420px;z-index:3;" data-delay="600" />
-        <img class="photo-item" src="p5.webp" alt="Blue umbrella in snowstorm" style="width:260px;height:170px;left:18%;top:800px;z-index:2;" data-delay="720" />
-      </div>
-      <div class="collage-copy">product manager · ux researcher · behavioral science</div>
-    </section>
+    .avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: rgba(126,184,201,0.08);
+      border: 1px solid rgba(126,184,201,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #7EB8C9;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .avatar::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 1px solid rgba(126,184,201,0.08);
+    }
 
-    <footer id="contact">
-      <div class="footer-grid">
-        <div class="footer-left">
-          <h2>let's talk.</h2>
-          <p>Theodora Kachrimanidi · Product Manager · UX Researcher</p>
-        </div>
-        <div class="footer-right">
-          <a href="mailto:tkachr@bu.edu">tkachr@bu.edu</a>
-          <a href="https://linkedin.com/in/theodorakachrimanidi" target="_blank" rel="noreferrer">LinkedIn ↗</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>itstheodok · 2026</span>
-        <span>built with claude</span>
-      </div>
-    </footer>
+    .name {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #F5F5F5;
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
+    }
 
-    <script>
-      const phrases = ["diagnosing trust breakdowns in user journeys","building products that feel as good as they work","behavioral science applied to real product decisions"];
-      let pi = 0;
-      const tw = document.getElementById("typewriter");
-      setInterval(() => { tw.style.opacity=0; setTimeout(()=>{ pi=(pi+1)%3; tw.textContent=phrases[pi]; tw.style.opacity=1; },400); }, 3000);
-      tw.textContent = phrases[0]; tw.style.opacity=1; tw.style.transition="opacity 0.4s";
+    .role {
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
 
-      const photos = document.querySelectorAll(".photo-item");
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if(entry.isIntersecting) {
-            const el = entry.target;
-            const delay = el.dataset.delay || 0;
-            el.style.transitionDelay = delay + "ms";
-            el.classList.add("visible");
-            observer.unobserve(el);
-          }
-        });
-      }, { threshold: 0.05, rootMargin: "0px 0px -60px 0px" });
-      photos.forEach(p => observer.observe(p));
+    .pill {
+      display: inline-block;
+      padding: 3px 10px;
+      border: 1px solid rgba(126,184,201,0.25);
+      border-radius: 20px;
+      color: rgba(126,184,201,0.7);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
 
-      const canvas = document.getElementById("water-canvas");
-      const ctx = canvas.getContext("2d");
-      let pts = [];
+    .typewriter {
+      font-size: 11px;
+      font-style: italic;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 24px;
+      min-height: 16px;
+      transition: opacity 0.4s;
+      text-align: center;
+      max-width: 280px;
+      line-height: 1.5;
+    }
 
-      function resize() {
-        canvas.width = canvas.parentElement.offsetWidth;
-        canvas.height = canvas.parentElement.offsetHeight;
-        pts = [];
-        for(let i=0;i<200;i++) {
-          pts.push({
-            x: Math.random()*canvas.width,
-            oy: Math.random()*canvas.height,
-            r: Math.random()*1.4+0.4,
-            op: Math.random()*0.13+0.04
-          });
-        }
-        draw(0);
-      }
+    .enter-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 24px;
+      background: #7EB8C9;
+      border: none;
+      border-radius: 20px;
+      color: #0A0A0F;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: none;
+      letter-spacing: 0.02em;
+      transition: all 0.2s;
+      text-decoration: none;
+      margin-bottom: 32px;
+    }
+    .enter-btn:hover {
+      background: #9ECFDD;
+      transform: scale(1.02);
+    }
+    .enter-btn svg {
+      width: 14px;
+      height: 14px;
+    }
 
-      function draw(scroll) {
-        ctx.clearRect(0,0,canvas.width,canvas.height);
-        pts.forEach(p => {
-          const y = p.oy - scroll*0.18;
-          ctx.beginPath();
-          ctx.arc(p.x, y, p.r, 0, Math.PI*2);
-          ctx.fillStyle = `rgba(126,184,201,${p.op})`;
-          ctx.fill();
-        });
-      }
+    .contact-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .contact-links a {
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .contact-links a:hover { color: #7EB8C9; }
+    .contact-links span {
+      color: rgba(255,255,255,0.1);
+      font-size: 10px;
+    }
 
-      let raf;
-      const section = document.getElementById("collage-section");
-      window.addEventListener("scroll", () => {
-        const rel = Math.max(0, window.scrollY - section.offsetTop);
-        cancelAnimationFrame(raf);
-        raf = requestAnimationFrame(() => draw(rel));
-      });
-      window.addEventListener("resize", resize);
-      resize();
+    .bottom-bar {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 32px;
+      z-index: 2;
+      animation: fadeInSimple 0.8s ease 0.8s both;
+    }
+    .bottom-bar a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      color: rgba(255,255,255,0.3);
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+      cursor: none;
+    }
+    .bottom-bar a:hover { color: rgba(255,255,255,0.7); }
+    .bottom-bar svg {
+      width: 18px;
+      height: 18px;
+      opacity: 0.4;
+      transition: opacity 0.2s;
+    }
+    .bottom-bar a:hover svg { opacity: 0.8; }
 
-      document.body.style.cursor="none";
-      const cursor = document.createElement("div");
-      cursor.style.cssText="position:fixed;width:8px;height:8px;background:#7EB8C9;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.1s;";
-      document.body.appendChild(cursor);
-      document.addEventListener("mousemove", e => {
-        cursor.style.left=e.clientX+"px";
-        cursor.style.top=e.clientY+"px";
-        const dot=document.createElement("div");
-        dot.style.cssText=`position:fixed;width:5px;height:5px;background:#7EB8C9;border-radius:50%;pointer-events:none;z-index:9998;left:${e.clientX}px;top:${e.clientY}px;transform:translate(-50%,-50%);opacity:0.6;transition:opacity 0.4s;`;
-        document.body.appendChild(dot);
-        setTimeout(()=>dot.style.opacity=0,50);
-        setTimeout(()=>dot.remove(),450);
-        const all=document.querySelectorAll("div[style*='z-index:9998']");
-        if(all.length>10) all[0].remove();
-      });
-    </script>
-  </body>
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translate(-50%, calc(-50% + 12px)); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+    @keyframes fadeInSimple {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="cursor"></div>
+  <div class="bg"></div>
+
+  <div class="time-block">
+    <div class="time" id="clock">00:00</div>
+    <div class="date" id="datestr"></div>
+  </div>
+
+  <div class="login-card">
+    <div class="avatar">TK</div>
+    <div class="name">Theodora Kachrimanidi</div>
+    <div class="role">Product Manager · UX Researcher</div>
+    <div class="pill">Available Fall 2026</div>
+    <div class="typewriter" id="typewriter"></div>
+    <a href="projects.html" class="enter-btn">
+      Enter
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+    <div class="contact-links">
+      <a href="mailto:tkachr@bu.edu">tkachr@bu.edu</a>
+      <span>·</span>
+      <a href="https://linkedin.com/in/theodorakachrimanidi" target="_blank">LinkedIn</a>
+      <span>·</span>
+      <a href="about.html">About</a>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <a href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M12 3v1m0 16v1M4.22 4.22l.7.7m12.16 12.16.7.7M3 12h1m16 0h1M4.92 19.08l.7-.7M18.36 5.64l.7-.7"/>
+        <circle cx="12" cy="12" r="4"/>
+      </svg>
+      Sleep
+    </a>
+    <a href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M21 12a9 9 0 11-6.219-8.56"/>
+      </svg>
+      Restart
+    </a>
+    <a href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M18.36 6.64A9 9 0 1 1 12 3v9"/>
+      </svg>
+      Shut Down
+    </a>
+  </div>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+
+    function updateClock() {
+      const now = new Date();
+      const h = now.getHours().toString().padStart(2, '0');
+      const m = now.getMinutes().toString().padStart(2, '0');
+      document.getElementById('clock').textContent = h + ':' + m;
+      const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+      const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      document.getElementById('datestr').textContent = days[now.getDay()] + ', ' + months[now.getMonth()] + ' ' + now.getDate();
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    const phrases = [
+      'diagnosing trust breakdowns in user journeys',
+      'building products that feel as good as they work',
+      'behavioral science applied to real product decisions',
+    ];
+    let pi = 0;
+    const tw = document.getElementById('typewriter');
+    tw.textContent = phrases[0];
+    tw.style.opacity = 1;
+    setInterval(() => {
+      tw.style.opacity = 0;
+      setTimeout(() => {
+        pi = (pi + 1) % phrases.length;
+        tw.textContent = phrases[pi];
+        tw.style.opacity = 1;
+      }, 400);
+    }, 3500);
+  </script>
+</body>
 </html>
