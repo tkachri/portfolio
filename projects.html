@@ -1,447 +1,621 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projects, itstheodok</title>
-    <meta name="description" content="Mac-style desktop portfolio for Theodora Kachrimanidi." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
-    <style>
-      .folder-annotation {
-        position: absolute;
-        pointer-events: none;
-        z-index: 20;
-        opacity: 0;
-        transform: translateY(4px);
-        transition: opacity 200ms ease, transform 200ms ease;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — itstheodok</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;1,400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-      .folder-annotation.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0D0F14;
+      color: #F5F5F5;
+      height: 100vh;
+      overflow: hidden;
+      cursor: none;
+      user-select: none;
+    }
 
-      .folder-annotation-inner {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        max-width: 180px;
-      }
+    #cursor {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: #7EB8C9;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width 0.15s, height 0.15s;
+    }
+    #cursor.hover {
+      width: 20px;
+      height: 20px;
+      background: transparent;
+      border: 1px solid #7EB8C9;
+    }
 
-      .folder-annotation-inner.left {
-        flex-direction: row-reverse;
-      }
+    /* WALLPAPER GLOW */
+    .wallpaper {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 45%, rgba(126,184,201,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse at 15% 80%, rgba(196,96,122,0.04) 0%, transparent 50%),
+        #0D0F14;
+      z-index: 0;
+    }
 
-      .folder-annotation-inner.up-right,
-      .folder-annotation-inner.up-left {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-      }
+    /* MENU BAR */
+    .menubar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 28px;
+      background: rgba(8,10,14,0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      z-index: 100;
+    }
+    .menu-left { display: flex; align-items: center; gap: 18px; }
+    .menu-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #F5F5F5;
+      text-decoration: none;
+      cursor: none;
+    }
+    .menu-item {
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      cursor: none;
+      transition: color 0.2s;
+    }
+    .menu-item:hover { color: #F5F5F5; }
+    .menu-right { display: flex; align-items: center; gap: 14px; }
+    .menu-right span { font-size: 11px; color: rgba(255,255,255,0.4); }
 
-      .folder-annotation-svg {
-        width: 86px;
-        height: 32px;
-        overflow: visible;
-      }
+    /* DESKTOP AREA */
+    .desktop {
+      position: fixed;
+      inset: 28px 0 72px 0;
+      z-index: 1;
+    }
 
-      .folder-annotation-line,
-      .folder-annotation-head {
-        stroke: #2c1f14;
-        stroke-width: 1.5;
-        fill: none;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke-dasharray: 100;
-        stroke-dashoffset: 100;
-        animation: draw-arrow 300ms ease-out forwards;
-      }
+    /* FOLDERS — stacked top right like real Mac */
+    .folders-column {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      align-items: center;
+    }
 
-      .folder-annotation-head {
-        stroke-dasharray: 16;
-        stroke-dashoffset: 16;
-      }
+    .folder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      cursor: none;
+      text-decoration: none;
+      position: relative;
+      transition: transform 0.15s;
+    }
+    .folder:hover { transform: scale(1.06); }
+    .folder:hover .folder-label { color: #7EB8C9; }
 
-      .folder-annotation-text {
-        background: #f5f0e6;
-        border: 1px solid #ede8dc;
-        border-radius: 6px;
-        padding: 8px 12px;
-        max-width: 160px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        font-family: "Caveat", cursive;
-        font-size: 15px;
-        line-height: 1.5;
-        color: #2c1f14;
-        opacity: 0;
-        transform: translateY(2px);
-        transition: opacity 200ms ease 300ms, transform 200ms ease 300ms;
-      }
+    .folder-icon {
+      width: 64px;
+      height: 52px;
+      position: relative;
+      filter: drop-shadow(0 3px 8px rgba(0,0,0,0.5));
+    }
 
-      .folder-annotation.is-visible .folder-annotation-text {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .folder-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.8);
+      text-align: center;
+      max-width: 80px;
+      line-height: 1.3;
+      transition: color 0.2s;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+    }
 
-      .menu-bar {
-        background: #1c1c1e;
-        color: #f7f3e8;
-      }
+    .folder-faded { opacity: 0.3; }
+    .folder-faded .folder-label { color: rgba(255,255,255,0.4); font-style: italic; }
 
-      .menu-nav-link {
-        color: #f7f3e8;
-        font-size: 11px;
-        opacity: 0.9;
-        text-decoration: none;
-      }
+    /* TOOLTIP */
+    .folder-tip {
+      position: absolute;
+      right: calc(100% + 12px);
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(15,17,22,0.92);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 8px 12px;
+      width: 200px;
+      font-size: 10px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+      white-space: normal;
+      text-align: left;
+    }
+    .folder-tip::after {
+      content: '';
+      position: absolute;
+      right: -5px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 8px;
+      background: rgba(15,17,22,0.92);
+      border-right: 1px solid rgba(255,255,255,0.08);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      transform: translateY(-50%) rotate(45deg);
+    }
+    .folder:hover .folder-tip { opacity: 1; }
 
-      .dock-bar {
-        position: fixed;
-        bottom: 12px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        align-items: flex-end;
-        gap: 10px;
-        padding: 8px 16px;
-        background: rgba(255, 255, 255, 0.18);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 18px;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
-      }
+    /* DOCK */
+    .dock {
+      position: fixed;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      background: rgba(255,255,255,0.055);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 18px;
+      padding: 8px 16px 10px;
+      z-index: 100;
+    }
 
-      .dock-icon {
-        width: 52px;
-        height: 52px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-        transition: transform 0.2s ease;
-      }
+    .dock-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      cursor: none;
+      text-decoration: none;
+      position: relative;
+    }
 
-      .dock-icon:hover,
-      .dock-icon:focus-within {
-        transform: translateY(-12px) scale(1.25);
-      }
+    .dock-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 700;
+    }
 
-      .dock-icon + .dock-icon:hover,
-      .dock-icon + .dock-icon:focus-within {
-        transform: translateY(-12px) scale(1.1);
-      }
+    .dock-item:hover .dock-icon {
+      transform: translateY(-10px) scale(1.2);
+    }
+    .dock-item:hover + .dock-item .dock-icon,
+    .dock-item:has(+ .dock-item:hover) .dock-icon {
+      transform: translateY(-5px) scale(1.1);
+    }
 
-      .dock-icon svg {
-        width: 28px;
-        height: 28px;
-      }
+    .dock-label {
+      font-size: 9px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.04em;
+      opacity: 0;
+      transition: opacity 0.15s;
+      position: absolute;
+      bottom: -14px;
+      white-space: nowrap;
+    }
+    .dock-item:hover .dock-label { opacity: 1; }
 
-      .dock-finder {
-        background: linear-gradient(145deg, #5eb5f7, #2d6fd9);
-      }
+    /* MOBILE — card list */
+    .mobile-view {
+      display: none;
+      flex-direction: column;
+      padding: 80px 20px 40px;
+      overflow-y: auto;
+      height: 100vh;
+      gap: 1px;
+    }
 
-      .dock-safari {
-        background: white;
-        border: 1px solid #d0d0d0;
-      }
+    .mobile-header {
+      margin-bottom: 32px;
+    }
+    .mobile-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: #F5F5F5;
+      margin-bottom: 8px;
+    }
+    .mobile-header p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+    }
 
-      .dock-notes {
-        background: linear-gradient(145deg, #ffe033, #ffb800);
-      }
+    .project-card {
+      display: block;
+      text-decoration: none;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+      transition: padding-left 0.2s;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20px;
+      bottom: 20px;
+      width: 0;
+      background: #C4607A;
+      border-radius: 2px;
+      transition: width 0.2s;
+    }
+    .project-card:hover { padding-left: 16px; }
+    .project-card:hover::before { width: 2px; }
 
-      .dock-messages {
-        background: linear-gradient(145deg, #5ee65a, #28c840);
-      }
+    .card-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .card-tag {
+      font-size: 9px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: rgba(126,184,201,0.7);
+      border: 1px solid rgba(126,184,201,0.2);
+      border-radius: 20px;
+      padding: 2px 8px;
+    }
+    .card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #F5F5F5;
+      margin-bottom: 6px;
+    }
+    .card-desc {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+    .card-link {
+      font-size: 11px;
+      color: #7EB8C9;
+      letter-spacing: 0.04em;
+    }
 
-      .dock-mail {
-        background: linear-gradient(145deg, #4da3ff, #1a6fe0);
-      }
+    /* MOBILE NAV */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 56px;
+      background: rgba(8,10,14,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 100;
+    }
+    .mobile-nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #F5F5F5;
+      text-decoration: none;
+    }
+    .mobile-nav-links { display: flex; gap: 20px; }
+    .mobile-nav-links a {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+    }
 
-      .dock-photos {
-        background: white;
-      }
+    @media (max-width: 768px) {
+      body { overflow: auto; }
+      #cursor { display: none; }
+      .wallpaper { display: none; }
+      .menubar { display: none; }
+      .desktop { display: none; }
+      .dock { display: none; }
+      .mobile-view { display: flex; }
+      .mobile-nav { display: flex; }
+    }
 
-      .dock-app-store {
-        background: linear-gradient(145deg, #4dbaff, #007aff);
-      }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .desktop { animation: fadeIn 0.4s ease both; }
+  </style>
+</head>
+<body>
 
-      @keyframes draw-arrow {
-        to {
-          stroke-dashoffset: 0;
-        }
-      }
-      .menu-nav-link {
-        background-color: #7EB8C9;
-        color: #2C1F14;
-        padding: 2px 10px;
-        border-radius: 4px;
-        margin-left: 8px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: opacity 0.15s ease;
-      }
+  <div id="cursor"></div>
+  <div class="wallpaper"></div>
 
-      .menu-nav-link:hover {
-        opacity: 0.75;
-      }
+  <!-- DESKTOP MENU BAR -->
+  <div class="menubar">
+    <div class="menu-left">
+      <a href="index.html" class="menu-logo">itstheodok</a>
+      <a href="index.html" class="menu-item">Home</a>
+      <a href="about.html" class="menu-item">About</a>
+      <span class="menu-item" style="color:rgba(255,255,255,0.18);">View</span>
+      <span class="menu-item" style="color:rgba(255,255,255,0.18);">Go</span>
+    </div>
+    <div class="menu-right">
+      <span id="menu-clock"></span>
+      <span style="color:rgba(255,255,255,0.2);">●</span>
+      <span>100%</span>
+    </div>
+  </div>
 
-      .menu-left .apple-mark,
-      .menu-left > span:not(.apple-mark) {
-        opacity: 0.5;
-      }
+  <!-- DESKTOP VIEW -->
+  <div class="desktop">
+    <div class="folders-column">
 
-      /* ---- pending / coming-soon folders ---- */
-      .folder.folder-pending {
-        opacity: 0.42;
-        cursor: default;
-        pointer-events: auto;
-      }
+      <a href="nereid.html" class="folder">
+        <div class="folder-icon">
+          <svg viewBox="0 0 64 52" fill="none" xmlns="http://www.w3.org/2000/svg" width="64" height="52">
+            <rect x="0" y="12" width="64" height="40" rx="4" fill="#B85570"/>
+            <rect x="0" y="5" width="22" height="11" rx="3" fill="#CC6882"/>
+            <rect x="0" y="12" width="64" height="6" rx="0" fill="#CC6882" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="folder-tip">Marina booking platform — diagnosed 3 trust breakdowns, won Best Client Work of 20 teams</div>
+        <div class="folder-label">NEREID</div>
+      </a>
 
-      .folder.folder-pending:hover {
-        opacity: 0.6;
-      }
+      <a href="leaselink.html" class="folder">
+        <div class="folder-icon">
+          <svg viewBox="0 0 64 52" fill="none" xmlns="http://www.w3.org/2000/svg" width="64" height="52">
+            <rect x="0" y="12" width="64" height="40" rx="4" fill="#B85570"/>
+            <rect x="0" y="5" width="22" height="11" rx="3" fill="#CC6882"/>
+            <rect x="0" y="12" width="64" height="6" rx="0" fill="#CC6882" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="folder-tip">AI proptech marketplace — co-founded, building at Innovate BU</div>
+        <div class="folder-label">LeaseLink</div>
+      </a>
 
-      .folder-pending .folder-icon rect:first-child {
-        fill: #cfc6b4;
-      }
+      <a href="careguard.html" class="folder">
+        <div class="folder-icon">
+          <svg viewBox="0 0 64 52" fill="none" xmlns="http://www.w3.org/2000/svg" width="64" height="52">
+            <rect x="0" y="12" width="64" height="40" rx="4" fill="#B85570"/>
+            <rect x="0" y="5" width="22" height="11" rx="3" fill="#CC6882"/>
+            <rect x="0" y="12" width="64" height="6" rx="0" fill="#CC6882" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="folder-tip">Care coordination app — built end-to-end independently in Lovable</div>
+        <div class="folder-label">CareGuard</div>
+      </a>
 
-      .folder-pending .folder-icon rect:last-child {
-        fill: #b8ac93;
-      }
+      <a href="sprouts.html" class="folder">
+        <div class="folder-icon">
+          <svg viewBox="0 0 64 52" fill="none" xmlns="http://www.w3.org/2000/svg" width="64" height="52">
+            <rect x="0" y="12" width="64" height="40" rx="4" fill="#B85570"/>
+            <rect x="0" y="5" width="22" height="11" rx="3" fill="#CC6882"/>
+            <rect x="0" y="12" width="64" height="6" rx="0" fill="#CC6882" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="folder-tip">Go-to-market strategy — 2nd of 46 teams, Best Creative Award, $6,000</div>
+        <div class="folder-label">Sprouts</div>
+      </a>
 
-      .folder-soon-badge {
-        display: block;
-        font-size: 10px;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: #8A7A6A;
-        margin-top: 2px;
-      }
-    </style>
-  </head>
-  <body class="page-projects">
-    <div class="menu-bar">
-      <div class="menu-left">
-        <span class="apple-mark"></span>
-        <span>itstheodok</span>
-        <span>File</span>
-        <span>Edit</span>
-        <span>View</span>
-        <span>·</span>
-        <a class="menu-nav-link" href="index.html">home</a>
-        <a class="menu-nav-link" href="about.html">about</a>
-        <a class="menu-nav-link" href="index.html#footer">contact</a>
+      <a href="mote.html" class="folder">
+        <div class="folder-icon">
+          <svg viewBox="0 0 64 52" fill="none" xmlns="http://www.w3.org/2000/svg" width="64" height="52">
+            <rect x="0" y="12" width="64" height="40" rx="4" fill="#B85570"/>
+            <rect x="0" y="5" width="22" height="11" rx="3" fill="#CC6882"/>
+            <rect x="0" y="12" width="64" height="6" rx="0" fill="#CC6882" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="folder-tip">Wearable concept — sensor for existing jewelry, intelligence that wears you</div>
+        <div class="folder-label">Mote</div>
+      </a>
+
+      <a href="fischer.html" class="folder">
+        <div class="folder-icon">
+          <svg viewBox="0 0 64 52" fill="none" xmlns="http://www.w3.org/2000/svg" width="64" height="52">
+            <rect x="0" y="12" width="64" height="40" rx="4" fill="#B85570"/>
+            <rect x="0" y="5" width="22" height="11" rx="3" fill="#CC6882"/>
+            <rect x="0" y="12" width="64" height="6" rx="0" fill="#CC6882" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="folder-tip">Product strategy consulting — 7-week engagement, delivered to senior leadership</div>
+        <div class="folder-label">Fischer Sports</div>
+      </a>
+
+      <div class="folder folder-faded">
+        <div class="folder-icon">
+          <svg viewBox="0 0 64 52" fill="none" xmlns="http://www.w3.org/2000/svg" width="64" height="52">
+            <rect x="0" y="12" width="64" height="40" rx="4" fill="#B85570" opacity="0.3"/>
+            <rect x="0" y="5" width="22" height="11" rx="3" fill="#CC6882" opacity="0.3"/>
+          </svg>
+        </div>
+        <div class="folder-label">more soon +</div>
       </div>
-      <div class="menu-right">
-        <span id="clock">--:--</span>
-        <span>●</span>
-        <span>100%</span>
+
+    </div>
+  </div>
+
+  <!-- DOCK -->
+  <div class="dock">
+    <a href="index.html" class="dock-item">
+      <div class="dock-icon" style="background:rgba(126,184,201,0.1);border:1px solid rgba(126,184,201,0.2);color:#7EB8C9;">TK</div>
+      <span class="dock-label">Home</span>
+    </a>
+    <a href="about.html" class="dock-item">
+      <div class="dock-icon" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.5">
+          <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
       </div>
+      <span class="dock-label">About</span>
+    </a>
+    <a href="nereid.html" class="dock-item">
+      <div class="dock-icon" style="background:rgba(184,85,112,0.15);border:1px solid rgba(184,85,112,0.25);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(196,96,122,0.8)" stroke-width="1.5">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </div>
+      <span class="dock-label">NEREID</span>
+    </a>
+    <a href="mailto:tkachr@bu.edu" class="dock-item">
+      <div class="dock-icon" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.5">
+          <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/>
+        </svg>
+      </div>
+      <span class="dock-label">Email</span>
+    </a>
+    <a href="https://linkedin.com/in/theodorakachrimanidi" target="_blank" class="dock-item">
+      <div class="dock-icon" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="rgba(255,255,255,0.55)">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/>
+          <circle cx="4" cy="4" r="2"/>
+        </svg>
+      </div>
+      <span class="dock-label">LinkedIn</span>
+    </a>
+  </div>
+
+  <!-- MOBILE NAV -->
+  <nav class="mobile-nav">
+    <a href="index.html" class="mobile-nav-logo">itstheodok</a>
+    <div class="mobile-nav-links">
+      <a href="about.html">about</a>
+      <a href="mailto:tkachr@bu.edu">contact</a>
+    </div>
+  </nav>
+
+  <!-- MOBILE VIEW -->
+  <div class="mobile-view">
+    <div class="mobile-header">
+      <h1>Projects.</h1>
+      <p>Product, UX, and strategy work.</p>
     </div>
 
-    <main class="desktop-shell">
-
-      <!-- LIVE: real case study built out -->
-      <a class="folder" href="nereid.html" data-description="Marina booking platform, trust by design" data-direction="right" style="top:14%; left:7%;">
-        <div class="folder-svg-wrap">
-          <svg class="folder-icon" viewBox="0 0 80 60" aria-hidden="true">
-            <rect x="4" y="12" width="72" height="44" rx="4" ry="4" />
-            <rect x="4" y="12" width="28" height="12" rx="3" ry="3" fill="#D4607A" />
-          </svg>
-        </div>
-        <span>NEREID</span>
-      </a>
-
-      <!-- PENDING: case study not yet built -->
-      <a class="folder folder-pending" href="leaselink.html" data-description="AI proptech marketplace, built from zero" data-direction="left" style="top:11%; left:70%;">
-        <div class="folder-svg-wrap">
-          <svg class="folder-icon" viewBox="0 0 80 60" aria-hidden="true">
-            <rect x="4" y="12" width="72" height="44" rx="4" ry="4" />
-            <rect x="4" y="12" width="28" height="12" rx="3" ry="3" fill="#D4607A" />
-          </svg>
-        </div>
-        <span>LeaseLink<span class="folder-soon-badge">coming soon</span></span>
-      </a>
-
-      <a class="folder folder-pending" href="careguard.html" data-description="Care coordination, shipped end to end" data-direction="right" style="top:44%; left:13%;">
-        <div class="folder-svg-wrap">
-          <svg class="folder-icon" viewBox="0 0 80 60" aria-hidden="true">
-            <rect x="4" y="12" width="72" height="44" rx="4" ry="4" />
-            <rect x="4" y="12" width="28" height="12" rx="3" ry="3" fill="#D4607A" />
-          </svg>
-        </div>
-        <span>CareGuard<span class="folder-soon-badge">coming soon</span></span>
-      </a>
-
-      <a class="folder folder-pending" href="sprouts.html" data-description="Go-to-market strategy, 2nd of 46 teams" data-direction="left" style="top:42%; left:67%;">
-        <div class="folder-svg-wrap">
-          <svg class="folder-icon" viewBox="0 0 80 60" aria-hidden="true">
-            <rect x="4" y="12" width="72" height="44" rx="4" ry="4" />
-            <rect x="4" y="12" width="28" height="12" rx="3" ry="3" fill="#D4607A" />
-          </svg>
-        </div>
-        <span>Sprouts<span class="folder-soon-badge">coming soon</span></span>
-      </a>
-
-      <a class="folder folder-pending" href="fischersports.html" data-description="Product strategy for a sports brand client" data-direction="up-right" style="top:68%; left:40%;">
-        <div class="folder-svg-wrap">
-          <svg class="folder-icon" viewBox="0 0 80 60" aria-hidden="true">
-            <rect x="4" y="12" width="72" height="44" rx="4" ry="4" />
-            <rect x="4" y="12" width="28" height="12" rx="3" ry="3" fill="#D4607A" />
-          </svg>
-        </div>
-        <span>Fischer Sports<span class="folder-soon-badge">coming soon</span></span>
-      </a>
-
-      <a class="folder folder-pending" href="mote.html" data-description="Wearable product, intelligence that wears you" data-direction="up-left" style="top:68%; left:18%;">
-        <div class="folder-svg-wrap">
-          <svg class="folder-icon" viewBox="0 0 80 60" aria-hidden="true">
-            <rect x="4" y="12" width="72" height="44" rx="4" ry="4" />
-            <rect x="4" y="12" width="28" height="12" rx="3" ry="3" fill="#D4607A" />
-          </svg>
-        </div>
-        <span>Mote<span class="folder-soon-badge">coming soon</span></span>
-      </a>
-
-      <a class="folder folder-muted" style="top:70%; left:76%;">
-        <div class="folder-svg-wrap">
-          <svg class="folder-icon" viewBox="0 0 80 60" aria-hidden="true" opacity="0.35">
-            <rect x="4" y="12" width="72" height="44" rx="4" ry="4" />
-            <rect x="4" y="12" width="28" height="12" rx="3" ry="3" fill="#D4607A" />
-          </svg>
-        </div>
-        <span>more soon +</span>
-      </a>
-    </main>
-
-    <div class="dock-bar" aria-hidden="true">
-      <div class="dock-icon dock-finder">
-        <svg viewBox="0 0 48 48" aria-hidden="true">
-          <circle cx="24" cy="24" r="18" fill="none" stroke="white" stroke-width="3" />
-          <circle cx="24" cy="24" r="7" fill="white" />
-          <path d="M18 34c3-2 9-2 12 0" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" />
-        </svg>
+    <a href="nereid.html" class="project-card">
+      <div class="card-tags">
+        <span class="card-tag">UX Research</span>
+        <span class="card-tag">Product Design</span>
+        <span class="card-tag">B2C</span>
       </div>
-      <div class="dock-icon dock-safari">
-        <svg viewBox="0 0 48 48" aria-hidden="true">
-          <circle cx="24" cy="24" r="16" fill="none" stroke="#1A6FE0" stroke-width="4" />
-          <path d="M18 30L30 18" stroke="#1A6FE0" stroke-width="4" stroke-linecap="round" />
-          <circle cx="24" cy="24" r="3" fill="#1A6FE0" />
-        </svg>
+      <div class="card-name">NEREID</div>
+      <div class="card-desc">Marina booking platform — diagnosed 3 trust breakdowns, won Best Client Work of 20 teams.</div>
+      <span class="card-link">open →</span>
+    </a>
+
+    <a href="leaselink.html" class="project-card">
+      <div class="card-tags">
+        <span class="card-tag">0 to 1</span>
+        <span class="card-tag">AI</span>
+        <span class="card-tag">Proptech</span>
       </div>
-      <div class="dock-icon dock-notes">
-        <svg viewBox="0 0 48 48" aria-hidden="true">
-          <rect x="12" y="10" width="24" height="28" rx="4" fill="#FFD60A" />
-          <path d="M18 18h12M18 24h8" stroke="white" stroke-width="2.5" stroke-linecap="round" />
-          <path d="M18 30h6" stroke="white" stroke-width="2.5" stroke-linecap="round" />
-        </svg>
+      <div class="card-name">LeaseLink</div>
+      <div class="card-desc">AI proptech marketplace — co-founded, building at Innovate BU.</div>
+      <span class="card-link">open →</span>
+    </a>
+
+    <a href="careguard.html" class="project-card">
+      <div class="card-tags">
+        <span class="card-tag">Product Design</span>
+        <span class="card-tag">Healthcare</span>
+        <span class="card-tag">AI</span>
       </div>
-      <div class="dock-icon dock-messages">
-        <svg viewBox="0 0 48 48" aria-hidden="true">
-          <rect x="12" y="12" width="24" height="20" rx="8" fill="white" />
-          <path d="M18 20h12" stroke="#28C840" stroke-width="2.5" stroke-linecap="round" />
-          <path d="M18 24h8" stroke="#28C840" stroke-width="2.5" stroke-linecap="round" />
-        </svg>
+      <div class="card-name">CareGuard</div>
+      <div class="card-desc">Care coordination app — built end-to-end independently in Lovable.</div>
+      <span class="card-link">open →</span>
+    </a>
+
+    <a href="sprouts.html" class="project-card">
+      <div class="card-tags">
+        <span class="card-tag">Go-to-Market</span>
+        <span class="card-tag">Creative Strategy</span>
       </div>
-      <div class="dock-icon dock-mail">
-        <svg viewBox="0 0 48 48" aria-hidden="true">
-          <rect x="10" y="12" width="28" height="24" rx="5" fill="#1A6FE0" />
-          <path d="M12 16l12 10 12-10" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
+      <div class="card-name">Sprouts</div>
+      <div class="card-desc">Go-to-market strategy — 2nd of 46 teams, Best Creative Award, $6,000.</div>
+      <span class="card-link">open →</span>
+    </a>
+
+    <a href="mote.html" class="project-card">
+      <div class="card-tags">
+        <span class="card-tag">Wearable</span>
+        <span class="card-tag">Fashion Tech</span>
+        <span class="card-tag">Concept</span>
       </div>
-      <div class="dock-icon dock-photos">
-        <svg viewBox="0 0 48 48" aria-hidden="true">
-          <rect x="10" y="10" width="28" height="28" rx="8" fill="white" />
-          <circle cx="20" cy="22" r="4" fill="#FF4D6D" />
-          <circle cx="28" cy="20" r="4" fill="#FFC857" />
-          <path d="M16 32c3-5 8-6 13-3" stroke="#4FC3F7" stroke-width="3" stroke-linecap="round" />
-        </svg>
+      <div class="card-name">Mote</div>
+      <div class="card-desc">Wearable concept — sensor for existing jewelry, intelligence that wears you.</div>
+      <span class="card-link">open →</span>
+    </a>
+
+    <a href="fischer.html" class="project-card">
+      <div class="card-tags">
+        <span class="card-tag">Consulting</span>
+        <span class="card-tag">Product Strategy</span>
       </div>
-      <div class="dock-icon dock-app-store">
-        <svg viewBox="0 0 48 48" aria-hidden="true">
-          <path d="M26 12h6l-4 8h6l-12 16 3-10h-6l4-14z" fill="white" />
-        </svg>
-      </div>
-    </div>
+      <div class="card-name">Fischer Sports</div>
+      <div class="card-desc">Product strategy consulting — 7-week engagement, delivered to senior leadership.</div>
+      <span class="card-link">open →</span>
+    </a>
 
-    <div class="cursor-dot" aria-hidden="true"></div>
-    <script src="script.js"></script>
-    <script>
-      const folderLinks = Array.from(document.querySelectorAll('.folder[href]'));
+  </div>
 
-      const buildAnnotation = (folder) => {
-        const description = folder.dataset.description || '';
-        const direction = folder.dataset.direction || 'right';
-        const annotation = document.createElement('div');
-        annotation.className = 'folder-annotation';
-
-        let svgPath = '';
-        let headPath = '';
-        let wrapperClass = 'inner';
-        let wrapperStyle = '';
-
-        if (direction === 'right') {
-          svgPath = 'M 6 16 L 74 16';
-          headPath = 'M 70 10 L 82 16 L 70 22';
-          wrapperClass = 'folder-annotation-inner';
-          wrapperStyle = 'left: calc(100% + 16px); top: 50%; transform: translateY(-50%);';
-        } else if (direction === 'left') {
-          svgPath = 'M 80 16 L 12 16';
-          headPath = 'M 16 10 L 4 16 L 16 22';
-          wrapperClass = 'folder-annotation-inner left';
-          wrapperStyle = 'right: calc(100% + 16px); top: 50%; transform: translateY(-50%);';
-        } else if (direction === 'up-right') {
-          svgPath = 'M 6 24 L 58 8';
-          headPath = 'M 54 10 L 66 4 L 62 16';
-          wrapperClass = 'folder-annotation-inner up-right';
-          wrapperStyle = 'left: calc(100% + 12px); top: -2px;';
-        } else if (direction === 'up-left') {
-          svgPath = 'M 80 24 L 28 8';
-          headPath = 'M 32 10 L 20 4 L 24 16';
-          wrapperClass = 'folder-annotation-inner up-left';
-          wrapperStyle = 'right: calc(100% + 12px); top: -2px;';
-        }
-
-        annotation.innerHTML = `
-          <div class="${wrapperClass}" style="${wrapperStyle}">
-            <svg class="folder-annotation-svg" viewBox="0 0 86 32" aria-hidden="true">
-              <path class="folder-annotation-line" d="${svgPath}" />
-              <path class="folder-annotation-head" d="${headPath}" />
-            </svg>
-            <div class="folder-annotation-text">${description}</div>
-          </div>
-        `;
-
-        return annotation;
-      };
-
-      folderLinks.forEach((folder) => {
-        folder.addEventListener('mouseenter', () => {
-          const existing = folder.querySelector('.folder-annotation');
-          if (existing) {
-            existing.remove();
-          }
-          const annotation = buildAnnotation(folder);
-          folder.appendChild(annotation);
-          requestAnimationFrame(() => annotation.classList.add('is-visible'));
-        });
-
-        folder.addEventListener('mouseleave', () => {
-          const annotation = folder.querySelector('.folder-annotation');
-          if (annotation) {
-            annotation.classList.remove('is-visible');
-            annotation.remove();
-          }
-        });
+  <script>
+    const cursor = document.getElementById('cursor');
+    if (cursor) {
+      document.addEventListener('mousemove', e => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
       });
-    </script>
-  </body>
+      document.querySelectorAll('a, .folder').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+      });
+    }
+
+    function updateClock() {
+      const now = new Date();
+      const h = now.getHours().toString().padStart(2, '0');
+      const m = now.getMinutes().toString().padStart(2, '0');
+      const el = document.getElementById('menu-clock');
+      if (el) el.textContent = h + ':' + m;
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+</body>
 </html>
