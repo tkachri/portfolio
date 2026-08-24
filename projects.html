@@ -26,28 +26,33 @@
 
     .desktop { position: fixed; inset: 28px 0 72px 0; z-index: 1; }
 
-    /* PHOTOS — two columns, staggered like Canva layout */
-    .photos-left { position: absolute; left: 2%; top: 4%; display: flex; gap: 10px; }
+    /* PHOTOS — exact Canva layout, 3 columns */
+    .photos-left {
+      position: absolute;
+      left: 2%;
+      top: 9%;
+      display: grid;
+      grid-template-columns: 148px 148px 118px;
+      grid-template-rows: 115px 115px 135px;
+      gap: 7px;
+    }
 
-    .photo-col { display: flex; flex-direction: column; gap: 10px; }
-
-    .photo { object-fit: cover; border-radius: 2px; display: block; opacity: 0; animation: photoIn 0.7s ease forwards; }
+    .photo { object-fit: cover; border-radius: 2px; width: 100%; height: 100%; display: block; opacity: 0; animation: photoIn 0.7s ease forwards; }
     @keyframes photoIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 0.88; transform: translateY(0); } }
 
-    /* Left column — 4 photos */
-    .col-left .photo:nth-child(1) { width: 155px; height: 100px; animation-delay: 0.1s; }
-    .col-left .photo:nth-child(2) { width: 155px; height: 145px; animation-delay: 0.2s; }
-    .col-left .photo:nth-child(3) { width: 155px; height: 110px; animation-delay: 0.3s; }
-    .col-left .photo:nth-child(4) { width: 155px; height: 130px; animation-delay: 0.4s; }
+    /* Row 1: boxing(landscape) | paris collage spans 2 rows | empty col3 */
+    .ph1 { grid-column: 1; grid-row: 1; animation-delay: 0.1s; }
+    .ph2 { grid-column: 2; grid-row: 1 / 3; height: 237px; animation-delay: 0.15s; }
+    /* Row 2: red bar silhouette | (ph2 continues) | cafe woman */
+    .ph3 { grid-column: 1; grid-row: 2; animation-delay: 0.2s; }
+    .ph4 { grid-column: 3; grid-row: 1 / 3; height: 237px; animation-delay: 0.25s; }
+    /* Row 3: shadow tiles | red street | snow */
+    .ph5 { grid-column: 1; grid-row: 3; animation-delay: 0.3s; }
+    .ph6 { grid-column: 2; grid-row: 3; animation-delay: 0.35s; }
+    .ph7 { grid-column: 3; grid-row: 3; animation-delay: 0.4s; }
 
-    /* Right column — 3 photos, offset down */
-    .col-right { margin-top: 40px; }
-    .col-right .photo:nth-child(1) { width: 155px; height: 130px; animation-delay: 0.15s; }
-    .col-right .photo:nth-child(2) { width: 155px; height: 100px; animation-delay: 0.25s; }
-    .col-right .photo:nth-child(3) { width: 155px; height: 155px; animation-delay: 0.35s; }
-
-    /* FOLDER COLUMNS — right side */
-    .columns-area { position: absolute; right: 3%; top: 4%; display: flex; gap: 52px; align-items: flex-start; }
+    /* FOLDERS RIGHT */
+    .columns-area { position: absolute; right: 3%; top: 9%; display: flex; gap: 52px; align-items: flex-start; }
 
     .folder-column { display: flex; flex-direction: column; gap: 18px; align-items: center; }
     .column-label { font-size: 9px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.2); margin-bottom: 2px; text-align: center; }
@@ -121,73 +126,44 @@
 
   <div class="desktop">
 
-    <!-- PHOTOS TWO COLUMNS LEFT -->
+    <!-- PHOTOS matching Canva layout -->
     <div class="photos-left">
-      <div class="photo-col col-left">
-        <img class="photo" src="p2.webp" alt="" />
-        <img class="photo" src="p6.jpeg" alt="" />
-        <img class="photo" src="p7.jpeg" alt="" />
-        <img class="photo" src="p5.webp" alt="" />
-      </div>
-      <div class="photo-col col-right">
-        <img class="photo" src="p1.webp" alt="" />
-        <img class="photo" src="p4.webp" alt="" />
-        <img class="photo" src="p3.webp" alt="" />
-      </div>
+      <img class="photo ph1" src="p2.webp" alt="" />
+      <img class="photo ph2" src="p1.webp" alt="" />
+      <img class="photo ph3" src="p6.jpeg" alt="" />
+      <img class="photo ph4" src="p4.webp" alt="" />
+      <img class="photo ph5" src="p7.jpeg" alt="" />
+      <img class="photo ph6" src="p3.webp" alt="" />
+      <img class="photo ph7" src="p5.webp" alt="" />
     </div>
 
-    <!-- FOLDER COLUMNS RIGHT -->
+    <!-- FOLDER COLUMNS -->
     <div class="columns-area">
 
       <div class="folder-column">
         <div class="column-label">Product · UX</div>
-
         <a href="nereid.html" class="folder">
-          <svg class="folder-icon" viewBox="0 0 68 54" fill="none">
-            <rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/>
-            <rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/>
-            <rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/>
-          </svg>
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/><rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/></svg>
           <div class="folder-tip">Marina booking platform — 3 trust breakdowns, Best Client Work of 20 teams</div>
           <div class="folder-label">NEREID</div>
         </a>
-
         <a href="leaselink.html" class="folder">
-          <svg class="folder-icon" viewBox="0 0 68 54" fill="none">
-            <rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/>
-            <rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/>
-            <rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/>
-          </svg>
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/><rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/></svg>
           <div class="folder-tip">AI proptech marketplace — co-founded at Innovate BU</div>
           <div class="folder-label">LeaseLink</div>
         </a>
-
         <a href="careguard.html" class="folder">
-          <svg class="folder-icon" viewBox="0 0 68 54" fill="none">
-            <rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/>
-            <rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/>
-            <rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/>
-          </svg>
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/><rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/></svg>
           <div class="folder-tip">Care coordination app — built end-to-end in Lovable</div>
           <div class="folder-label">CareGuard</div>
         </a>
-
         <a href="fischer.html" class="folder">
-          <svg class="folder-icon" viewBox="0 0 68 54" fill="none">
-            <rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/>
-            <rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/>
-            <rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/>
-          </svg>
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/><rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/></svg>
           <div class="folder-tip">Product strategy consulting — 7-week engagement, senior leadership</div>
           <div class="folder-label">Fischer Sports</div>
         </a>
-
         <a href="mote.html" class="folder">
-          <svg class="folder-icon" viewBox="0 0 68 54" fill="none">
-            <rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/>
-            <rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/>
-            <rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/>
-          </svg>
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/><rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/></svg>
           <div class="folder-tip">Wearable concept — sensor for existing jewelry, intelligence that wears you</div>
           <div class="folder-label">Mote</div>
         </a>
@@ -195,45 +171,26 @@
 
       <div class="folder-column brand-col">
         <div class="column-label">Brand · Creative</div>
-
         <a href="ceramicaele.html" class="folder">
-          <svg class="folder-icon" viewBox="0 0 68 54" fill="none">
-            <rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/>
-            <rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/>
-            <rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/>
-          </svg>
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/><rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/></svg>
           <div class="folder-tip">Brand identity and website for a ceramics studio — visual world, type, and digital presence</div>
           <div class="folder-label">ceramicaele</div>
         </a>
-
         <a href="sprouts.html" class="folder">
-          <svg class="folder-icon" viewBox="0 0 68 54" fill="none">
-            <rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/>
-            <rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/>
-            <rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/>
-          </svg>
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/><rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/></svg>
           <div class="folder-tip">Go-to-market strategy for a national retail brand, anonymized per NDA. 2nd of 46 teams, Best Creative Award, $6,000.</div>
           <div class="folder-label">Retail Strategy*</div>
         </a>
-
         <div class="folder folder-faded">
-          <svg class="folder-icon" viewBox="0 0 68 54" fill="none">
-            <rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570" opacity="0.3"/>
-            <rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882" opacity="0.3"/>
-          </svg>
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570" opacity="0.3"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882" opacity="0.3"/></svg>
           <div class="folder-label">more soon +</div>
         </div>
       </div>
 
       <div class="folder-column personal-col">
         <div class="column-label">Personal</div>
-
-        <a href="https://bu.digication.com/itstheodokwritings/home-1" target="_blank" class="folder">
-          <svg class="folder-icon" viewBox="0 0 68 54" fill="none">
-            <rect x="0" y="13" width="68" height="41" rx="4" fill="#7EB8C9" opacity="0.55"/>
-            <rect x="0" y="6" width="24" height="11" rx="3" fill="#9ECFDD" opacity="0.55"/>
-            <rect x="0" y="13" width="68" height="6" fill="#9ECFDD" opacity="0.25"/>
-          </svg>
+        <a href="https://bu.digication.com/theodora-k-cgs-team-d-spring-2021/home-1" target="_blank" class="folder">
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#7EB8C9" opacity="0.55"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#9ECFDD" opacity="0.55"/><rect x="0" y="13" width="68" height="6" fill="#9ECFDD" opacity="0.25"/></svg>
           <div class="folder-tip">Essays and pieces from undergrad. For the love of it.</div>
           <div class="folder-label">writings.</div>
         </a>
