@@ -9,237 +9,61 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;1,400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #0A0A0F; color: #F5F5F5; height: 100vh; overflow: hidden; cursor: none; }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #0A0A0F;
-      color: #F5F5F5;
-      height: 100vh;
-      overflow: hidden;
-      cursor: none;
-    }
-
-    #cursor {
-      position: fixed;
-      width: 8px;
-      height: 8px;
-      background: #7EB8C9;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: width 0.15s, height 0.15s;
-    }
-    #cursor.hover {
-      width: 20px;
-      height: 20px;
-      background: transparent;
-      border: 1px solid #7EB8C9;
-    }
+    #cursor { position: fixed; width: 8px; height: 8px; background: #7EB8C9; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.15s, height 0.15s; }
+    #cursor.hover { width: 20px; height: 20px; background: transparent; border: 1px solid #7EB8C9; }
 
     .bg {
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background:
-        radial-gradient(ellipse at 20% 50%, rgba(126,184,201,0.04) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 50%, rgba(126,184,201,0.05) 0%, transparent 60%),
         radial-gradient(ellipse at 80% 20%, rgba(126,184,201,0.03) 0%, transparent 50%),
         #0A0A0F;
       z-index: 0;
     }
 
-    .bg::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-      opacity: 0.4;
-      pointer-events: none;
-    }
+    .time-block { position: fixed; top: 48px; left: 50%; transform: translateX(-50%); text-align: center; z-index: 2; animation: fadeInSimple 0.8s ease 0.2s both; }
+    .time { font-size: 72px; font-weight: 300; color: #F5F5F5; letter-spacing: -0.03em; line-height: 1; }
+    .date { font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 6px; letter-spacing: 0.04em; }
 
-    .time-block {
-      position: fixed;
-      top: 48px;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      z-index: 2;
-      animation: fadeInSimple 0.8s ease 0.2s both;
-    }
-    .time {
-      font-size: 72px;
-      font-weight: 300;
-      color: #F5F5F5;
-      letter-spacing: -0.03em;
-      line-height: 1;
-    }
-    .date {
-      font-size: 13px;
-      color: rgba(255,255,255,0.45);
-      margin-top: 6px;
-      letter-spacing: 0.04em;
-    }
+    .login-card { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; z-index: 2; animation: fadeInUp 0.8s ease 0.5s both; }
 
-    .login-card {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      z-index: 2;
-      animation: fadeInUp 0.8s ease 0.5s both;
-    }
+    .avatar { width: 88px; height: 88px; border-radius: 50%; background: rgba(126,184,201,0.08); border: 1px solid rgba(126,184,201,0.2); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: #7EB8C9; margin-bottom: 16px; position: relative; }
+    .avatar::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 1px solid rgba(126,184,201,0.08); }
 
-    .avatar {
-      width: 88px;
-      height: 88px;
-      border-radius: 50%;
-      background: rgba(126,184,201,0.08);
-      border: 1px solid rgba(126,184,201,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Playfair Display', serif;
-      font-size: 26px;
-      font-weight: 700;
-      color: #7EB8C9;
-      margin-bottom: 16px;
-      position: relative;
-    }
-    .avatar::after {
-      content: '';
-      position: absolute;
-      inset: -4px;
-      border-radius: 50%;
-      border: 1px solid rgba(126,184,201,0.08);
-    }
+    .name { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: #F5F5F5; letter-spacing: -0.01em; margin-bottom: 6px; }
 
-    .name {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
-      font-weight: 700;
-      color: #F5F5F5;
-      letter-spacing: -0.01em;
-      margin-bottom: 6px;
-    }
+    .role { font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
 
-    .role {
-      font-size: 11px;
-      color: rgba(255,255,255,0.35);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
+    .disciplines { font-size: 10px; color: rgba(255,255,255,0.18); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; }
 
-    .pill {
-      display: inline-block;
-      padding: 3px 10px;
-      border: 1px solid rgba(126,184,201,0.25);
-      border-radius: 20px;
-      color: rgba(126,184,201,0.7);
-      font-size: 9px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
+    .pill { display: inline-block; padding: 3px 10px; border: 1px solid rgba(126,184,201,0.25); border-radius: 20px; color: rgba(126,184,201,0.7); font-size: 9px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
 
-    .typewriter {
-      font-size: 11px;
-      font-style: italic;
-      color: rgba(255,255,255,0.25);
-      margin-bottom: 24px;
-      min-height: 16px;
-      transition: opacity 0.4s;
-      text-align: center;
-      max-width: 280px;
-      line-height: 1.5;
-    }
+    .typewriter { font-size: 11px; font-style: italic; color: rgba(255,255,255,0.25); margin-bottom: 24px; min-height: 16px; transition: opacity 0.4s; text-align: center; max-width: 300px; line-height: 1.5; }
 
-    .enter-btn {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 24px;
-      background: #7EB8C9;
-      border: none;
-      border-radius: 20px;
-      color: #0A0A0F;
-      font-family: 'Inter', sans-serif;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: none;
-      letter-spacing: 0.02em;
-      transition: all 0.2s;
-      text-decoration: none;
-      margin-bottom: 32px;
-    }
-    .enter-btn:hover {
-      background: #9ECFDD;
-      transform: scale(1.02);
-    }
-    .enter-btn svg {
-      width: 14px;
-      height: 14px;
-    }
+    .enter-btn { display: flex; align-items: center; gap: 8px; padding: 9px 24px; background: #7EB8C9; border: none; border-radius: 20px; color: #0A0A0F; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; cursor: none; letter-spacing: 0.02em; transition: all 0.2s; text-decoration: none; margin-bottom: 28px; }
+    .enter-btn:hover { background: #9ECFDD; transform: scale(1.02); }
+    .enter-btn svg { width: 14px; height: 14px; }
 
-    .contact-links {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-    }
-    .contact-links a {
-      font-size: 11px;
-      color: rgba(255,255,255,0.3);
-      text-decoration: none;
-      letter-spacing: 0.04em;
-      transition: color 0.2s;
-    }
+    .contact-links { display: flex; gap: 20px; align-items: center; }
+    .contact-links a { font-size: 11px; color: rgba(255,255,255,0.3); text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
     .contact-links a:hover { color: #7EB8C9; }
-    .contact-links span {
-      color: rgba(255,255,255,0.1);
-      font-size: 10px;
-    }
+    .contact-links span { color: rgba(255,255,255,0.1); font-size: 10px; }
 
-    .bottom-bar {
-      position: fixed;
-      bottom: 32px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 32px;
-      z-index: 2;
-      animation: fadeInSimple 0.8s ease 0.8s both;
-    }
-    .bottom-bar a {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
-      text-decoration: none;
-      color: rgba(255,255,255,0.3);
-      font-size: 10px;
-      letter-spacing: 0.04em;
-      transition: color 0.2s;
-      cursor: none;
-    }
+    .bottom-bar { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%); display: flex; gap: 32px; z-index: 2; animation: fadeInSimple 0.8s ease 0.8s both; }
+    .bottom-bar a { display: flex; flex-direction: column; align-items: center; gap: 5px; text-decoration: none; color: rgba(255,255,255,0.3); font-size: 10px; letter-spacing: 0.04em; transition: color 0.2s; cursor: none; }
     .bottom-bar a:hover { color: rgba(255,255,255,0.7); }
-    .bottom-bar svg {
-      width: 18px;
-      height: 18px;
-      opacity: 0.4;
-      transition: opacity 0.2s;
-    }
+    .bottom-bar svg { width: 18px; height: 18px; opacity: 0.4; transition: opacity 0.2s; }
     .bottom-bar a:hover svg { opacity: 0.8; }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translate(-50%, calc(-50% + 12px)); }
-      to { opacity: 1; transform: translate(-50%, -50%); }
-    }
-    @keyframes fadeInSimple {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translate(-50%, calc(-50% + 12px)); } to { opacity: 1; transform: translate(-50%, -50%); } }
+    @keyframes fadeInSimple { from { opacity: 0; } to { opacity: 1; } }
+
+    @media (max-width: 768px) {
+      .time { font-size: 48px; }
+      .name { font-size: 18px; }
+      .bottom-bar { gap: 20px; }
     }
   </style>
 </head>
@@ -256,7 +80,8 @@
   <div class="login-card">
     <div class="avatar">TK</div>
     <div class="name">Theodora Kachrimanidi</div>
-    <div class="role">Product Manager · UX Researcher</div>
+    <div class="role">Product · Creative Strategy · UX</div>
+    <div class="disciplines">research · brand · behavioral science · 0→1</div>
     <div class="pill">Available Fall 2026</div>
     <div class="typewriter" id="typewriter"></div>
     <a href="projects.html" class="enter-btn">
@@ -320,9 +145,9 @@
     setInterval(updateClock, 1000);
 
     const phrases = [
-      'diagnosing trust breakdowns in user journeys',
       'building products that feel as good as they work',
-      'behavioral science applied to real product decisions',
+      'creative strategy meets behavioral science',
+      'from user research to brand experience',
     ];
     let pi = 0;
     const tw = document.getElementById('typewriter');
