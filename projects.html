@@ -17,7 +17,7 @@
     .wallpaper {
       position: fixed; inset: 0;
       background:
-        radial-gradient(ellipse 60% 50% at 50% 45%, rgba(126,184,201,0.05) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 50% at 50% 50%, rgba(126,184,201,0.05) 0%, transparent 70%),
         radial-gradient(ellipse at 15% 80%, rgba(196,96,122,0.03) 0%, transparent 50%),
         #0D0F14;
       z-index: 0;
@@ -31,65 +31,73 @@
     .menu-right { display: flex; align-items: center; gap: 14px; }
     .menu-right span { font-size: 11px; color: rgba(255,255,255,0.4); }
 
-    .desktop { position: fixed; inset: 28px 0 72px 0; z-index: 1; }
+    .desktop { position: fixed; inset: 28px 0 72px 0; z-index: 1; display: flex; align-items: center; justify-content: center; padding: 20px 24px; gap: 0; }
 
-    /* PHOTOS — left side */
-    .photos-area { position: absolute; left: 0; top: 0; width: 42%; height: 100%; pointer-events: none; }
+    .photos-area {
+      width: 280px;
+      flex-shrink: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto auto;
+      gap: 4px;
+      margin-top: 40px;
+      margin-right: 32px;
+    }
 
-    .desk-photo { position: absolute; object-fit: cover; border: none; border-radius: 2px; opacity: 0; animation: photoFadeIn 0.6s ease forwards; }
-    @keyframes photoFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 0.82; transform: translateY(0); } }
+    .desk-photo { width: 100%; object-fit: cover; border-radius: 2px; opacity: 0; animation: photoFadeIn 0.6s ease forwards; display: block; }
+    .desk-photo:nth-child(1) { height: 160px; animation-delay: 0.1s; }
+    .desk-photo:nth-child(2) { height: 100px; animation-delay: 0.15s; align-self: end; }
+    .desk-photo:nth-child(3) { height: 100px; animation-delay: 0.2s; }
+    .desk-photo:nth-child(4) { height: 160px; animation-delay: 0.25s; }
+    .desk-photo:nth-child(5) { height: 130px; animation-delay: 0.3s; }
+    .desk-photo:nth-child(6) { height: 130px; animation-delay: 0.35s; }
 
-    .desk-photo:nth-child(1) { width: 180px; height: 240px; left: 6%; top: 4%; animation-delay: 0.1s; }
-    .desk-photo:nth-child(2) { width: 140px; height: 100px; left: 36%; top: 2%; animation-delay: 0.2s; }
-    .desk-photo:nth-child(3) { width: 155px; height: 210px; left: 28%; top: 18%; animation-delay: 0.3s; }
-    .desk-photo:nth-child(4) { width: 170px; height: 120px; left: 4%; top: 52%; animation-delay: 0.4s; }
-    .desk-photo:nth-child(5) { width: 130px; height: 180px; left: 38%; top: 52%; animation-delay: 0.5s; }
-    .desk-photo:nth-child(6) { width: 160px; height: 110px; left: 12%; top: 76%; animation-delay: 0.6s; }
+    @keyframes photoFadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 0.88; transform: translateY(0); } }
 
-    /* FOLDERS — right side */
-    .folders-column { position: absolute; top: 20px; right: 20px; display: flex; flex-direction: column; gap: 22px; align-items: center; }
+    .columns-area { display: flex; gap: 48px; align-items: flex-start; margin-top: 40px; }
+
+    .folder-column { display: flex; flex-direction: column; gap: 20px; align-items: center; }
+
+    .column-label { font-size: 9px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.2); margin-bottom: 4px; text-align: center; }
 
     .folder { display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: none; text-decoration: none; position: relative; transition: transform 0.15s; }
     .folder:hover { transform: scale(1.06); }
     .folder:hover .folder-label { color: #7EB8C9; }
 
-    .folder-icon { width: 64px; height: 52px; filter: drop-shadow(0 3px 8px rgba(0,0,0,0.5)); }
+    .folder-icon { width: 58px; height: 46px; filter: drop-shadow(0 3px 8px rgba(0,0,0,0.5)); }
 
-    .folder-label { font-size: 11px; color: rgba(255,255,255,0.8); text-align: center; max-width: 80px; line-height: 1.3; transition: color 0.2s; text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
+    .folder-label { font-size: 10px; color: rgba(255,255,255,0.75); text-align: center; max-width: 76px; line-height: 1.3; transition: color 0.2s; text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
     .folder-faded { opacity: 0.28; }
     .folder-faded .folder-label { color: rgba(255,255,255,0.4); font-style: italic; }
 
-    .folder-tip { position: absolute; right: calc(100% + 12px); top: 50%; transform: translateY(-50%); background: rgba(15,17,22,0.92); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 8px 12px; width: 200px; font-size: 10px; color: rgba(255,255,255,0.6); line-height: 1.6; opacity: 0; pointer-events: none; transition: opacity 0.2s; text-align: left; z-index: 10; }
+    .folder-tip { position: absolute; right: calc(100% + 10px); top: 50%; transform: translateY(-50%); background: rgba(15,17,22,0.94); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 8px 12px; width: 190px; font-size: 10px; color: rgba(255,255,255,0.6); line-height: 1.6; opacity: 0; pointer-events: none; transition: opacity 0.2s; text-align: left; z-index: 10; white-space: normal; }
     .folder:hover .folder-tip { opacity: 1; }
+    .brand-col .folder-tip { right: auto; left: calc(100% + 10px); }
 
-    /* DOCK */
     .dock { position: fixed; bottom: 8px; left: 50%; transform: translateX(-50%); display: flex; align-items: flex-end; gap: 6px; background: rgba(255,255,255,0.055); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.09); border-radius: 18px; padding: 8px 16px 10px; z-index: 100; }
     .dock-item { display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: none; text-decoration: none; position: relative; }
     .dock-icon { width: 46px; height: 46px; border-radius: 11px; display: flex; align-items: center; justify-content: center; transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1); font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; }
     .dock-item:hover .dock-icon { transform: translateY(-10px) scale(1.2); }
-    .dock-label { font-size: 9px; color: rgba(255,255,255,0.3); letter-spacing: 0.04em; opacity: 0; transition: opacity 0.15s; position: absolute; bottom: -14px; white-space: nowrap; }
+    .dock-label { font-size: 9px; color: rgba(255,255,255,0.3); opacity: 0; transition: opacity 0.15s; position: absolute; bottom: -14px; white-space: nowrap; }
     .dock-item:hover .dock-label { opacity: 1; }
 
-    /* MOBILE */
-    .mobile-view { display: none; flex-direction: column; padding: 80px 20px 40px; overflow-y: auto; height: 100vh; }
+    .mobile-view { display: none; flex-direction: column; padding: 76px 20px 40px; overflow-y: auto; height: 100vh; gap: 0; }
     .mobile-nav { display: none; position: fixed; top: 0; left: 0; right: 0; height: 56px; background: rgba(8,10,14,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06); align-items: center; justify-content: space-between; padding: 0 20px; z-index: 100; }
     .mobile-nav-logo { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: #F5F5F5; text-decoration: none; }
     .mobile-nav-links { display: flex; gap: 20px; }
     .mobile-nav-links a { font-size: 12px; color: rgba(255,255,255,0.4); text-decoration: none; }
-    .mobile-header { margin-bottom: 32px; }
-    .mobile-header h1 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: #F5F5F5; margin-bottom: 8px; }
-    .mobile-header p { font-size: 13px; color: rgba(255,255,255,0.35); }
-    .project-card { display: block; text-decoration: none; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.06); position: relative; transition: padding-left 0.2s; }
-    .project-card::before { content: ''; position: absolute; left: 0; top: 20px; bottom: 20px; width: 0; background: #C4607A; border-radius: 2px; transition: width 0.2s; }
-    .project-card:hover { padding-left: 16px; }
+    .mobile-section-label { font-size: 9px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.25); padding: 28px 0 12px; border-bottom: 1px solid rgba(255,255,255,0.04); margin-bottom: 0; }
+    .project-card { display: block; text-decoration: none; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.06); position: relative; transition: padding-left 0.2s; }
+    .project-card::before { content: ''; position: absolute; left: 0; top: 18px; bottom: 18px; width: 0; background: #C4607A; border-radius: 2px; transition: width 0.2s; }
+    .project-card:hover { padding-left: 14px; }
     .project-card:hover::before { width: 2px; }
-    .card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
-    .card-tag { font-size: 9px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.07em; color: rgba(126,184,201,0.7); border: 1px solid rgba(126,184,201,0.2); border-radius: 20px; padding: 2px 8px; }
-    .card-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: #F5F5F5; margin-bottom: 6px; }
-    .card-desc { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.6; margin-bottom: 10px; }
-    .card-link { font-size: 11px; color: #7EB8C9; letter-spacing: 0.04em; }
+    .card-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 6px; }
+    .card-tag { font-size: 9px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.07em; color: rgba(126,184,201,0.7); border: 1px solid rgba(126,184,201,0.2); border-radius: 20px; padding: 2px 7px; }
+    .card-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #F5F5F5; margin-bottom: 4px; }
+    .card-desc { font-size: 11px; color: rgba(255,255,255,0.38); line-height: 1.6; margin-bottom: 8px; }
+    .card-link { font-size: 11px; color: #7EB8C9; }
 
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       body { overflow: auto; }
       #cursor { display: none; }
       .wallpaper, .menubar, .desktop, .dock { display: none; }
@@ -123,91 +131,117 @@
 
   <div class="desktop">
 
-    <!-- PHOTOS LEFT SIDE -->
     <div class="photos-area">
-      <img class="desk-photo" src="apartment_market.jpeg" alt="" />
-      <img class="desk-photo" src="eiffel_bar.jpeg" alt="" />
-      <img class="desk-photo" src="library.jpeg" alt="" />
       <img class="desk-photo" src="p1.webp" alt="" />
+      <img class="desk-photo" src="p6.jpeg" alt="" />
+      <img class="desk-photo" src="p7.jpeg" alt="" />
       <img class="desk-photo" src="p2.webp" alt="" />
       <img class="desk-photo" src="p3.webp" alt="" />
+      <img class="desk-photo" src="p5.webp" alt="" />
     </div>
 
-    <!-- FOLDERS RIGHT SIDE -->
-    <div class="folders-column">
+    <div class="columns-area">
 
-      <a href="nereid.html" class="folder">
-        <svg class="folder-icon" viewBox="0 0 64 52" fill="none">
-          <rect x="0" y="12" width="64" height="40" rx="4" fill="#B85570"/>
-          <rect x="0" y="5" width="22" height="11" rx="3" fill="#CC6882"/>
-          <rect x="0" y="12" width="64" height="6" fill="#CC6882" opacity="0.4"/>
-        </svg>
-        <div class="folder-tip">Marina booking platform — diagnosed 3 trust breakdowns, won Best Client Work of 20 teams</div>
-        <div class="folder-label">NEREID</div>
-      </a>
+      <div class="folder-column">
+        <div class="column-label">Product · UX</div>
 
-      <a href="leaselink.html" class="folder">
-        <svg class="folder-icon" viewBox="0 0 64 52" fill="none">
-          <rect x="0" y="12" width="64" height="40" rx="4" fill="#B85570"/>
-          <rect x="0" y="5" width="22" height="11" rx="3" fill="#CC6882"/>
-          <rect x="0" y="12" width="64" height="6" fill="#CC6882" opacity="0.4"/>
-        </svg>
-        <div class="folder-tip">AI proptech marketplace — co-founded at Innovate BU</div>
-        <div class="folder-label">LeaseLink</div>
-      </a>
+        <a href="nereid.html" class="folder">
+          <svg class="folder-icon" viewBox="0 0 58 46" fill="none">
+            <rect x="0" y="11" width="58" height="35" rx="4" fill="#B85570"/>
+            <rect x="0" y="5" width="20" height="10" rx="3" fill="#CC6882"/>
+            <rect x="0" y="11" width="58" height="5" fill="#CC6882" opacity="0.4"/>
+          </svg>
+          <div class="folder-tip">Marina booking platform — 3 trust breakdowns, Best Client Work of 20 teams</div>
+          <div class="folder-label">NEREID</div>
+        </a>
 
-      <a href="careguard.html" class="folder">
-        <svg class="folder-icon" viewBox="0 0 64 52" fill="none">
-          <rect x="0" y="12" width="64" height="40" rx="4" fill="#B85570"/>
-          <rect x="0" y="5" width="22" height="11" rx="3" fill="#CC6882"/>
-          <rect x="0" y="12" width="64" height="6" fill="#CC6882" opacity="0.4"/>
-        </svg>
-        <div class="folder-tip">Care coordination app — built end-to-end in Lovable</div>
-        <div class="folder-label">CareGuard</div>
-      </a>
+        <a href="leaselink.html" class="folder">
+          <svg class="folder-icon" viewBox="0 0 58 46" fill="none">
+            <rect x="0" y="11" width="58" height="35" rx="4" fill="#B85570"/>
+            <rect x="0" y="5" width="20" height="10" rx="3" fill="#CC6882"/>
+            <rect x="0" y="11" width="58" height="5" fill="#CC6882" opacity="0.4"/>
+          </svg>
+          <div class="folder-tip">AI proptech marketplace — co-founded at Innovate BU</div>
+          <div class="folder-label">LeaseLink</div>
+        </a>
 
-      <a href="sprouts.html" class="folder">
-        <svg class="folder-icon" viewBox="0 0 64 52" fill="none">
-          <rect x="0" y="12" width="64" height="40" rx="4" fill="#B85570"/>
-          <rect x="0" y="5" width="22" height="11" rx="3" fill="#CC6882"/>
-          <rect x="0" y="12" width="64" height="6" fill="#CC6882" opacity="0.4"/>
-        </svg>
-        <div class="folder-tip">Go-to-market strategy — 2nd of 46 teams, Best Creative Award, $6,000</div>
-        <div class="folder-label">Sprouts</div>
-      </a>
+        <a href="careguard.html" class="folder">
+          <svg class="folder-icon" viewBox="0 0 58 46" fill="none">
+            <rect x="0" y="11" width="58" height="35" rx="4" fill="#B85570"/>
+            <rect x="0" y="5" width="20" height="10" rx="3" fill="#CC6882"/>
+            <rect x="0" y="11" width="58" height="5" fill="#CC6882" opacity="0.4"/>
+          </svg>
+          <div class="folder-tip">Care coordination app — built end-to-end in Lovable</div>
+          <div class="folder-label">CareGuard</div>
+        </a>
 
-      <a href="mote.html" class="folder">
-        <svg class="folder-icon" viewBox="0 0 64 52" fill="none">
-          <rect x="0" y="12" width="64" height="40" rx="4" fill="#B85570"/>
-          <rect x="0" y="5" width="22" height="11" rx="3" fill="#CC6882"/>
-          <rect x="0" y="12" width="64" height="6" fill="#CC6882" opacity="0.4"/>
-        </svg>
-        <div class="folder-tip">Wearable concept — sensor for existing jewelry, intelligence that wears you</div>
-        <div class="folder-label">Mote</div>
-      </a>
+        <a href="fischer.html" class="folder">
+          <svg class="folder-icon" viewBox="0 0 58 46" fill="none">
+            <rect x="0" y="11" width="58" height="35" rx="4" fill="#B85570"/>
+            <rect x="0" y="5" width="20" height="10" rx="3" fill="#CC6882"/>
+            <rect x="0" y="11" width="58" height="5" fill="#CC6882" opacity="0.4"/>
+          </svg>
+          <div class="folder-tip">Product strategy consulting — 7-week engagement, senior leadership</div>
+          <div class="folder-label">Fischer Sports</div>
+        </a>
 
-      <a href="fischer.html" class="folder">
-        <svg class="folder-icon" viewBox="0 0 64 52" fill="none">
-          <rect x="0" y="12" width="64" height="40" rx="4" fill="#B85570"/>
-          <rect x="0" y="5" width="22" height="11" rx="3" fill="#CC6882"/>
-          <rect x="0" y="12" width="64" height="6" fill="#CC6882" opacity="0.4"/>
-        </svg>
-        <div class="folder-tip">Product strategy consulting — 7-week engagement, delivered to senior leadership</div>
-        <div class="folder-label">Fischer Sports</div>
-      </a>
+        <a href="mote.html" class="folder">
+          <svg class="folder-icon" viewBox="0 0 58 46" fill="none">
+            <rect x="0" y="11" width="58" height="35" rx="4" fill="#B85570"/>
+            <rect x="0" y="5" width="20" height="10" rx="3" fill="#CC6882"/>
+            <rect x="0" y="11" width="58" height="5" fill="#CC6882" opacity="0.4"/>
+          </svg>
+          <div class="folder-tip">Wearable concept — sensor for existing jewelry, intelligence that wears you</div>
+          <div class="folder-label">Mote</div>
+        </a>
 
-      <div class="folder folder-faded">
-        <svg class="folder-icon" viewBox="0 0 64 52" fill="none">
-          <rect x="0" y="12" width="64" height="40" rx="4" fill="#B85570" opacity="0.3"/>
-          <rect x="0" y="5" width="22" height="11" rx="3" fill="#CC6882" opacity="0.3"/>
-        </svg>
-        <div class="folder-label">more soon +</div>
       </div>
 
+      <div class="folder-column brand-col">
+        <div class="column-label">Brand · Creative</div>
+
+        <a href="ceramicaele.html" class="folder">
+          <svg class="folder-icon" viewBox="0 0 58 46" fill="none">
+            <rect x="0" y="11" width="58" height="35" rx="4" fill="#B85570"/>
+            <rect x="0" y="5" width="20" height="10" rx="3" fill="#CC6882"/>
+            <rect x="0" y="11" width="58" height="5" fill="#CC6882" opacity="0.4"/>
+          </svg>
+          <div class="folder-tip">Brand identity and website for a ceramics studio — visual world, type, and digital presence</div>
+          <div class="folder-label">ceramicaele</div>
+        </a>
+
+        <a href="sprouts.html" class="folder">
+          <svg class="folder-icon" viewBox="0 0 58 46" fill="none">
+            <rect x="0" y="11" width="58" height="35" rx="4" fill="#B85570"/>
+            <rect x="0" y="5" width="20" height="10" rx="3" fill="#CC6882"/>
+            <rect x="0" y="11" width="58" height="5" fill="#CC6882" opacity="0.4"/>
+          </svg>
+          <div class="folder-tip">Go-to-market strategy for a national retail brand, anonymized per NDA. 2nd of 46 teams, Best Creative Award, $6,000.</div>
+          <div class="folder-label">Retail Strategy*</div>
+        </a>
+
+        <a href="https://bu.digication.com/theodora-k-cgs-team-d-spring-2021/home-1" target="_blank" class="folder">
+          <svg class="folder-icon" viewBox="0 0 58 46" fill="none">
+            <rect x="0" y="11" width="58" height="35" rx="4" fill="#7EB8C9" opacity="0.6"/>
+            <rect x="0" y="5" width="20" height="10" rx="3" fill="#9ECFDD" opacity="0.6"/>
+            <rect x="0" y="11" width="58" height="5" fill="#9ECFDD" opacity="0.3"/>
+          </svg>
+          <div class="folder-tip">Essays and pieces from undergrad. For the love of it.</div>
+          <div class="folder-label">writings.</div>
+        </a>
+
+        <div class="folder folder-faded">
+          <svg class="folder-icon" viewBox="0 0 58 46" fill="none">
+            <rect x="0" y="11" width="58" height="35" rx="4" fill="#B85570" opacity="0.3"/>
+            <rect x="0" y="5" width="20" height="10" rx="3" fill="#CC6882" opacity="0.3"/>
+          </svg>
+          <div class="folder-label">more soon +</div>
+        </div>
+
+      </div>
     </div>
   </div>
 
-  <!-- DOCK -->
   <div class="dock">
     <a href="index.html" class="dock-item">
       <div class="dock-icon" style="background:rgba(126,184,201,0.1);border:1px solid rgba(126,184,201,0.2);color:#7EB8C9;">TK</div>
@@ -233,7 +267,6 @@
     </a>
   </div>
 
-  <!-- MOBILE NAV -->
   <nav class="mobile-nav">
     <a href="index.html" class="mobile-nav-logo">itstheodok</a>
     <div class="mobile-nav-links">
@@ -242,48 +275,68 @@
     </div>
   </nav>
 
-  <!-- MOBILE VIEW -->
   <div class="mobile-view">
-    <div class="mobile-header">
-      <h1>Projects.</h1>
-      <p>Product, UX, and strategy work.</p>
-    </div>
+
+    <div class="mobile-section-label">Product · UX</div>
+
     <a href="nereid.html" class="project-card">
-      <div class="card-tags"><span class="card-tag">UX Research</span><span class="card-tag">Product Design</span><span class="card-tag">B2C</span></div>
+      <div class="card-tags"><span class="card-tag">UX Research</span><span class="card-tag">Product Design</span></div>
       <div class="card-name">NEREID</div>
-      <div class="card-desc">Marina booking platform — diagnosed 3 trust breakdowns, won Best Client Work of 20 teams.</div>
+      <div class="card-desc">Marina booking platform — 3 trust breakdowns, Best Client Work of 20 teams.</div>
       <span class="card-link">open →</span>
     </a>
+
     <a href="leaselink.html" class="project-card">
       <div class="card-tags"><span class="card-tag">0 to 1</span><span class="card-tag">AI</span><span class="card-tag">Proptech</span></div>
       <div class="card-name">LeaseLink</div>
       <div class="card-desc">AI proptech marketplace — co-founded at Innovate BU.</div>
       <span class="card-link">open →</span>
     </a>
+
     <a href="careguard.html" class="project-card">
-      <div class="card-tags"><span class="card-tag">Product Design</span><span class="card-tag">Healthcare</span><span class="card-tag">AI</span></div>
+      <div class="card-tags"><span class="card-tag">Product Design</span><span class="card-tag">Healthcare</span></div>
       <div class="card-name">CareGuard</div>
       <div class="card-desc">Care coordination app — built end-to-end in Lovable.</div>
       <span class="card-link">open →</span>
     </a>
+
+    <a href="fischer.html" class="project-card">
+      <div class="card-tags"><span class="card-tag">Consulting</span><span class="card-tag">Strategy</span></div>
+      <div class="card-name">Fischer Sports</div>
+      <div class="card-desc">Product strategy consulting — 7-week engagement, senior leadership.</div>
+      <span class="card-link">open →</span>
+    </a>
+
+    <a href="mote.html" class="project-card">
+      <div class="card-tags"><span class="card-tag">Wearable</span><span class="card-tag">Fashion Tech</span></div>
+      <div class="card-name">Mote</div>
+      <div class="card-desc">Wearable concept — sensor for existing jewelry.</div>
+      <span class="card-link">open →</span>
+    </a>
+
+    <div class="mobile-section-label">Brand · Creative</div>
+
+    <a href="ceramicaele.html" class="project-card">
+      <div class="card-tags"><span class="card-tag">Brand Identity</span><span class="card-tag">Web Design</span></div>
+      <div class="card-name">ceramicaele</div>
+      <div class="card-desc">Brand identity and website for a ceramics studio.</div>
+      <span class="card-link">open →</span>
+    </a>
+
     <a href="sprouts.html" class="project-card">
       <div class="card-tags"><span class="card-tag">Go-to-Market</span><span class="card-tag">Creative Strategy</span></div>
-      <div class="card-name">Sprouts</div>
-      <div class="card-desc">Go-to-market strategy — 2nd of 46 teams, Best Creative Award, $6,000.</div>
+      <div class="card-name">Retail Strategy*</div>
+      <div class="card-desc">Go-to-market strategy, anonymized per NDA. 2nd of 46 teams, Best Creative Award, $6,000.</div>
       <span class="card-link">open →</span>
     </a>
-    <a href="mote.html" class="project-card">
-      <div class="card-tags"><span class="card-tag">Wearable</span><span class="card-tag">Fashion Tech</span><span class="card-tag">Concept</span></div>
-      <div class="card-name">Mote</div>
-      <div class="card-desc">Wearable concept — sensor for existing jewelry, intelligence that wears you.</div>
+
+    <a href="https://bu.digication.com/theodora-k-cgs-team-d-spring-2021/home-1" target="_blank" class="project-card">
+      <div class="card-tags"><span class="card-tag">Writing</span><span class="card-tag">Undergrad</span></div>
+      <div class="card-name">writings.</div>
+      <div class="card-desc">Essays and pieces from undergrad. For the love of it.</div>
       <span class="card-link">open →</span>
     </a>
-    <a href="fischer.html" class="project-card">
-      <div class="card-tags"><span class="card-tag">Consulting</span><span class="card-tag">Product Strategy</span></div>
-      <div class="card-name">Fischer Sports</div>
-      <div class="card-desc">Product strategy consulting — 7-week engagement, delivered to senior leadership.</div>
-      <span class="card-link">open →</span>
-    </a>
+
   </div>
 
   <script>
