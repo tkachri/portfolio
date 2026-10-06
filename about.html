@@ -79,8 +79,7 @@ font-family: 'Playfair Display', serif;
 font-size: 120px;
 font-weight: 700;
 line-height: 1;
-color: #2C1F14;
-opacity: 0.04;
+color: #E2D3BD;
 background: #F7F3E8;
 padding: 0 20px;
       }
@@ -117,26 +116,6 @@ font-size: 13px;
 color: #8A7A6A;
 margin-bottom: 32px;
       }
-.profile-top {
-display: flex;
-gap: 48px;
-align-items: flex-start;
-      }
-.profile-photo {
-flex: 0 0 200px;
-width: 200px;
-height: 200px;
-border-radius: 12px;
-overflow: hidden;
-background: #EDE8DC;
-      }
-.profile-photo img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-display: block;
-      }
-.profile-text { flex: 1; min-width: 0; }
 .pull-quote {
 font-family: 'Playfair Display', serif;
 font-size: clamp(26px,3vw,38px);
@@ -374,8 +353,6 @@ grid-template-columns: 1fr;
         }
 .footer-right { align-items: flex-start; }
 .exp-top { flex-direction: column; align-items: flex-start; }
-.profile-top { flex-direction: column; }
-.profile-photo { width: 140px; height: 140px; flex-basis: auto; }
       }
 </style>
 </head>
@@ -392,24 +369,29 @@ grid-template-columns: 1fr;
 
 <div class="section-divider"><span>01</span></div>
 <section class="about-section">
-<div class="profile-top">
-  <div class="profile-photo">
-    <img src="theodora.png" alt="Theodora Kachrimanidi" />
-  </div>
-  <div class="profile-text">
-    <p class="profile-label">Personal Profile</p>
-    <p class="profile-meta">Psychology + Management (STEM), Boston University</p>
-    <p class="pull-quote">I've built products across UX research, venture building, and physical product design, from a marina booking platform that won Best Client Work to an AI proptech startup I'm currently building at Innovate BU.</p>
-    <p class="profile-copy">I started in behavioral science because I wanted to understand why people make the decisions they make. I studied across five countries, tried consulting and marketing, and kept finding myself drawn to the work with real ownership, where you could see the direct line between your decisions and someone's experience. I came back to BU on a full merit scholarship for my MS in Management, and through real client engagements with Fischer Sports and NEREID I fell in love with product and UX. In the past six months, I co-founded LeaseLink, an AI proptech marketplace I'm actively building through Innovate BU, independently shipped CareGuard end to end, and designed Mote, a wearable concept that rethinks how intelligence sits on the body. I'm drawn to consumer-facing roles, products people choose to engage with, not ones they're stuck with.</p>
-  </div>
-</div>
+<p class="profile-label">Personal Profile</p>
+<p class="profile-meta">Psychology + Management (STEM), Boston University</p>
+<p class="pull-quote">I study why people choose what they choose, and I turn that into products, strategies, and experiences, from a marina booking platform that won Best Client Work to a New England market entry plan that placed second of 46 teams.</p>
+<p class="profile-copy">I started in psychology because I wanted to understand why people make the decisions they make, and that question has followed me through studies in five countries, work in consulting and marketing, and a full merit scholarship back at Boston University for my MS in Management. Client work with Fischer Sports and NEREID drew me into product and UX, the Lindner Marketing Case Competition showed me how much I enjoy building strategy around a real audience, and on my own I shipped CareGuard end to end and built a Brand Compliance Checker with the Claude API. I do my best work where I can see the line between a decision and someone's experience, and I am most drawn to the products, places, and brands that people choose to come back to.</p>
 </section>
 
 <div class="section-divider"><span>02</span></div>
 <section class="about-section">
 <h3 class="section-label accent">Work Experience</h3>
-<p class="section-sublabel">Formal, paid roles.</p>
+<p class="section-sublabel">Formal roles, most recent first.</p>
 <div class="experience-list">
+
+<article class="exp-card">
+<div class="exp-top">
+<span class="company-pill">Deon Policy Institute</span>
+<span class="exp-date">Sep 2026 to present</span>
+</div>
+<h4 class="exp-role">Marketing and Operations Associate</h4>
+<ul>
+<li>Restructuring how the organization is managed day to day, giving a small remote team clearer ownership and workflows.</li>
+<li>Running the social media calendar and managing the website, keeping communications consistent across every channel.</li>
+</ul>
+</article>
 
 <article class="exp-card">
 <div class="exp-top">
@@ -417,11 +399,11 @@ grid-template-columns: 1fr;
 <span class="exp-date">Oct 2024 to Jun 2025</span>
 </div>
 <h4 class="exp-role">Digital Product and Communications Specialist</h4>
-<p class="exp-quote">"This was the first time I owned a product from start to finish, and I learned that the hardest part usually isn't the design itself, it's getting everyone coordinated around it."</p>
+<p class="exp-quote">"This was the first product I owned from start to finish, and the hardest part turned out to be getting everyone coordinated around the design."</p>
 <ul>
-<li>Owned a 6-month end-to-end website redesign across information architecture, user flows, and stakeholder coordination.</li>
-<li>Managed logistics for a 200+ attendee policy conference while simultaneously running digital communications.</li>
-<li>Led media strategy that secured national press coverage including Kathimerini.</li>
+<li>Lifted report downloads by 15% through a six-month website redesign I owned end to end, from information architecture and user flows to stakeholder coordination.</li>
+<li>Secured national press coverage, including Kathimerini, by leading the media strategy.</li>
+<li>Delivered a 200+ attendee policy conference by managing its logistics while running digital communications.</li>
 </ul>
 </article>
 
@@ -431,11 +413,11 @@ grid-template-columns: 1fr;
 <span class="exp-date">Dec 2025 to May 2026</span>
 </div>
 <h4 class="exp-role">Admissions Interviewer and Ambassador</h4>
-<p class="exp-quote">"Interviewing around ninety applicants taught me that admissions decisions really come down to who you would want to work with, not who has the most impressive list of accomplishments."</p>
+<p class="exp-quote">"Interviewing around ninety applicants showed me that the strongest candidates are the people you would most want to work alongside."</p>
 <ul>
-<li>Managed Salesforce pipeline tracking for around 90 applicants throughout the interview and decision process.</li>
-<li>Served as an admissions ambassador, moderating online panels and meet and greet events for prospective students.</li>
-<li>Evaluated fit for the program by looking at what candidates valued, what they could bring, why they wanted to be there, how clearly they articulated their ideas, and personal qualities like kindness.</li>
+<li>Tracked around 90 applicants through interviews and decisions in Salesforce.</li>
+<li>Represented the program to prospective students by moderating online panels and meet and greet events.</li>
+<li>Assessed program fit by weighing what candidates valued, what they could bring, why they wanted to be there, how clearly they expressed their ideas, and personal qualities like kindness.</li>
 </ul>
 </article>
 
@@ -454,10 +436,10 @@ grid-template-columns: 1fr;
 <span class="exp-date">Jun 2024 to Aug 2024</span>
 </div>
 <h4 class="exp-role">Corporate Strategy Intern</h4>
-<p class="exp-quote">"Working inside a large business taught me how decisions actually get made, not how textbooks say they do."</p>
+<p class="exp-quote">"Working inside a large company showed me how decisions really get made, through meetings, negotiations, and the conversations around them."</p>
 <ul>
-<li>Partnered with cross-functional leadership across marketing, sales, and finance in 5+ board-level strategy sessions.</li>
-<li>Turned business needs into data-driven recommendations and supported client negotiations resulting in 2 new contracts.</li>
+<li>Helped secure 2 new client contracts by supporting negotiations with data-driven recommendations.</li>
+<li>Supported leadership across marketing, sales, and finance in 5+ board-level strategy sessions.</li>
 </ul>
 </article>
 
@@ -467,10 +449,10 @@ grid-template-columns: 1fr;
 <span class="exp-date">Mar 2023 to May 2023</span>
 </div>
 <h4 class="exp-role">Marketing and Communications Intern</h4>
-<p class="exp-quote">"Working in a second language in a market I didn't grow up in forced me to listen more carefully and assume less."</p>
+<p class="exp-quote">"Working in a second language, in a market I did not grow up in, taught me to listen more carefully and assume less."</p>
 <ul>
-<li>Conducted performance and competitive analysis across 3 market segments.</li>
-<li>Translated customer needs into a prioritized Q2 content strategy driving a 15% increase in website traffic.</li>
+<li>Increased website traffic by 15% with a prioritized Q2 content strategy built around customer needs.</li>
+<li>Analyzed performance and competitors across 3 market segments to guide that strategy.</li>
 </ul>
 </article>
 
@@ -485,15 +467,28 @@ grid-template-columns: 1fr;
 
 <article class="exp-card">
 <div class="exp-top">
+<span class="company-pill">Brand Compliance Checker</span>
+<span class="exp-date">Summer 2026</span>
+</div>
+<h4 class="exp-role">Independent Project, AI Tool Builder</h4>
+<p class="exp-quote">"The fastest way I have found to understand a new tool is to give it a real problem and ship something with it."</p>
+<ul>
+<li>Built and deployed a working AI tool that checks marketing copy against brand guidelines and flags anything that drifts.</li>
+<li>Scoped, built, and shipped it on my own with the Claude API, Python, Cursor, and Netlify serverless functions.</li>
+</ul>
+</article>
+
+<article class="exp-card">
+<div class="exp-top">
 <span class="company-pill">LeaseLink</span>
 <span class="exp-date">Mar 2026 to present</span>
 </div>
 <h4 class="exp-role">Co-Founder and Product Lead</h4>
-<p class="exp-quote">"Building from zero meant I had to make every call myself, since there was no one else to hand it off to."</p>
+<p class="exp-quote">"Building from zero meant making every call myself, with no one else to hand it to."</p>
 <ul>
-<li>Co-founding an AI-powered proptech marketplace for verified lease transfers through Innovate BU.</li>
-<li>Defining full product requirements, contract-parsing logic, escrow flow, and tiered pricing model.</li>
-<li>Top-scoring team at 91% among 110 teams in BU's Innovation Tournament.</li>
+<li>Ranked in the 91st percentile of 110 teams in BU's Innovation Tournament.</li>
+<li>Co-founded an AI-powered marketplace for verified lease transfers, connecting the departing tenant, the incoming renter, and the landlord.</li>
+<li>Defined the full product requirements, contract-parsing logic, escrow flow, and tiered pricing model.</li>
 </ul>
 <a class="exp-link" href="leaselink.html">learn more ↗</a>
 </article>
@@ -504,11 +499,11 @@ grid-template-columns: 1fr;
 <span class="exp-date">Mar 2026</span>
 </div>
 <h4 class="exp-role">UX and Product Strategy, Boston University Questrom</h4>
-<p class="exp-quote">"I diagnosed three trust breakdowns before I designed a single screen, because that order is what actually matters."</p>
+<p class="exp-quote">"I diagnosed three trust breakdowns before designing a single screen, and that order shaped everything that followed."</p>
 <ul>
-<li>Diagnosed 3 trust breakdowns across the boater journey through 11 user interviews across 5 countries and analog analysis.</li>
-<li>Designed end-to-end UX including restructured homepage, verified booking flow, and Arrival Mode feature.</li>
-<li>Won Best Client Work out of 20 teams; client has implemented the redesigned homepage, with the rest in development.</li>
+<li>Won Best Client Work out of 20 teams, and the client has implemented the redesigned homepage, with the rest in development.</li>
+<li>Diagnosed 3 trust breakdowns across the boater journey through 11 user interviews in 5 countries and analog analysis.</li>
+<li>Designed the end-to-end experience, including a restructured homepage, a verified booking flow, and a new Arrival Mode feature.</li>
 </ul>
 <a class="exp-link" href="nereid.html">learn more ↗</a>
 </article>
@@ -521,9 +516,9 @@ grid-template-columns: 1fr;
 <h4 class="exp-role">Independent Project, Product Owner and Researcher</h4>
 <p class="exp-quote">"Working on CareGuard on my own meant every decision, from the first user interview to the last screen, was mine to make and mine to defend."</p>
 <ul>
-<li>Ran user interviews to understand how families coordinate care for aging or ill relatives, then used those conversations to shape the product.</li>
-<li>Designed and built the full app in Lovable, handling everything from user flows to visual design without a technical cofounder.</li>
-<li>Learned firsthand how much research should come before design, even on a project with just one person driving it.</li>
+<li>Shipped a full care coordination app on my own in Lovable, from user flows to visual design, without a technical cofounder.</li>
+<li>Shaped the product around user interviews with families coordinating care for aging or ill relatives.</li>
+<li>Designed an onboarding A/B test to measure which first experience helped new users get started.</li>
 </ul>
 <a class="exp-link" href="careguard.html">learn more ↗</a>
 </article>
@@ -534,10 +529,10 @@ grid-template-columns: 1fr;
 <span class="exp-date">Dec 2025</span>
 </div>
 <h4 class="exp-role">Product Strategy Consultant, Boston University Questrom</h4>
-<p class="exp-quote">"Seven weeks with a real client and real stakes taught me how to turn a messy brief into something leadership could actually act on."</p>
+<p class="exp-quote">"Seven weeks with a real client taught me how to turn a messy brief into a roadmap leadership could act on."</p>
 <ul>
-<li>Conducted user interviews, competitive benchmarking, and feasibility analysis.</li>
-<li>Delivered a prioritized strategic roadmap directly to senior leadership.</li>
+<li>Delivered a prioritized strategic roadmap directly to senior leadership in seven weeks.</li>
+<li>Built it on user interviews, competitive benchmarking, and feasibility analysis.</li>
 </ul>
 </article>
 
@@ -547,11 +542,11 @@ grid-template-columns: 1fr;
 <span class="exp-date">Oct 2025 to Dec 2025</span>
 </div>
 <h4 class="exp-role">Independent Project, Brand and Product Design</h4>
-<p class="exp-quote">"Designing Mote pushed me to think less like an engineer and more like the person who would actually wear it, which meant starting with mood boards and brand perception before I touched a single interface."</p>
+<p class="exp-quote">"Designing Mote pushed me to start with the person who would wear it, beginning with mood boards and brand perception before any interface."</p>
 <ul>
-<li>Designed a wearable concept exploring how intelligence could sit on the body, starting from brand perception and mood boards rather than technical specs.</li>
-<li>Spent significant time on user empathy work, thinking through how someone would want to feel wearing the product before designing what it would do.</li>
-<li>Ran the project independently end to end, from concept through visual direction.</li>
+<li>Created a wearable concept, a sensor for existing jewelry, exploring how intelligence could sit on the body.</li>
+<li>Grounded the design in how someone would want to feel wearing it, through mood boards, brand perception, and empathy work.</li>
+<li>Ran the project independently from concept through visual direction.</li>
 </ul>
 <a class="exp-link" href="mote.html">learn more ↗</a>
 </article>
@@ -570,11 +565,12 @@ grid-template-columns: 1fr;
 <span class="company-pill">Sprouts</span>
 <span class="exp-date">Jan 2026 to Mar 2026</span>
 </div>
-<h4 class="exp-role">Linder Marketing Case Competition</h4>
-<p class="exp-quote">"Working on Sprouts taught me to start broad instead of narrowing the idea too early, especially in a group, and that talking to more people along the way almost always improves the direction."</p>
+<h4 class="exp-role">Boston University Lindner Marketing Case Competition</h4>
+<p class="exp-quote">"Sprouts taught me to keep an idea broad for longer, especially in a group, and that talking to more people along the way almost always sharpens the direction."</p>
 <ul>
-<li>Placed 2nd of 46 teams and won Best Creative Award ($6,000), judged by TD Garden, JP Morgan, and Sprouts executives.</li>
-<li>Full case study under NDA; happy to walk through the work in an interview.</li>
+<li>Placed 2nd of 46 teams and won the Best Creative Award ($6,000), judged by executives from Sprouts, TD Garden, and JPMorgan.</li>
+<li>Reached the final five as the only MiM team, alongside three MBA teams and one undergraduate team.</li>
+<li>Shaped the audience and community strategy for Rooted Here, a New England market entry plan, and opened and closed the final presentation.</li>
 </ul>
 <a class="exp-link" href="sprouts.html">learn more ↗</a>
 </article>
@@ -590,29 +586,28 @@ grid-template-columns: 1fr;
 
 <article class="exp-card">
 <div class="exp-top">
-<span class="company-pill">Conference Week</span>
+<span class="company-pill">Santiago, Chile</span>
 <span class="exp-date">Oct 2025</span>
 </div>
-<h4 class="exp-role">Global Learning Experience, Sustainability Focus</h4>
-<p class="exp-quote">"Leading this project taught me how much a week of structured brainstorming can produce when the group commits early to defining the real problem instead of jumping straight to solutions."</p>
+<h4 class="exp-role">Moving the Cities, Global Sustainability Program</h4>
+<p class="exp-quote">"Leading this project showed me how much a week of structured brainstorming can produce once a group commits early to defining the real problem."</p>
 <ul>
-<li>Spent a week working on a sustainability challenge in a country facing real economic and social strain, focused on identifying the actual problem before brainstorming solutions.</li>
-<li>Weighed potential solutions against both feasibility and impact, then presented recommendations at a culminating conference.</li>
-<li>Served as one of two team leads and the main presenter for the group.</li>
+<li>Selected as one of six students from my cohort to represent Questrom in a week-long program on sustainable production and consumption.</li>
+<li>Co-led the team and presented our recommendation, EcoCrush, a B2B circular economy platform, at the closing conference.</li>
+<li>Weighed every solution against feasibility and impact before committing to a direction.</li>
 </ul>
 </article>
 
-<article class="exp-card exp-placeholder">
+<article class="exp-card">
 <div class="exp-top">
-<span class="company-pill">Tokyo</span>
-<span class="exp-date">TODO: add dates</span>
+<span class="company-pill">Tokyo, Japan</span>
 </div>
 <h4 class="exp-role">Global Management Experience, QST IM475</h4>
-<p class="exp-quote">"Sitting across from executives at seven different Japanese companies taught me more about how culture shapes business decisions than any case study could have."</p>
+<p class="exp-quote">"Sitting across from executives at seven Japanese companies taught me more about how culture shapes business decisions than any case study could."</p>
 <ul>
-<li>Researched and presented on Rakuten's business strategy, innovation, and global expansion, and analyzed its customer retention approach as part of a project that helped around 30 classmates build a deeper understanding of e-commerce strategy.</li>
-<li>Met with leaders from seven Japanese companies during site visits, learning firsthand about corporate culture, management styles, and how operations differ across markets.</li>
-<li>Wrote a research paper on customer retention strategies drawing on those company visits, and came away with a much stronger sense of how to communicate across cultures in a business setting.</li>
+<li>Helped around 30 classmates understand e-commerce strategy by researching and presenting Rakuten's strategy, global expansion, and customer retention approach.</li>
+<li>Met leaders from seven Japanese companies on site visits, learning how culture shapes management and operations across markets.</li>
+<li>Wrote a research paper on customer retention strategies drawn from those visits.</li>
 </ul>
 </article>
 
@@ -622,10 +617,10 @@ grid-template-columns: 1fr;
 <span class="exp-date">Mar 2023 to May 2023</span>
 </div>
 <h4 class="exp-role">Study Abroad</h4>
-<p class="exp-quote">"Living and studying in Paris while also working there pushed me to navigate a market and a language that weren't mine, which is probably where my habit of slowing down and listening more carefully started."</p>
+<p class="exp-quote">"Studying and working in Paris meant finding my way through a market and a language that were new to me, which is probably where my habit of slowing down and listening carefully began."</p>
 <ul>
-<li>Completed a semester of coursework in Paris alongside my internship at Toit de Paris, splitting time between the classroom and client work in a second language.</li>
-<li>Built comfort operating in an unfamiliar market and language, a skill I still rely on in cross-cultural user research.</li>
+<li>Completed a semester of coursework alongside my internship at Toit de Paris, working with clients in a second language.</li>
+<li>Built the comfort with unfamiliar markets and languages that I still rely on in cross-cultural user research.</li>
 </ul>
 </article>
 
@@ -645,8 +640,8 @@ grid-template-columns: 1fr;
 </div>
 <h4 class="exp-role">Vice President</h4>
 <ul>
-<li>Liaised with the National Hellenic Student Association and collaborated with the Greek Consulate of Boston to support the local Greek community.</li>
-<li>Built interpersonal, negotiation, and conflict resolution skills leading a student organization.</li>
+<li>Supported the local Greek community through partnerships with the Greek Consulate of Boston and the National Hellenic Student Association.</li>
+<li>Led a student organization, building negotiation and conflict resolution skills along the way.</li>
 </ul>
 </article>
 
@@ -657,8 +652,8 @@ grid-template-columns: 1fr;
 </div>
 <h4 class="exp-role">Vice President of Marketing</h4>
 <ul>
-<li>Built targeted, cross-cultural marketing campaigns in collaboration with partners in France, Italy, and Spain.</li>
-<li>Organized a professional networking event for students and professors on the current European market.</li>
+<li>Ran cross-cultural marketing campaigns with partners in France, Italy, and Spain.</li>
+<li>Brought students and professors together at a professional networking event on the European market.</li>
 </ul>
 </article>
 
@@ -669,8 +664,8 @@ grid-template-columns: 1fr;
 </div>
 <h4 class="exp-role">Assistant Business Director, promoted from Business Associate</h4>
 <ul>
-<li>Supported daily operations and budget planning for the journal's business and publishing section, after being offered greater responsibility following an initial year as Business Associate.</li>
-<li>Helped design sponsor outreach materials and strengthened problem-solving skills responding to day-to-day business challenges.</li>
+<li>Promoted to Assistant Business Director after one year, taking on daily operations and budget planning for the journal's business and publishing section.</li>
+<li>Designed sponsor outreach materials and handled the day-to-day business challenges of a student publication.</li>
 </ul>
 </article>
 
@@ -681,7 +676,7 @@ grid-template-columns: 1fr;
 </div>
 <h4 class="exp-role">CGS Correspondent</h4>
 <ul>
-<li>Supported marketing and communication initiatives and developed content for the college's social media accounts, gaining hands-on digital marketing experience.</li>
+<li>Created content for the college's social media accounts and supported its marketing and communications initiatives.</li>
 </ul>
 </article>
 
@@ -692,7 +687,7 @@ grid-template-columns: 1fr;
 </div>
 <h4 class="exp-role">Undergraduate Research Volunteer</h4>
 <ul>
-<li>Volunteered on the Vietnam Era Twin Study of Aging, gaining exposure to research on memory and the development of psychological disorders while strengthening data analysis skills.</li>
+<li>Contributed to the Vietnam Era Twin Study of Aging, a longitudinal study of memory and cognitive aging, strengthening my data analysis skills.</li>
 </ul>
 </article>
 
@@ -726,7 +721,7 @@ grid-template-columns: 1fr;
 </div>
 <div>
 <h3>Tools</h3>
-<p>Figma<br />Cursor<br />Claude API<br />Lovable<br />Python and Streamlit<br />Google Analytics<br />HubSpot<br />Notion<br />Miro</p>
+<p>Figma<br />Cursor<br />Claude API<br />Lovable<br />Python and Streamlit<br />Netlify<br />Google Analytics<br />HubSpot<br />Notion<br />Miro</p>
 </div>
 </div>
 </section>
@@ -748,7 +743,7 @@ grid-template-columns: 1fr;
 <div class="footer-grid">
 <div class="footer-left">
 <h2>let's talk.</h2>
-<p>Theodora Kachrimanidi, Product Manager, UX Researcher</p>
+<p>Theodora Kachrimanidi, product, UX, and creative strategy</p>
 </div>
 <div class="footer-right">
 <a href="mailto:tkachr@bu.edu">tkachr@bu.edu</a>
