@@ -27,29 +27,15 @@
     .desktop { position: fixed; inset: 28px 0 72px 0; z-index: 1; }
 
     /* PHOTOS — exact Canva layout, 3 columns */
-    .photos-left {
-      position: absolute;
-      left: 2%;
-      top: 9%;
-      display: grid;
-      grid-template-columns: 148px 148px 118px;
-      grid-template-rows: 115px 115px 135px;
-      gap: 7px;
-    }
-
-    .photo { object-fit: cover; border-radius: 2px; width: 100%; height: 100%; display: block; opacity: 0; animation: photoIn 0.7s ease forwards; }
-    @keyframes photoIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 0.88; transform: translateY(0); } }
-
-    /* Row 1: boxing(landscape) | paris collage spans 2 rows | empty col3 */
-    .ph1 { grid-column: 1; grid-row: 1; animation-delay: 0.1s; }
-    .ph2 { grid-column: 2; grid-row: 1 / 3; height: 237px; animation-delay: 0.15s; }
-    /* Row 2: red bar silhouette | (ph2 continues) | cafe woman */
-    .ph3 { grid-column: 1; grid-row: 2; animation-delay: 0.2s; }
-    .ph4 { grid-column: 3; grid-row: 1 / 3; height: 237px; animation-delay: 0.25s; }
-    /* Row 3: shadow tiles | red street | snow */
-    .ph5 { grid-column: 1; grid-row: 3; animation-delay: 0.3s; }
-    .ph6 { grid-column: 2; grid-row: 3; animation-delay: 0.35s; }
-    .ph7 { grid-column: 3; grid-row: 3; animation-delay: 0.4s; }
+    <div class="photos-left">
+  <img class="photo ph1" src="p2.webp" alt="" />
+  <img class="photo ph2" src="p1.webp" alt="" />
+  <img class="photo ph3" src="p7.jpeg" alt="" />
+  <img class="photo ph4" src="p6.jpeg" alt="" />
+  <img class="photo ph5" src="p6.jpeg" alt="" />
+  <img class="photo ph6" src="p3.webp" alt="" />
+  <img class="photo ph7" src="p5.webp" alt="" />
+</div>
 
     /* FOLDERS RIGHT */
     .columns-area { position: absolute; right: 3%; top: 9%; display: flex; gap: 52px; align-items: flex-start; }
