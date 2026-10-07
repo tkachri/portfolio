@@ -26,7 +26,7 @@ rel="stylesheet"
   .cs-stat-label { font-size: 12px; color: #8A7A6A; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
 
   .cs-quote { border-left: 3px solid #7EB8C9; padding: 16px 24px; font-style: italic; font-size: 18px; color: #2C1F14; margin: 48px 0; background: #F5F0E6; border-radius: 0 8px 8px 0; }
-  .cs-quote cite { display: block; font-style: normal; font-size: 13px; color: #8A7A6A; margin-top: 8px; }
+  .cs-quote .src { display: block; font-style: normal; font-size: 13px; color: #8A7A6A; margin-top: 8px; }
   .cs-quote.placeholder { border-left-color: #D9CBB5; color: #8A7A6A; }
 
   .cs-section { margin-bottom: 72px; }
@@ -75,6 +75,10 @@ rel="stylesheet"
   .cs-process-item .cap { font-size: 15px; color: #8A7A6A; margin-top: 12px; line-height: 1.6; }
   .cs-process-item .cap strong { color: #2C1F14; display: block; font-size: 18px; margin-bottom: 6px; font-family: 'Playfair Display', serif; }
 
+  .cs-lead { font-family: 'Playfair Display', serif; font-size: 24px; line-height: 1.5; max-width: 820px; margin: 0 0 56px; color: #2C1F14; }
+  .cs-role { margin-bottom: 64px; }
+  .cs-role h2 { font-family: 'Playfair Display', serif; font-size: 30px; margin: 0 0 20px; }
+  .cs-role p { line-height: 1.75; font-size: 16px; margin: 0 0 16px; max-width: 760px; }
   .cs-outcome { background: #2C1F14; color: #F5F0E6; border-radius: 12px; padding: 48px; text-align: center; }
   .cs-outcome h2 { font-family: 'Playfair Display', serif; color: #7EB8C9; font-size: 28px; margin-bottom: 16px; }
   .cs-outcome p { font-size: 16px; line-height: 1.7; max-width: 640px; margin: 0 auto; }
@@ -111,7 +115,7 @@ rel="stylesheet"
 
   <span class="cs-tag">UX Research · Product Design</span>
   <h1 class="cs-title">NEREID</h1>
-  <p class="cs-subtitle">A marina booking platform redesigned around trust, confirmation, and arrival, built from interviews across Greece, the US, and Spain.</p>
+  <p class="cs-subtitle">A marina booking platform redesigned around trust, confirmation, and arrival, built from interviews with boaters in five countries, including Greece, the US, and Spain.</p>
   <a class="cs-proto-link" href="https://nereid.com" target="_blank" rel="noreferrer">Visit NEREID ↗</a>
 
   <div class="cs-stats">
@@ -121,20 +125,22 @@ rel="stylesheet"
     <div class="cs-stat"><div class="cs-stat-num">3</div><div class="cs-stat-label">Trust breakdowns identified</div></div>
   </div>
 
+  <p class="cs-lead">Boaters booking a slip online kept picking up the phone anyway, because nothing in the process made them certain their spot was real or that they would know what to do when they arrived. We traced that doubt to three trust breakdowns and redesigned the platform around them, and the client has already put our new homepage into use, with the booking flow and Arrival Mode now in development.</p>
+
   <blockquote class="cs-quote">
     "You never really know what information they'll need until you call."
-    Jason, Greece
+    <span class="src">Jason, Greece</span>
   </blockquote>
 
   <blockquote class="cs-quote">
     "Her creative thinking and iterative approach made the overall assignment easier to complete and with real quality."
-    Dhruv Jain, teammate
+    <span class="src">Dhruv Jain, teammate</span>
   </blockquote>
 
   <div class="cs-two-col">
     <div class="cs-card challenge">
       <h3>The challenge</h3>
-      <p>Digital marina booking systems break down when requirements, confirmation, and arrival ownership are unclear. Boaters kept calling marinas directly because the booking flow didn't tell them what they needed to know, and even after booking, confirmation didn't feel like certainty.</p>
+      <p>Digital marina booking systems break down when requirements, confirmation, and arrival ownership are unclear. Boaters kept calling marinas directly because the booking flow did not tell them what they needed to know, and even after booking, a confirmation did not feel like certainty.</p>
     </div>
     <div class="cs-card solution">
       <h3>The solution</h3>
@@ -144,7 +150,7 @@ rel="stylesheet"
 
   <div class="cs-section">
     <h2>What we found</h2>
-    <p>Three structural trust breakdowns emerged from user interviews and competitive analog research across Greece, the US, and Spain: an inconsistent booking structure, limited transparency in confirmation, and high stress during arrival coordination.</p>
+    <p>Three structural trust breakdowns emerged from user interviews and competitive analog research across five countries, including Greece, the US, and Spain: an inconsistent booking structure, limited transparency in confirmation, and high stress during arrival coordination.</p>
     <p>Competitive analog research shaped the direction: Dockwa embeds marina rules directly into the booking flow, Airbnb makes booking scope and confirmation explicit, and International SOS clearly owns coordination in time-critical situations. NEREID needed to borrow from all three.</p>
     <div class="cs-img-frame">
       <img src="nereid_trust_breakdown.png" alt="Diagram of three trust breakdowns found in marina booking research" />
@@ -198,7 +204,7 @@ rel="stylesheet"
           <span class="cs-accordion-arrow">⌄</span>
         </div>
         <div class="cs-accordion-body"><div class="cs-accordion-body-inner">
-          Boaters need to clearly see NEREID's value and quickly understand what the platform offers. Designed to feel <strong>not confusing</strong>, <strong>clear</strong>, and <strong>personal</strong>, the platform should be tailored to every boater, not generic.
+          Boaters need to clearly see NEREID's value and quickly understand what the platform offers. Designed to feel <strong>clear</strong> and <strong>personal</strong>, the platform should be tailored to each boater from the first screen.
         </div></div>
       </div>
 
@@ -208,7 +214,7 @@ rel="stylesheet"
           <span class="cs-accordion-arrow">⌄</span>
         </div>
         <div class="cs-accordion-body"><div class="cs-accordion-body-inner">
-          The objective isn't just transaction completion, it's risk elimination. We designed for immediacy (confirmation occurs in seconds), transparency (total cost disclosed before payment), and control (clear cancellation rules for every weather scenario).
+          The objective was to remove every reason to doubt the booking. We designed for immediacy (confirmation occurs in seconds), transparency (total cost disclosed before payment), and control (clear cancellation rules for every weather scenario).
         </div></div>
       </div>
 
@@ -257,7 +263,7 @@ rel="stylesheet"
       </div>
       <div class="cs-design-card">
         <h3>Verified booking flow</h3>
-        <p>Instant digital confirmation with berth assignment, arrival window, and marina contact synced in real time, so a confirmed booking actually feels confirmed instead of something boaters need to double-check by phone.</p>
+        <p>Instant digital confirmation with berth assignment, arrival window, and marina contact synced in real time, so a confirmed booking feels certain, with no need to double-check by phone.</p>
         <div class="cs-video-wrap">
           <iframe class="cs-video" src="https://drive.google.com/file/d/1_9oQGUY9QBO_K22DWP2u7GbdrYyEsPPu/preview" allow="autoplay" allowfullscreen></iframe>
         </div>
@@ -302,9 +308,15 @@ rel="stylesheet"
     </p>
   </div>
 
+  <section class="cs-role">
+    <h2>How I contributed</h2>
+    <p>Early on, our only inputs were the client's own view and desk research, so I asked the client to connect us with its customers and we interviewed boaters directly, then widened the pool to users of similar platforms abroad. That is how we reached 11 boaters across five countries, and those conversations changed our conclusion: we had expected the problem to be software complexity, and the interviews kept pointing to the uncertainty boaters felt before they arrived.</p>
+    <p>From there I built the boater persona, reworked the homepage information architecture and copy, shaped the Arrival Mode concept, and helped present our recommendations to the client.</p>
+  </section>
+
   <div class="cs-outcome">
     <h2>Outcome</h2>
-    <p>Paris Zoiros has implemented the redesigned homepage, with the verified booking flow and Arrival Mode currently in development as the team builds out the full app. NEREID won Best Client Work out of 20 teams, with the client and teammates citing the trust-breakdown research as the reason the design direction felt inevitable rather than arbitrary.</p>
+    <p>Paris Zoiros has implemented the redesigned homepage, with the verified booking flow and Arrival Mode currently in development as the team builds out the full app. NEREID won Best Client Work out of 20 teams, with the client and teammates citing the trust-breakdown research as the reason the design direction felt so clearly earned.</p>
   </div>
 
 </main>
