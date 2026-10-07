@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects, itstheodok</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;1,400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #0D0F14; color: #F5F5F5; height: 100vh; overflow: hidden; cursor: none; user-select: none; }
+
+    #cursor { position: fixed; width: 8px; height: 8px; background: #7EB8C9; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.15s, height 0.15s; }
+    #cursor.hover { width: 20px; height: 20px; background: transparent; border: 1px solid #7EB8C9; }
+
+    .wallpaper { position: fixed; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(126,184,201,0.04) 0%, transparent 70%), #0D0F14; z-index: 0; }
+
+    .menubar { position: fixed; top: 0; left: 0; right: 0; height: 28px; background: rgba(8,10,14,0.9); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; padding: 0 16px; z-index: 100; }
+    .menu-left { display: flex; align-items: center; gap: 18px; }
+    .menu-logo { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 700; color: #F5F5F5; text-decoration: none; cursor: none; }
+    .menu-item { font-size: 12px; color: rgba(255,255,255,0.4); text-decoration: none; cursor: none; transition: color 0.2s; }
+    .menu-item:hover { color: #F5F5F5; }
+    .menu-right { display: flex; align-items: center; gap: 14px; }
+    .menu-right span { font-size: 11px; color: rgba(255,255,255,0.4); }
+
+    .desktop { position: fixed; inset: 28px 0 72px 0; z-index: 1; }
+
+    /* PHOTOS: exact Canva layout, 3 columns */
+    .photos-left {
+      position: absolute;
+      left: 2%;
+      top: 9%;
+      display: grid;
+      grid-template-columns: 148px 148px 118px;
+      grid-template-rows: 115px 115px 135px;
+      gap: 7px;
+    }
+
+    .photo { object-fit: cover; border-radius: 2px; width: 100%; height: 100%; display: block; opacity: 0; animation: photoIn 0.7s ease forwards; }
+    @keyframes photoIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 0.88; transform: translateY(0); } }
+
+    /* Row 1: boxing(landscape) | paris collage spans 2 rows | empty col3 */
+    .ph1 { grid-column: 1; grid-row: 1; animation-delay: 0.1s; }
+    .ph2 { grid-column: 2; grid-row: 1 / 3; height: 237px; animation-delay: 0.15s; }
+    /* Row 2: red bar silhouette | (ph2 continues) | cafe woman */
+    .ph3 { grid-column: 1; grid-row: 2; animation-delay: 0.2s; }
+    .ph4 { grid-column: 3; grid-row: 1 / 3; height: 237px; animation-delay: 0.25s; }
+    /* Row 3: shadow tiles | red street | snow */
+    .ph5 { grid-column: 1; grid-row: 3; animation-delay: 0.3s; }
+    .ph6 { grid-column: 2; grid-row: 3; animation-delay: 0.35s; }
+    .ph7 { grid-column: 3; grid-row: 3; animation-delay: 0.4s; }
+
+    /* FOLDERS RIGHT */
+    .columns-area { position: absolute; right: 3%; top: 9%; display: flex; gap: 52px; align-items: flex-start; }
+
+    .folder-column { display: flex; flex-direction: column; gap: 18px; align-items: center; }
+    .column-label { font-size: 9px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.2); margin-bottom: 2px; text-align: center; }
+
+    .folder { display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: none; text-decoration: none; position: relative; transition: transform 0.15s; }
+    .folder:hover { transform: scale(1.06); }
+    .folder:hover .folder-label { color: #7EB8C9; }
+    .folder-icon { width: 68px; height: 54px; filter: drop-shadow(0 3px 10px rgba(0,0,0,0.5)); }
+    .folder-label { font-size: 10px; color: rgba(255,255,255,0.75); text-align: center; max-width: 80px; line-height: 1.3; transition: color 0.2s; text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
+    .folder-faded { opacity: 0.25; }
+    .folder-soon { opacity: 0.38; cursor: none; }
+    .folder-soon:hover { transform: none; }
+    .folder-soon:hover .folder-label { color: rgba(255,255,255,0.75); }
+    .folder-soon .folder-label::after { content: 'soon'; display: block; font-size: 8px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 2px; }
+    .folder-faded .folder-label { font-style: italic; color: rgba(255,255,255,0.35); }
+
+    .folder-tip { position: absolute; right: calc(100% + 10px); top: 50%; transform: translateY(-50%); background: rgba(12,14,20,0.95); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.07); border-radius: 8px; padding: 8px 12px; width: 188px; font-size: 10px; color: rgba(255,255,255,0.55); line-height: 1.6; opacity: 0; pointer-events: none; transition: opacity 0.2s; text-align: left; z-index: 10; white-space: normal; }
+    .folder:hover .folder-tip { opacity: 1; }
+    .brand-col .folder-tip, .personal-col .folder-tip { right: auto; left: calc(100% + 10px); }
+
+    .dock { position: fixed; bottom: 8px; left: 50%; transform: translateX(-50%); display: flex; align-items: flex-end; gap: 6px; background: rgba(255,255,255,0.05); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 8px 16px 10px; z-index: 100; }
+    .dock-item { display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: none; text-decoration: none; position: relative; }
+    .dock-icon { width: 46px; height: 46px; border-radius: 11px; display: flex; align-items: center; justify-content: center; transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1); font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; }
+    .dock-item:hover .dock-icon { transform: translateY(-10px) scale(1.2); }
+    .dock-label { font-size: 9px; color: rgba(255,255,255,0.3); opacity: 0; transition: opacity 0.15s; position: absolute; bottom: -14px; white-space: nowrap; }
+    .dock-item:hover .dock-label { opacity: 1; }
+
+    .mobile-nav { display: none; position: fixed; top: 0; left: 0; right: 0; height: 56px; background: rgba(8,10,14,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06); align-items: center; justify-content: space-between; padding: 0 20px; z-index: 100; }
+    .mobile-nav-logo { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: #F5F5F5; text-decoration: none; }
+    .mobile-nav-links { display: flex; gap: 20px; }
+    .mobile-nav-links a { font-size: 12px; color: rgba(255,255,255,0.4); text-decoration: none; }
+    .mobile-view { display: none; flex-direction: column; padding: 76px 20px 40px; overflow-y: auto; height: 100vh; }
+    .mobile-section-label { font-size: 9px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.25); padding: 28px 0 12px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .project-card { display: block; text-decoration: none; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.06); position: relative; transition: padding-left 0.2s; }
+    .project-card::before { content: ''; position: absolute; left: 0; top: 18px; bottom: 18px; width: 0; background: #C4607A; border-radius: 2px; transition: width 0.2s; }
+    .project-card:hover { padding-left: 14px; }
+    .project-card:hover::before { width: 2px; }
+    .card-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 6px; }
+    .card-tag { font-size: 9px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.07em; color: rgba(126,184,201,0.7); border: 1px solid rgba(126,184,201,0.2); border-radius: 20px; padding: 2px 7px; }
+    .card-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #F5F5F5; margin-bottom: 4px; }
+    .card-desc { font-size: 11px; color: rgba(255,255,255,0.38); line-height: 1.6; margin-bottom: 8px; }
+    .card-link { font-size: 11px; color: #7EB8C9; }
+    .project-card.soon { opacity: 0.45; }
+    .project-card.soon:hover { padding-left: 0; }
+    .project-card.soon:hover::before { width: 0; }
+    .project-card.soon .card-link { color: rgba(255,255,255,0.45); }
+
+    @media (max-width: 900px) {
+      body { overflow: auto; }
+      #cursor { display: none; }
+      .wallpaper, .menubar, .desktop, .dock { display: none; }
+      .mobile-view { display: flex; }
+      .mobile-nav { display: flex; }
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .desktop { animation: fadeIn 0.4s ease both; }
+  </style>
+</head>
+<body>
+
+  <div id="cursor"></div>
+  <div class="wallpaper"></div>
+
+  <div class="menubar">
+    <div class="menu-left">
+      <a href="index.html" class="menu-logo">itstheodok</a>
+      <a href="index.html" class="menu-item">Home</a>
+      <a href="about.html" class="menu-item">About</a>
+      <span class="menu-item" style="color:rgba(255,255,255,0.18);">View</span>
+      <span class="menu-item" style="color:rgba(255,255,255,0.18);">Go</span>
+    </div>
+    <div class="menu-right">
+      <span id="menu-clock"></span>
+      <span style="color:rgba(255,255,255,0.2);">●</span>
+      <span>100%</span>
+    </div>
+  </div>
+
+  <div class="desktop">
+
+    <!-- PHOTOS matching Canva layout -->
+    <div class="photos-left">
+      <img class="photo ph1" src="p2.webp" alt="" />
+      <img class="photo ph2" src="p1.webp" alt="" />
+      <img class="photo ph3" src="p6.jpeg" alt="" />
+      <img class="photo ph4" src="p4.webp" alt="" />
+      <img class="photo ph5" src="p7.jpeg" alt="" />
+      <img class="photo ph6" src="p3.webp" alt="" />
+      <img class="photo ph7" src="p5.webp" alt="" />
+    </div>
+
+    <!-- FOLDER COLUMNS -->
+    <div class="columns-area">
+
+      <div class="folder-column">
+        <div class="column-label">Product · UX</div>
+        <a href="nereid.html" class="folder">
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/><rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/></svg>
+          <div class="folder-tip">Marina booking platform: 3 trust breakdowns, Best Client Work of 20 teams</div>
+          <div class="folder-label">NEREID</div>
+        </a>
+        <div class="folder folder-soon">
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/><rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/></svg>
+          <div class="folder-tip">AI proptech marketplace, co-founded at Innovate BU. Case study coming soon.</div>
+          <div class="folder-label">LeaseLink</div>
+        </div>
+        <div class="folder folder-soon">
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/><rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/></svg>
+          <div class="folder-tip">Care coordination app, built end-to-end in Lovable. Case study coming soon.</div>
+          <div class="folder-label">CareGuard</div>
+        </div>
+        <a href="fischer.html" class="folder">
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/><rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/></svg>
+          <div class="folder-tip">Summer growth strategy for a 100-year-old ski brand. Top 3 of 20 teams.</div>
+          <div class="folder-label">Fischer Sports</div>
+        </a>
+        <div class="folder folder-soon">
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/><rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/></svg>
+          <div class="folder-tip">Wearable concept: a sensor for existing jewelry, intelligence that wears you. Case study coming soon.</div>
+          <div class="folder-label">Mote</div>
+        </div>
+      </div>
+
+      <div class="folder-column brand-col">
+        <div class="column-label">Brand · Creative</div>
+        <a href="sprouts.html" class="folder">
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/><rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/></svg>
+          <div class="folder-tip">New England market entry strategy for Sprouts Farmers Market. 2nd of 46 teams and Best Creative Award.</div>
+          <div class="folder-label">Sprouts</div>
+        </a>
+        <div class="folder folder-faded">
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570" opacity="0.3"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882" opacity="0.3"/></svg>
+          <div class="folder-label">more soon +</div>
+        </div>
+      </div>
+
+      <div class="folder-column personal-col">
+        <div class="column-label">Personal</div>
+        <a href="https://bu.digication.com/theodora-k-cgs-team-d-spring-2021/home-1" target="_blank" class="folder">
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#7EB8C9" opacity="0.55"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#9ECFDD" opacity="0.55"/><rect x="0" y="13" width="68" height="6" fill="#9ECFDD" opacity="0.25"/></svg>
+          <div class="folder-tip">Essays and pieces from undergrad. For the love of it.</div>
+          <div class="folder-label">writings.</div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="dock">
+    <a href="index.html" class="dock-item">
+      <div class="dock-icon" style="background:rgba(126,184,201,0.1);border:1px solid rgba(126,184,201,0.2);color:#7EB8C9;">TK</div>
+      <span class="dock-label">Home</span>
+    </a>
+    <a href="about.html" class="dock-item">
+      <div class="dock-icon" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      </div>
+      <span class="dock-label">About</span>
+    </a>
+    <a href="mailto:tkachr@bu.edu" class="dock-item">
+      <div class="dock-icon" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+      </div>
+      <span class="dock-label">Email</span>
+    </a>
+    <a href="https://linkedin.com/in/theodorakachrimanidi" target="_blank" class="dock-item">
+      <div class="dock-icon" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="rgba(255,255,255,0.55)"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      </div>
+      <span class="dock-label">LinkedIn</span>
+    </a>
+  </div>
+
+  <nav class="mobile-nav">
+    <a href="index.html" class="mobile-nav-logo">itstheodok</a>
+    <div class="mobile-nav-links">
+      <a href="about.html">about</a>
+      <a href="mailto:tkachr@bu.edu">contact</a>
+    </div>
+  </nav>
+
+  <div class="mobile-view">
+    <div class="mobile-section-label">Product · UX</div>
+    <a href="nereid.html" class="project-card">
+      <div class="card-tags"><span class="card-tag">UX Research</span><span class="card-tag">Product Design</span></div>
+      <div class="card-name">NEREID</div>
+      <div class="card-desc">Marina booking platform: 3 trust breakdowns, Best Client Work of 20 teams.</div>
+      <span class="card-link">open →</span>
+    </a>
+    <div class="project-card soon">
+      <div class="card-tags"><span class="card-tag">0 to 1</span><span class="card-tag">AI</span><span class="card-tag">Proptech</span></div>
+      <div class="card-name">LeaseLink</div>
+      <div class="card-desc">AI proptech marketplace, co-founded at Innovate BU.</div>
+      <span class="card-link">case study coming soon</span>
+    </div>
+    <div class="project-card soon">
+      <div class="card-tags"><span class="card-tag">Product Design</span><span class="card-tag">Healthcare</span></div>
+      <div class="card-name">CareGuard</div>
+      <div class="card-desc">Care coordination app, built end-to-end in Lovable.</div>
+      <span class="card-link">case study coming soon</span>
+    </div>
+    <a href="fischer.html" class="project-card">
+      <div class="card-tags"><span class="card-tag">Consulting</span><span class="card-tag">Strategy</span></div>
+      <div class="card-name">Fischer Sports</div>
+      <div class="card-desc">Summer growth strategy for a 100-year-old ski brand. Top 3 of 20 teams.</div>
+      <span class="card-link">open →</span>
+    </a>
+    <div class="project-card soon">
+      <div class="card-tags"><span class="card-tag">Wearable</span><span class="card-tag">Fashion Tech</span></div>
+      <div class="card-name">Mote</div>
+      <div class="card-desc">Wearable concept: a sensor for existing jewelry.</div>
+      <span class="card-link">case study coming soon</span>
+    </div>
+    <div class="mobile-section-label">Brand · Creative</div>
+    <a href="sprouts.html" class="project-card">
+      <div class="card-tags"><span class="card-tag">Go-to-Market</span><span class="card-tag">Creative Strategy</span></div>
+      <div class="card-name">Sprouts</div>
+      <div class="card-desc">New England market entry strategy. 2nd of 46 teams and Best Creative Award.</div>
+      <span class="card-link">open →</span>
+    </a>
+    <div class="mobile-section-label">Personal</div>
+    <a href="https://bu.digication.com/theodora-k-cgs-team-d-spring-2021/home-1" target="_blank" class="project-card">
+      <div class="card-tags"><span class="card-tag">Writing</span><span class="card-tag">Undergrad</span></div>
+      <div class="card-name">writings.</div>
+      <div class="card-desc">Essays and pieces from undergrad. For the love of it.</div>
+      <span class="card-link">open →</span>
+    </a>
+  </div>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+    if (cursor) {
+      document.addEventListener('mousemove', e => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+      });
+      document.querySelectorAll('a, .folder').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+      });
+    }
+    function updateClock() {
+      const now = new Date();
+      const h = now.getHours().toString().padStart(2,'0');
+      const m = now.getMinutes().toString().padStart(2,'0');
+      const el = document.getElementById('menu-clock');
+      if (el) el.textContent = h + ':' + m;
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>
