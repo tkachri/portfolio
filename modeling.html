@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Decision Modeling, itstheodok</title>
+<meta name="description" content="Four investment decisions modeled in Excel for Business Impact Modeling at Boston University." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  /* Coursework pages: share the case study system */
+  .cs-shell { max-width: 900px; margin: 0 auto; padding: 100px 24px 120px; font-family: 'Inter', sans-serif; color: #2C1F14; }
+  .cs-tag { display: inline-block; background: #EDE8DC; color: #8A7A6A; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 12px; border-radius: 999px; margin-bottom: 18px; }
+  .cs-title { font-family: 'Playfair Display', serif; font-size: 50px; line-height: 1.1; margin: 0 0 12px; }
+  .cs-subtitle { font-size: 17px; line-height: 1.6; color: #8A7A6A; max-width: 680px; margin: 0 0 48px; }
+  .cs-lead { font-size: 18px; line-height: 1.75; max-width: 760px; margin: 0 0 56px; }
+  .cs-section { margin-bottom: 64px; }
+  .cs-section h2 { font-family: 'Playfair Display', serif; font-size: 28px; margin: 0 0 16px; }
+  .cs-section p { line-height: 1.75; font-size: 16px; margin: 0 0 16px; max-width: 760px; }
+  .cs-model { background: #F5F0E6; border: 1px solid #EDE8DC; border-radius: 12px; padding: 32px; margin-bottom: 28px; }
+  .cs-model h2 { font-family: 'Playfair Display', serif; font-size: 24px; margin: 0 0 12px; }
+  .cs-model p { line-height: 1.75; font-size: 15px; margin: 0 0 20px; max-width: 760px; }
+  .cs-chart { background: #FBF8F1; border: 1px solid #EDE8DC; border-radius: 10px; padding: 16px; }
+  .cs-chart svg { width: 100%; height: auto; display: block; }
+  .cs-chart figcaption { font-size: 13px; color: #8A7A6A; margin-top: 8px; }
+  .cs-callouts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 16px; }
+  .cs-callout { background: #FBF8F1; border: 1px solid #EDE8DC; border-radius: 10px; padding: 16px; }
+  .cs-callout .n { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; }
+  .cs-callout .l { font-size: 13px; color: #8A7A6A; margin-top: 4px; line-height: 1.45; }
+  .cs-table-wrap { overflow-x: auto; border: 1px solid #EDE8DC; border-radius: 10px; margin: 8px 0 16px; }
+  .cs-table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 520px; }
+  .cs-table th, .cs-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid #EDE8DC; }
+  .cs-table thead th { background: #F5F0E6; font-size: 13px; }
+  .sig { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+  .sig.y { background: #2C1F14; color: #F5F0E6; }
+  .sig.n { background: #EDE8DC; color: #8A7A6A; }
+  .cs-closing { background: #2C1F14; color: #F5F0E6; border-radius: 12px; padding: 48px 44px; margin-top: 16px; }
+  .cs-closing p { font-family: 'Playfair Display', serif; font-size: 21px; line-height: 1.6; max-width: 720px; margin: 0 auto; }
+  .cs-back { display: inline-block; margin-top: 40px; color: #2C1F14; font-weight: 600; font-size: 15px; text-decoration: none; border-bottom: 1px solid #7EB8C9; }
+  .cs-back:hover, .cs-back:focus-visible { color: #7EB8C9; }
+  @media (max-width: 720px) {
+    .cs-title { font-size: 36px; }
+    .cs-model { padding: 22px; }
+    .cs-callouts { grid-template-columns: 1fr; }
+    .cs-closing { padding: 36px 24px; }
+    .cs-closing p { font-size: 18px; }
+  }
+</style>
+</head>
+<body class="page-project-detail">
+<div class="menu-bar">
+  <div class="menu-left">
+    <span class="apple-mark"></span>
+    <span>itstheodok</span>
+    <span>File</span>
+    <span>Edit</span>
+    <span>View</span>
+    <span>·</span>
+    <a class="menu-nav-link" href="index.html">home</a>
+    <a class="menu-nav-link" href="projects.html">work</a>
+    <a class="menu-nav-link" href="about.html">about</a>
+    <a class="menu-nav-link" href="index.html#footer">contact</a>
+  </div>
+  <div class="menu-right">
+    <span id="clock">--:--</span>
+    <span>●</span>
+    <span>100%</span>
+  </div>
+</div>
+
+<main class="cs-shell">
+
+  <span class="cs-tag">Coursework · Financial Modeling</span>
+  <h1 class="cs-title">Decision Modeling</h1>
+  <p class="cs-subtitle">Four investment decisions I modeled in Excel for Business Impact Modeling (Honors), fall 2025.</p>
+
+  <p class="cs-lead">Each of these models started with a real business question, and I built each one with separate inputs, calculations, and outputs so that every assumption could be tested and changed before arriving at a recommendation.</p>
+
+  <section class="cs-model">
+    <h2>Airline winglets</h2>
+    <p>An airline flying 14 Boeing 767s was deciding whether to buy fuel-saving winglets, rent them, or keep flying without them. Over eight years in present-value terms, flying without winglets would cost about $980 million, renting about $737 million, and buying about $721 million, which made buying about $259 million cheaper than doing nothing and about $15 million cheaper than renting. I also tested fuel prices from $1.34 to $1.50 a gallon and efficiency gains from 3% to 6% to understand how much the answer depended on those assumptions.</p>
+    <figure class="cs-chart" style="margin:0;"><svg viewBox="0 0 640 158" role="img" aria-label="Eight-year cost of each option in present value">
+<text x="0" y="34" font-family="Inter, sans-serif" font-size="14" fill="#2C1F14">Fly without winglets</text>
+<rect x="200" y="18" width="350.0" height="24" rx="4" fill="#D9CBB5"/>
+<text x="558.0" y="35" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#2C1F14">$980M</text>
+<text x="0" y="80" font-family="Inter, sans-serif" font-size="14" fill="#2C1F14">Rent winglets</text>
+<rect x="200" y="64" width="263.2" height="24" rx="4" fill="#D9CBB5"/>
+<text x="471.2" y="81" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#2C1F14">$737M</text>
+<text x="0" y="126" font-family="Inter, sans-serif" font-size="14" fill="#2C1F14">Buy winglets</text>
+<rect x="200" y="110" width="257.5" height="24" rx="4" fill="#7EB8C9"/>
+<text x="465.5" y="127" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#2C1F14">$721M</text>
+</svg><figcaption>Eight-year cost of each option, in present value. Lower is better.</figcaption></figure>
+  </section>
+
+  <section class="cs-model">
+    <h2>Car parts inventory</h2>
+    <p>For a car parts distributor, I built a two-year monthly inventory plan that forecast demand, spoilage, and returns, and applied a safety stock rule of 1,250 units plus 5% of the next month's forecast, which brought the total order to 50,000 units. When a supplier offered 10,000-unit bulk orders, I found that they would add about $89,000 a year in carrying costs, so I recommended accepting only with a discount of at least $3.58 a unit, a threshold that rises to $7.15 if bulk ordering starts mid-year.</p>
+    <figure class="cs-chart" style="margin:0;"><svg viewBox="0 0 640 260" role="img" aria-label="Monthly ending inventory against the safety stock requirement over two years">
+<line x1="48" y1="224.0" x2="628" y2="224.0" stroke="#EDE8DC"/><text x="40" y="228.0" text-anchor="end" font-family="Inter, sans-serif" font-size="11" fill="#8A7A6A">0</text>
+<line x1="48" y1="171.5" x2="628" y2="171.5" stroke="#EDE8DC"/><text x="40" y="175.5" text-anchor="end" font-family="Inter, sans-serif" font-size="11" fill="#8A7A6A">2,000</text>
+<line x1="48" y1="119.0" x2="628" y2="119.0" stroke="#EDE8DC"/><text x="40" y="123.0" text-anchor="end" font-family="Inter, sans-serif" font-size="11" fill="#8A7A6A">4,000</text>
+<line x1="48" y1="66.5" x2="628" y2="66.5" stroke="#EDE8DC"/><text x="40" y="70.5" text-anchor="end" font-family="Inter, sans-serif" font-size="11" fill="#8A7A6A">6,000</text>
+<line x1="48" y1="14.0" x2="628" y2="14.0" stroke="#EDE8DC"/><text x="40" y="18.0" text-anchor="end" font-family="Inter, sans-serif" font-size="11" fill="#8A7A6A">8,000</text>
+<polyline fill="none" stroke="#8A7A6A" stroke-width="2" stroke-dasharray="5 4" points="48.0,188.4 73.2,188.4 98.4,188.3 123.7,188.3 148.9,188.2 174.1,188.2 199.3,188.1 224.5,188.1 249.7,188.0 275.0,188.0 300.2,187.9 325.4,188.1 350.6,188.1 375.8,188.1 401.0,188.0 426.3,188.0 451.5,187.9 476.7,187.9 501.9,187.8 527.1,187.8 552.3,187.7 577.6,187.7 602.8,187.6 628.0,191.2"/>
+<polyline fill="none" stroke="#7EB8C9" stroke-width="3" points="48.0,18.3 73.2,75.9 98.4,134.4 123.7,167.5 148.9,175.3 174.1,184.0 199.3,167.3 224.5,177.8 249.7,163.0 275.0,175.5 300.2,162.6 325.4,177.0 350.6,185.7 375.8,169.1 401.0,179.7 426.3,165.0 451.5,177.5 476.7,164.8 501.9,179.2 527.1,168.5 552.3,185.0 577.6,176.3 602.8,168.6 628.0,188.2"/>
+<text x="48.0" y="250" text-anchor="start" font-family="Inter, sans-serif" font-size="11" fill="#8A7A6A">Jan 2024</text>
+<text x="350.6" y="250" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#8A7A6A">Jan 2025</text>
+<text x="628.0" y="250" text-anchor="end" font-family="Inter, sans-serif" font-size="11" fill="#8A7A6A">Dec 2025</text>
+<text x="249.7" y="147.9" font-family="Inter, sans-serif" font-size="12" fill="#2C1F14">Ending inventory</text>
+<text x="426.3" y="208.2" font-family="Inter, sans-serif" font-size="12" fill="#8A7A6A">Safety stock requirement</text>
+</svg><figcaption>Monthly ending inventory under the recommended plan, staying above the safety stock requirement in every month.</figcaption></figure>
+    <div class="cs-callouts">
+      <div class="cs-callout"><div class="n">$3.58</div><div class="l">minimum discount per unit to accept bulk orders starting now</div></div>
+      <div class="cs-callout"><div class="n">$7.15</div><div class="l">minimum discount per unit if bulk orders start mid-year</div></div>
+    </div>
+  </section>
+
+  <section class="cs-model">
+    <h2>Van rental pricing</h2>
+    <p>I built a five-year cash flow model for a 50-van electric rental business in which every $1,200 change in the annual rental rate moves utilization by seven percentage points. At the market rate the investment returns about $210,000 in present value, a small price cut raises that slightly, and a price increase lowers it to about $158,000, so I recommended pricing at or just below the market rate.</p>
+    <figure class="cs-chart" style="margin:0;"><svg viewBox="0 0 640 158" role="img" aria-label="Net present value at three rental rates">
+<text x="0" y="34" font-family="Inter, sans-serif" font-size="14" fill="#2C1F14">$10,800 a year</text>
+<rect x="200" y="18" width="350.0" height="24" rx="4" fill="#7EB8C9"/>
+<text x="558.0" y="35" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#2C1F14">$213K</text>
+<text x="0" y="80" font-family="Inter, sans-serif" font-size="14" fill="#2C1F14">$12,000 a year (market)</text>
+<rect x="200" y="64" width="345.1" height="24" rx="4" fill="#D9CBB5"/>
+<text x="553.1" y="81" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#2C1F14">$210K</text>
+<text x="0" y="126" font-family="Inter, sans-serif" font-size="14" fill="#2C1F14">$13,200 a year</text>
+<rect x="200" y="110" width="259.6" height="24" rx="4" fill="#D9CBB5"/>
+<text x="467.6" y="127" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#2C1F14">$158K</text>
+</svg><figcaption>Net present value at three annual rental rates per van.</figcaption></figure>
+  </section>
+
+  <section class="cs-model">
+    <h2>Solar panels for a small business</h2>
+    <p>I compared two solar systems for a local business, including tax incentives and the gradual loss of panel efficiency over time, and added a sensitivity table on electricity prices. The stronger system returns about $1,900 at today's rate, and the investment only makes sense while electricity stays above roughly $0.34 per kWh.</p>
+    <figure class="cs-chart" style="margin:0;"><svg viewBox="0 0 640 260" role="img" aria-label="Net present value of the solar investment at electricity prices from 32 to 40 cents per kilowatt hour">
+<line x1="56" y1="226.0" x2="628" y2="226.0" stroke="#EDE8DC"/><text x="48" y="230.0" text-anchor="end" font-family="Inter, sans-serif" font-size="11" fill="#8A7A6A">-$2,000</text>
+<line x1="56" y1="173.5" x2="628" y2="173.5" stroke="#2C1F14"/><text x="48" y="177.5" text-anchor="end" font-family="Inter, sans-serif" font-size="11" fill="#8A7A6A">$0</text>
+<line x1="56" y1="121.0" x2="628" y2="121.0" stroke="#EDE8DC"/><text x="48" y="125.0" text-anchor="end" font-family="Inter, sans-serif" font-size="11" fill="#8A7A6A">$2,000</text>
+<line x1="56" y1="68.5" x2="628" y2="68.5" stroke="#EDE8DC"/><text x="48" y="72.5" text-anchor="end" font-family="Inter, sans-serif" font-size="11" fill="#8A7A6A">$4,000</text>
+<line x1="56" y1="16.0" x2="628" y2="16.0" stroke="#EDE8DC"/><text x="48" y="20.0" text-anchor="end" font-family="Inter, sans-serif" font-size="11" fill="#8A7A6A">$6,000</text>
+<rect x="67.4" y="173.5" width="40.7" height="42.4" rx="3" fill="#D9CBB5"/>
+<text x="87.8" y="248" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#8A7A6A">$0.32</text>
+<rect x="131.0" y="173.5" width="40.7" height="19.5" rx="3" fill="#D9CBB5"/>
+<text x="151.3" y="248" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#8A7A6A">$0.33</text>
+<rect x="194.6" y="170.1" width="40.7" height="3.4" rx="3" fill="#7EB8C9"/>
+<text x="214.9" y="248" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#8A7A6A">$0.34</text>
+<rect x="258.1" y="147.2" width="40.7" height="26.3" rx="3" fill="#7EB8C9"/>
+<text x="278.4" y="248" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#8A7A6A">$0.35</text>
+<rect x="321.7" y="124.3" width="40.7" height="49.2" rx="3" fill="#7EB8C9"/>
+<text x="342.0" y="248" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#8A7A6A">$0.36</text>
+<rect x="385.2" y="101.3" width="40.7" height="72.2" rx="3" fill="#7EB8C9"/>
+<text x="405.6" y="248" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#8A7A6A">$0.37</text>
+<rect x="448.8" y="78.4" width="40.7" height="95.1" rx="3" fill="#7EB8C9"/>
+<text x="469.1" y="248" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#8A7A6A">$0.38</text>
+<rect x="512.3" y="55.5" width="40.7" height="118.0" rx="3" fill="#7EB8C9"/>
+<text x="532.7" y="248" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#8A7A6A">$0.39</text>
+<rect x="575.9" y="32.6" width="40.7" height="140.9" rx="3" fill="#7EB8C9"/>
+<text x="596.2" y="248" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#8A7A6A">$0.40</text>
+</svg><figcaption>Net present value of the stronger system at electricity prices from $0.32 to $0.40 per kWh.</figcaption></figure>
+  </section>
+
+  <a class="cs-back" href="projects.html">Back to all work</a>
+
+</main>
+
+<div class="cursor-dot" aria-hidden="true"></div>
+<script src="script.js"></script>
+</body>
+</html>

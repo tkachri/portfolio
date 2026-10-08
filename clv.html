@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Customer Lifetime Value, itstheodok</title>
+<meta name="description" content="A customer analytics simulation for a B2B technology company, Customer Data Analysis at Boston University." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  /* Coursework pages: share the case study system */
+  .cs-shell { max-width: 900px; margin: 0 auto; padding: 100px 24px 120px; font-family: 'Inter', sans-serif; color: #2C1F14; }
+  .cs-tag { display: inline-block; background: #EDE8DC; color: #8A7A6A; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 12px; border-radius: 999px; margin-bottom: 18px; }
+  .cs-title { font-family: 'Playfair Display', serif; font-size: 50px; line-height: 1.1; margin: 0 0 12px; }
+  .cs-subtitle { font-size: 17px; line-height: 1.6; color: #8A7A6A; max-width: 680px; margin: 0 0 48px; }
+  .cs-lead { font-size: 18px; line-height: 1.75; max-width: 760px; margin: 0 0 56px; }
+  .cs-section { margin-bottom: 64px; }
+  .cs-section h2 { font-family: 'Playfair Display', serif; font-size: 28px; margin: 0 0 16px; }
+  .cs-section p { line-height: 1.75; font-size: 16px; margin: 0 0 16px; max-width: 760px; }
+  .cs-model { background: #F5F0E6; border: 1px solid #EDE8DC; border-radius: 12px; padding: 32px; margin-bottom: 28px; }
+  .cs-model h2 { font-family: 'Playfair Display', serif; font-size: 24px; margin: 0 0 12px; }
+  .cs-model p { line-height: 1.75; font-size: 15px; margin: 0 0 20px; max-width: 760px; }
+  .cs-chart { background: #FBF8F1; border: 1px solid #EDE8DC; border-radius: 10px; padding: 16px; }
+  .cs-chart svg { width: 100%; height: auto; display: block; }
+  .cs-chart figcaption { font-size: 13px; color: #8A7A6A; margin-top: 8px; }
+  .cs-callouts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 16px; }
+  .cs-callout { background: #FBF8F1; border: 1px solid #EDE8DC; border-radius: 10px; padding: 16px; }
+  .cs-callout .n { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; }
+  .cs-callout .l { font-size: 13px; color: #8A7A6A; margin-top: 4px; line-height: 1.45; }
+  .cs-table-wrap { overflow-x: auto; border: 1px solid #EDE8DC; border-radius: 10px; margin: 8px 0 16px; }
+  .cs-table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 520px; }
+  .cs-table th, .cs-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid #EDE8DC; }
+  .cs-table thead th { background: #F5F0E6; font-size: 13px; }
+  .sig { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+  .sig.y { background: #2C1F14; color: #F5F0E6; }
+  .sig.n { background: #EDE8DC; color: #8A7A6A; }
+  .cs-closing { background: #2C1F14; color: #F5F0E6; border-radius: 12px; padding: 48px 44px; margin-top: 16px; }
+  .cs-closing p { font-family: 'Playfair Display', serif; font-size: 21px; line-height: 1.6; max-width: 720px; margin: 0 auto; }
+  .cs-back { display: inline-block; margin-top: 40px; color: #2C1F14; font-weight: 600; font-size: 15px; text-decoration: none; border-bottom: 1px solid #7EB8C9; }
+  .cs-back:hover, .cs-back:focus-visible { color: #7EB8C9; }
+  @media (max-width: 720px) {
+    .cs-title { font-size: 36px; }
+    .cs-model { padding: 22px; }
+    .cs-callouts { grid-template-columns: 1fr; }
+    .cs-closing { padding: 36px 24px; }
+    .cs-closing p { font-size: 18px; }
+  }
+</style>
+</head>
+<body class="page-project-detail">
+<div class="menu-bar">
+  <div class="menu-left">
+    <span class="apple-mark"></span>
+    <span>itstheodok</span>
+    <span>File</span>
+    <span>Edit</span>
+    <span>View</span>
+    <span>·</span>
+    <a class="menu-nav-link" href="index.html">home</a>
+    <a class="menu-nav-link" href="projects.html">work</a>
+    <a class="menu-nav-link" href="about.html">about</a>
+    <a class="menu-nav-link" href="index.html#footer">contact</a>
+  </div>
+  <div class="menu-right">
+    <span id="clock">--:--</span>
+    <span>●</span>
+    <span>100%</span>
+  </div>
+</div>
+
+<main class="cs-shell">
+
+  <span class="cs-tag">Coursework · Customer Analytics</span>
+  <h1 class="cs-title">Customer Lifetime Value: Hartnow</h1>
+  <p class="cs-subtitle">A customer analytics simulation for a B2B technology company, completed with my team for Customer Data Analysis (Honors), spring 2026.</p>
+
+  <section class="cs-section">
+    <h2>The question</h2>
+    <p>Hartnow was a young company that investors judged on both profit growth and customer value, and our team was asked to decide which customers it should pursue and how it should keep them over time.</p>
+  </section>
+
+  <section class="cs-section">
+    <h2>Where we started</h2>
+    <p>In the early rounds we followed the revenue. Automotive customers brought in $32.3 million of $47.5 million in total revenue, so we built most of our marketing and service spending around them.</p>
+    <figure class="cs-chart" style="margin:0;"><svg viewBox="0 0 640 158" role="img" aria-label="Revenue by sector">
+<text x="0" y="34" font-family="Inter, sans-serif" font-size="14" fill="#2C1F14">Automotive</text>
+<rect x="200" y="18" width="350.0" height="24" rx="4" fill="#7EB8C9"/>
+<text x="558.0" y="35" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#2C1F14">$32.3M</text>
+<text x="0" y="80" font-family="Inter, sans-serif" font-size="14" fill="#2C1F14">Defense</text>
+<rect x="200" y="64" width="105.1" height="24" rx="4" fill="#D9CBB5"/>
+<text x="313.1" y="81" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#2C1F14">$9.7M</text>
+<text x="0" y="126" font-family="Inter, sans-serif" font-size="14" fill="#2C1F14">Aerospace</text>
+<rect x="200" y="110" width="59.6" height="24" rx="4" fill="#D9CBB5"/>
+<text x="267.6" y="127" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#2C1F14">$5.5M</text>
+</svg><figcaption>Total revenue by customer sector.</figcaption></figure>
+  </section>
+
+  <section class="cs-section">
+    <h2>What the data showed</h2>
+    <p>I ran two regressions on the full base of 940 customers. The first explained nearly all of the variation in revenue, and only two drivers mattered: the number of contracts each customer held, worth about $24,700 in revenue per contract, and the share of those contracts that were advanced. Sector and acquisition channel had no significant effect.</p>
+    <div class="cs-table-wrap">
+      <table class="cs-table">
+        <thead><tr><th>Driver of revenue per customer</th><th>Effect</th><th>Significant</th></tr></thead>
+        <tbody>
+          <tr><td>Number of contracts</td><td>about $24,700 per contract</td><td><span class="sig y">Yes</span></td></tr>
+          <tr><td>Share of advanced contracts</td><td>about $12,400 from all basic to all advanced</td><td><span class="sig y">Yes</span></td></tr>
+          <tr><td>Customer sector</td><td>no reliable effect</td><td><span class="sig n">No</span></td></tr>
+          <tr><td>Acquisition channel</td><td>no reliable effect</td><td><span class="sig n">No</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The second regression found that no visible customer trait predicted who would upgrade to advanced contracts, which told us that upgrades would only come from deliberate account work. Our retention analysis also showed that defense customers churned far less than automotive ones, which made them more valuable over time even though they brought in less revenue.</p>
+  </section>
+
+  <section class="cs-section">
+    <h2>What we changed</h2>
+    <p>We shifted our spending toward retention, contract depth, and advanced product adoption, and when we raised retention from about 31% to 40%, our estimated customer equity rose significantly.</p>
+    <p>The same course also included cohort and decile analysis of a retailer's customer base, where I tracked how order frequency, order value, and retention changed as each group of customers aged.</p>
+  </section>
+
+  <div class="cs-closing">
+    <p>The simulation showed me how easy it is to let the biggest revenue number set the strategy, and how much clearer the picture becomes once you look at what each customer is worth over the full relationship and test that against the data before committing the budget.</p>
+  </div>
+
+  <a class="cs-back" href="projects.html">Back to all work</a>
+
+</main>
+
+<div class="cursor-dot" aria-hidden="true"></div>
+<script src="script.js"></script>
+</body>
+</html>

@@ -71,7 +71,7 @@
 
     .folder-tip { position: absolute; right: calc(100% + 10px); top: 50%; transform: translateY(-50%); background: rgba(12,14,20,0.95); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.07); border-radius: 8px; padding: 8px 12px; width: 188px; font-size: 10px; color: rgba(255,255,255,0.55); line-height: 1.6; opacity: 0; pointer-events: none; transition: opacity 0.2s; text-align: left; z-index: 10; white-space: normal; }
     .folder:hover .folder-tip { opacity: 1; }
-    .brand-col .folder-tip, .personal-col .folder-tip { right: auto; left: calc(100% + 10px); }
+    .brand-col .folder-tip, .coursework-col .folder-tip { right: auto; left: calc(100% + 10px); }
 
     .dock { position: fixed; bottom: 8px; left: 50%; transform: translateX(-50%); display: flex; align-items: flex-end; gap: 6px; background: rgba(255,255,255,0.05); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 8px 16px 10px; z-index: 100; }
     .dock-item { display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: none; text-decoration: none; position: relative; }
@@ -190,6 +190,25 @@
         </div>
       </div>
 
+      <div class="folder-column coursework-col">
+        <div class="column-label">Coursework</div>
+        <a href="modeling.html" class="folder">
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#A88E6E"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#C2A887"/><rect x="0" y="13" width="68" height="6" fill="#C2A887" opacity="0.4"/></svg>
+          <div class="folder-tip">Four investment decisions modeled in Excel: airline winglets, inventory, rental pricing, and solar.</div>
+          <div class="folder-label">Decision Modeling</div>
+        </a>
+        <a href="clv.html" class="folder">
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#A88E6E"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#C2A887"/><rect x="0" y="13" width="68" height="6" fill="#C2A887" opacity="0.4"/></svg>
+          <div class="folder-tip">Customer lifetime value and retention analysis for a B2B company, using regression on 940 customers.</div>
+          <div class="folder-label">Customer Value</div>
+        </a>
+        <a href="pricing.html" class="folder">
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#A88E6E"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#C2A887"/><rect x="0" y="13" width="68" height="6" fill="#C2A887" opacity="0.4"/></svg>
+          <div class="folder-tip">A demand model estimating price elasticity and forecasting monthly sales.</div>
+          <div class="folder-label">Pricing and Demand</div>
+        </a>
+      </div>
+
       <div class="folder-column personal-col">
         <div class="column-label">Personal</div>
         <a href="https://bu.digication.com/theodora-k-cgs-team-d-spring-2021/home-1" target="_blank" class="folder">
@@ -272,6 +291,25 @@
       <div class="card-tags"><span class="card-tag">Go-to-Market</span><span class="card-tag">Creative Strategy</span></div>
       <div class="card-name">Sprouts</div>
       <div class="card-desc">New England market entry strategy. 2nd of 46 teams and Best Creative Award.</div>
+      <span class="card-link">open →</span>
+    </a>
+    <div class="mobile-section-label">Coursework</div>
+    <a href="modeling.html" class="project-card">
+      <div class="card-tags"><span class="card-tag">Financial Modeling</span><span class="card-tag">Excel</span></div>
+      <div class="card-name">Decision Modeling</div>
+      <div class="card-desc">Four investment decisions modeled in Excel: airline winglets, inventory, rental pricing, and solar.</div>
+      <span class="card-link">open →</span>
+    </a>
+    <a href="clv.html" class="project-card">
+      <div class="card-tags"><span class="card-tag">Customer Analytics</span><span class="card-tag">Regression</span></div>
+      <div class="card-name">Customer Value</div>
+      <div class="card-desc">Customer lifetime value and retention analysis for a B2B company, using regression on 940 customers.</div>
+      <span class="card-link">open →</span>
+    </a>
+    <a href="pricing.html" class="project-card">
+      <div class="card-tags"><span class="card-tag">Pricing</span><span class="card-tag">Forecasting</span></div>
+      <div class="card-name">Pricing and Demand</div>
+      <div class="card-desc">A demand model estimating price elasticity and forecasting monthly sales.</div>
       <span class="card-link">open →</span>
     </a>
     <div class="mobile-section-label">Personal</div>
