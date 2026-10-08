@@ -40,13 +40,10 @@
     .photo { object-fit: cover; border-radius: 2px; width: 100%; height: 100%; display: block; opacity: 0; animation: photoIn 0.7s ease forwards; }
     @keyframes photoIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 0.88; transform: translateY(0); } }
 
-    /* Row 1: boxing(landscape) | paris collage spans 2 rows | empty col3 */
     .ph1 { grid-column: 1; grid-row: 1; animation-delay: 0.1s; }
     .ph2 { grid-column: 2; grid-row: 1 / 3; height: 237px; animation-delay: 0.15s; }
-    /* Row 2: red bar silhouette | (ph2 continues) | cafe woman */
     .ph3 { grid-column: 1; grid-row: 2; animation-delay: 0.2s; }
     .ph4 { grid-column: 3; grid-row: 1 / 3; height: 237px; animation-delay: 0.25s; }
-    /* Row 3: shadow tiles | red street | snow */
     .ph5 { grid-column: 1; grid-row: 3; animation-delay: 0.3s; }
     .ph6 { grid-column: 2; grid-row: 3; animation-delay: 0.35s; }
     .ph7 { grid-column: 3; grid-row: 3; animation-delay: 0.4s; }
@@ -80,25 +77,39 @@
     .dock-label { font-size: 9px; color: rgba(255,255,255,0.3); opacity: 0; transition: opacity 0.15s; position: absolute; bottom: -14px; white-space: nowrap; }
     .dock-item:hover .dock-label { opacity: 1; }
 
+    /* PHONE VIEW */
     .mobile-nav { display: none; position: fixed; top: 0; left: 0; right: 0; height: 56px; background: rgba(8,10,14,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06); align-items: center; justify-content: space-between; padding: 0 20px; z-index: 100; }
     .mobile-nav-logo { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: #F5F5F5; text-decoration: none; }
     .mobile-nav-links { display: flex; gap: 20px; }
     .mobile-nav-links a { font-size: 12px; color: rgba(255,255,255,0.4); text-decoration: none; }
-    .mobile-view { display: none; flex-direction: column; padding: 76px 20px 40px; overflow-y: auto; height: 100vh; }
-    .mobile-section-label { font-size: 9px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.25); padding: 28px 0 12px; border-bottom: 1px solid rgba(255,255,255,0.04); }
-    .project-card { display: block; text-decoration: none; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.06); position: relative; transition: padding-left 0.2s; }
-    .project-card::before { content: ''; position: absolute; left: 0; top: 18px; bottom: 18px; width: 0; background: #C4607A; border-radius: 2px; transition: width 0.2s; }
-    .project-card:hover { padding-left: 14px; }
-    .project-card:hover::before { width: 2px; }
-    .card-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 6px; }
-    .card-tag { font-size: 9px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.07em; color: rgba(126,184,201,0.7); border: 1px solid rgba(126,184,201,0.2); border-radius: 20px; padding: 2px 7px; }
-    .card-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #F5F5F5; margin-bottom: 4px; }
-    .card-desc { font-size: 11px; color: rgba(255,255,255,0.38); line-height: 1.6; margin-bottom: 8px; }
-    .card-link { font-size: 11px; color: #7EB8C9; }
-    .project-card.soon { opacity: 0.45; }
-    .project-card.soon:hover { padding-left: 0; }
-    .project-card.soon:hover::before { width: 0; }
-    .project-card.soon .card-link { color: rgba(255,255,255,0.45); }
+    .mobile-view { display: none; flex-direction: column; padding: 84px 0 48px; min-height: 100vh; }
+    .m-intro { padding: 0 20px 6px; }
+    .m-title { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; color: #F5F5F5; }
+    .m-sub { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 6px; }
+    .m-section { margin-top: 30px; }
+    .m-label { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.35); padding: 0 20px; }
+    .m-row { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 14px 20px 6px; scroll-padding-left: 20px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .m-row::-webkit-scrollbar { display: none; }
+    .m-folder { flex: 0 0 138px; scroll-snap-align: start; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-decoration: none; background: rgba(255,255,255,0.035); border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; padding: 16px 14px 14px; transition: transform 0.15s, border-color 0.2s; }
+    .m-folder:active { transform: scale(0.97); border-color: rgba(126,184,201,0.4); }
+    .m-folder .folder-icon { width: 60px; height: 48px; }
+    .m-name { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: #F5F5F5; line-height: 1.25; }
+    .m-desc { font-size: 10.5px; color: rgba(255,255,255,0.45); line-height: 1.5; }
+    .m-open { font-size: 10px; color: #7EB8C9; margin-top: auto; padding-top: 2px; }
+    .m-folder.soon { opacity: 0.4; }
+    .m-folder.soon .m-open { color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.08em; font-size: 9px; }
+    .m-folder.faded { opacity: 0.3; justify-content: center; }
+    .m-folder.faded .m-name { font-family: 'Inter', sans-serif; font-weight: 400; font-style: italic; font-size: 12px; color: rgba(255,255,255,0.6); }
+    .m-collage { display: grid; grid-template-columns: 1.25fr 1.25fr 1fr; grid-template-rows: 27vw 27vw 31vw; gap: 5px; padding: 0 20px; margin-top: 44px; }
+    .m-collage img { width: 100%; height: 100%; object-fit: cover; border-radius: 2px; display: block; opacity: 0.88; }
+    .m1 { grid-column: 1; grid-row: 1; }
+    .m2 { grid-column: 2; grid-row: 1 / 3; }
+    .m3 { grid-column: 1; grid-row: 2; }
+    .m4 { grid-column: 3; grid-row: 1 / 3; }
+    .m5 { grid-column: 1; grid-row: 3; }
+    .m6 { grid-column: 2; grid-row: 3; }
+    .m7 { grid-column: 3; grid-row: 3; }
+    .m-foot { text-align: center; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-top: 22px; }
 
     @media (max-width: 900px) {
       body { overflow: auto; }
@@ -134,7 +145,6 @@
 
   <div class="desktop">
 
-    <!-- PHOTOS matching Canva layout -->
     <div class="photos-left">
       <img class="photo ph1" src="p2.webp" alt="" />
       <img class="photo ph2" src="p1.webp" alt="" />
@@ -145,7 +155,6 @@
       <img class="photo ph7" src="p5.webp" alt="" />
     </div>
 
-    <!-- FOLDER COLUMNS -->
     <div class="columns-area">
 
       <div class="folder-column">
@@ -155,16 +164,16 @@
           <div class="folder-tip">Marina booking platform: 3 trust breakdowns, Best Client Work of 20 teams</div>
           <div class="folder-label">NEREID</div>
         </a>
-        <div class="folder folder-soon">
-          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/><rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/></svg>
-          <div class="folder-tip">AI proptech marketplace, co-founded at Innovate BU. Case study coming soon.</div>
-          <div class="folder-label">LeaseLink</div>
-        </div>
         <a href="fischer.html" class="folder">
           <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/><rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/></svg>
           <div class="folder-tip">Summer growth strategy for a 100-year-old ski brand. Top 3 of 20 teams.</div>
           <div class="folder-label">Fischer Sports</div>
         </a>
+        <div class="folder folder-soon">
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/><rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/></svg>
+          <div class="folder-tip">AI proptech marketplace, co-founded at Innovate BU. Case study coming soon.</div>
+          <div class="folder-label">LeaseLink</div>
+        </div>
       </div>
 
       <div class="folder-column brand-col">
@@ -239,64 +248,104 @@
   <nav class="mobile-nav">
     <a href="index.html" class="mobile-nav-logo">itstheodok</a>
     <div class="mobile-nav-links">
+      <a href="index.html">home</a>
       <a href="about.html">about</a>
       <a href="mailto:tkachr@bu.edu">contact</a>
     </div>
   </nav>
 
   <div class="mobile-view">
-    <div class="mobile-section-label">Product · UX</div>
-    <a href="nereid.html" class="project-card">
-      <div class="card-tags"><span class="card-tag">UX Research</span><span class="card-tag">Product Design</span></div>
-      <div class="card-name">NEREID</div>
-      <div class="card-desc">Marina booking platform: 3 trust breakdowns, Best Client Work of 20 teams.</div>
-      <span class="card-link">open →</span>
-    </a>
-    <div class="project-card soon">
-      <div class="card-tags"><span class="card-tag">0 to 1</span><span class="card-tag">AI</span><span class="card-tag">Proptech</span></div>
-      <div class="card-name">LeaseLink</div>
-      <div class="card-desc">AI proptech marketplace, co-founded at Innovate BU.</div>
-      <span class="card-link">case study coming soon</span>
+    <div class="m-intro">
+      <div class="m-title">work.</div>
+      <div class="m-sub">Swipe through each folder and tap to open.</div>
     </div>
-    <a href="fischer.html" class="project-card">
-      <div class="card-tags"><span class="card-tag">Consulting</span><span class="card-tag">Strategy</span></div>
-      <div class="card-name">Fischer Sports</div>
-      <div class="card-desc">Summer growth strategy for a 100-year-old ski brand. Top 3 of 20 teams.</div>
-      <span class="card-link">open →</span>
-    </a>
-    <div class="mobile-section-label">Brand · Creative</div>
-    <a href="sprouts.html" class="project-card">
-      <div class="card-tags"><span class="card-tag">Go-to-Market</span><span class="card-tag">Creative Strategy</span></div>
-      <div class="card-name">Sprouts</div>
-      <div class="card-desc">New England market entry strategy. 2nd of 46 teams and Best Creative Award.</div>
-      <span class="card-link">open →</span>
-    </a>
-    <div class="mobile-section-label">Coursework</div>
-    <a href="modeling.html" class="project-card">
-      <div class="card-tags"><span class="card-tag">Financial Modeling</span><span class="card-tag">Excel</span></div>
-      <div class="card-name">Decision Modeling</div>
-      <div class="card-desc">Four investment decisions modeled in Excel: airline winglets, inventory, rental pricing, and solar.</div>
-      <span class="card-link">open →</span>
-    </a>
-    <a href="clv.html" class="project-card">
-      <div class="card-tags"><span class="card-tag">Customer Analytics</span><span class="card-tag">Regression</span></div>
-      <div class="card-name">Customer Value</div>
-      <div class="card-desc">Customer lifetime value and retention analysis for a B2B company, using regression on 940 customers.</div>
-      <span class="card-link">open →</span>
-    </a>
-    <a href="pricing.html" class="project-card">
-      <div class="card-tags"><span class="card-tag">Pricing</span><span class="card-tag">Forecasting</span></div>
-      <div class="card-name">Pricing and Demand</div>
-      <div class="card-desc">A demand model estimating price elasticity and forecasting monthly sales.</div>
-      <span class="card-link">open →</span>
-    </a>
-    <div class="mobile-section-label">Personal</div>
-    <a href="https://bu.digication.com/theodora-k-cgs-team-d-spring-2021/home-1" target="_blank" class="project-card">
-      <div class="card-tags"><span class="card-tag">Writing</span><span class="card-tag">Undergrad</span></div>
-      <div class="card-name">writings.</div>
-      <div class="card-desc">Essays and pieces from undergrad. For the love of it.</div>
-      <span class="card-link">open →</span>
-    </a>
+
+    <div class="m-section">
+      <div class="m-label">Product · UX</div>
+      <div class="m-row">
+        <a href="nereid.html" class="m-folder">
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/><rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/></svg>
+          <div class="m-name">NEREID</div>
+          <div class="m-desc">Marina booking redesign. Best Client Work of 20 teams.</div>
+          <span class="m-open">open →</span>
+        </a>
+        <a href="fischer.html" class="m-folder">
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/><rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/></svg>
+          <div class="m-name">Fischer Sports</div>
+          <div class="m-desc">Summer growth strategy for a 100-year-old ski brand. Top 3 of 20.</div>
+          <span class="m-open">open →</span>
+        </a>
+        <div class="m-folder soon">
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/><rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/></svg>
+          <div class="m-name">LeaseLink</div>
+          <div class="m-desc">AI proptech marketplace, co-founded at Innovate BU.</div>
+          <span class="m-open">soon</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="m-section">
+      <div class="m-label">Brand · Creative</div>
+      <div class="m-row">
+        <a href="sprouts.html" class="m-folder">
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882"/><rect x="0" y="13" width="68" height="6" fill="#CC6882" opacity="0.4"/></svg>
+          <div class="m-name">Sprouts</div>
+          <div class="m-desc">New England market entry. 2nd of 46 teams and Best Creative Award.</div>
+          <span class="m-open">open →</span>
+        </a>
+        <div class="m-folder faded">
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#B85570" opacity="0.3"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#CC6882" opacity="0.3"/></svg>
+          <div class="m-name">more soon +</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="m-section">
+      <div class="m-label">Coursework</div>
+      <div class="m-row">
+        <a href="modeling.html" class="m-folder">
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#A88E6E"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#C2A887"/><rect x="0" y="13" width="68" height="6" fill="#C2A887" opacity="0.4"/></svg>
+          <div class="m-name">Decision Modeling</div>
+          <div class="m-desc">Four investment decisions modeled in Excel.</div>
+          <span class="m-open">open →</span>
+        </a>
+        <a href="clv.html" class="m-folder">
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#A88E6E"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#C2A887"/><rect x="0" y="13" width="68" height="6" fill="#C2A887" opacity="0.4"/></svg>
+          <div class="m-name">Customer Value</div>
+          <div class="m-desc">Lifetime value and retention for 940 B2B customers.</div>
+          <span class="m-open">open →</span>
+        </a>
+        <a href="pricing.html" class="m-folder">
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#A88E6E"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#C2A887"/><rect x="0" y="13" width="68" height="6" fill="#C2A887" opacity="0.4"/></svg>
+          <div class="m-name">Pricing and Demand</div>
+          <div class="m-desc">Price elasticity and a monthly sales forecast.</div>
+          <span class="m-open">open →</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="m-section">
+      <div class="m-label">Personal</div>
+      <div class="m-row">
+        <a href="https://bu.digication.com/theodora-k-cgs-team-d-spring-2021/home-1" class="m-folder" target="_blank" rel="noreferrer">
+          <svg class="folder-icon" viewBox="0 0 68 54" fill="none"><rect x="0" y="13" width="68" height="41" rx="4" fill="#7EB8C9" opacity="0.55"/><rect x="0" y="6" width="24" height="11" rx="3" fill="#9ECFDD" opacity="0.55"/><rect x="0" y="13" width="68" height="6" fill="#9ECFDD" opacity="0.25"/></svg>
+          <div class="m-name">writings.</div>
+          <div class="m-desc">Essays and pieces from undergrad. For the love of it.</div>
+          <span class="m-open">open →</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="m-collage" aria-hidden="true">
+      <img class="m1" src="p2.webp" alt="" loading="lazy" />
+      <img class="m2" src="p1.webp" alt="" loading="lazy" />
+      <img class="m3" src="p6.jpeg" alt="" loading="lazy" />
+      <img class="m4" src="p4.webp" alt="" loading="lazy" />
+      <img class="m5" src="p7.jpeg" alt="" loading="lazy" />
+      <img class="m6" src="p3.webp" alt="" loading="lazy" />
+      <img class="m7" src="p5.webp" alt="" loading="lazy" />
+    </div>
+    <div class="m-foot">itstheodok</div>
   </div>
 
   <script>
