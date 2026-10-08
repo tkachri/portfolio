@@ -11,358 +11,79 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body {
-font-family: 'Inter', sans-serif;
-background: #F7F3E8;
-color: #2C1F14;
-cursor: none;
-      }
+body { font-family: 'Inter', sans-serif; background: #F7F3E8; color: #2C1F14; cursor: none; }
 a { text-decoration: none; }
 ul { list-style: none; }
-.site-nav {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-background: #F7F3E8;
-border-bottom: 1px solid #EDE8DC;
-padding: 16px 40px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-z-index: 100;
-      }
-.site-nav .nav-logo {
-font-family: 'Playfair Display', serif;
-font-size: 16px;
-color: #2C1F14;
-      }
-.site-nav .nav-links {
-display: flex;
-gap: 28px;
-align-items: center;
-      }
-.site-nav .nav-links a {
-font-family: 'Inter', sans-serif;
-font-size: 12px;
-color: #8A7A6A;
-letter-spacing: 0.05em;
-text-transform: lowercase;
-      }
+.site-nav { position: fixed; top: 0; left: 0; width: 100%; background: #F7F3E8; border-bottom: 1px solid #EDE8DC; padding: 16px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
+.site-nav .nav-logo { font-family: 'Playfair Display', serif; font-size: 16px; color: #2C1F14; }
+.site-nav .nav-links { display: flex; gap: 28px; align-items: center; }
+.site-nav .nav-links a { font-family: 'Inter', sans-serif; font-size: 12px; color: #8A7A6A; letter-spacing: 0.05em; text-transform: lowercase; }
 .site-nav .nav-links a:hover { color: #7EB8C9; }
-main {
-padding-top: 100px;
-      }
-.about-section {
-padding: 100px 10%;
-position: relative;
-      }
+main { padding-top: 100px; }
+.about-section { padding: 100px 10%; position: relative; }
 .about-section:first-of-type { padding-top: 120px; }
-.section-divider {
-position: relative;
-margin: 0 10% 40px;
-height: 1px;
-display: flex;
-align-items: center;
-justify-content: center;
-      }
-.section-divider::before {
-content: '';
-position: absolute;
-inset: 0;
-border-top: 1px solid #EDE8DC;
-      }
-.section-divider span {
-position: relative;
-z-index: 1;
-font-family: 'Playfair Display', serif;
-font-size: 120px;
-font-weight: 700;
-line-height: 1;
-color: #E2D3BD;
-background: #F7F3E8;
-padding: 0 20px;
-      }
-.section-label {
-font-family: 'Inter', sans-serif;
-font-size: 11px;
-letter-spacing: 0.1em;
-text-transform: uppercase;
-color: #8A7A6A;
-margin-bottom: 18px;
-      }
-.section-label.accent {
-color: #B4707E;
-      }
-.section-sublabel {
-font-family: 'Inter', sans-serif;
-font-size: 13px;
-color: #8A7A6A;
-margin-bottom: 28px;
-max-width: 560px;
-line-height: 1.6;
-      }
-.profile-label {
-font-family: 'Inter', sans-serif;
-font-size: 11px;
-letter-spacing: 0.1em;
-text-transform: uppercase;
-color: #8A7A6A;
-margin-bottom: 12px;
-      }
-.profile-meta {
-font-family: 'Inter', sans-serif;
-font-size: 13px;
-color: #8A7A6A;
-margin-bottom: 32px;
-      }
-.pull-quote {
-font-family: 'Playfair Display', serif;
-font-size: clamp(26px,3vw,38px);
-line-height: 1.3;
-color: #2C1F14;
-max-width: 780px;
-margin-bottom: 28px;
-      }
-.profile-copy {
-font-family: 'Inter', sans-serif;
-font-size: 15px;
-line-height: 1.85;
-color: #2C1F14;
-max-width: 680px;
-      }
-.experience-list {
-display: grid;
-gap: 20px;
-      }
-.exp-card {
-background: #F0EBE0;
-border-radius: 12px;
-padding: 32px 36px;
-transition: background 0.2s ease;
-      }
+.section-divider { position: relative; margin: 0 10% 40px; height: 1px; display: flex; align-items: center; justify-content: center; }
+.section-divider::before { content: ''; position: absolute; inset: 0; border-top: 1px solid #EDE8DC; }
+.section-divider span { position: relative; z-index: 1; font-family: 'Playfair Display', serif; font-size: 120px; font-weight: 700; line-height: 1; color: #E2D3BD; background: #F7F3E8; padding: 0 20px; }
+.section-label { font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #8A7A6A; margin-bottom: 18px; }
+.section-label.accent { color: #B4707E; }
+.section-sublabel { font-family: 'Inter', sans-serif; font-size: 13px; color: #8A7A6A; margin-bottom: 28px; max-width: 560px; line-height: 1.6; }
+.profile-label { font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #8A7A6A; margin-bottom: 12px; }
+.profile-meta { font-family: 'Inter', sans-serif; font-size: 13px; color: #8A7A6A; margin-bottom: 32px; }
+.pull-quote { font-family: 'Playfair Display', serif; font-size: clamp(26px,3vw,38px); line-height: 1.3; color: #2C1F14; max-width: 780px; margin-bottom: 28px; }
+.profile-copy { font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.85; color: #2C1F14; max-width: 680px; }
+.profile-copy + .profile-copy { margin-top: 20px; }
+.experience-list { display: grid; gap: 20px; }
+.exp-card { background: #F0EBE0; border-radius: 12px; padding: 32px 36px; transition: background 0.2s ease; }
 .exp-card:hover { background: #EAE4D8; }
-.exp-card.exp-placeholder {
-border: 1px dashed #C9BDA6;
-background: transparent;
-      }
-.exp-top {
-display: flex;
-justify-content: space-between;
-align-items: center;
-gap: 16px;
-      }
-.company-pill {
-display: inline-block;
-background: #7EB8C9;
-color: #fff;
-border-radius: 20px;
-padding: 4px 12px;
-font-family: 'Inter', sans-serif;
-font-size: 11px;
-font-weight: 600;
-letter-spacing: 0.06em;
-text-transform: uppercase;
-      }
-.exp-date {
-font-family: 'Inter', sans-serif;
-font-size: 12px;
-color: #8A7A6A;
-      }
-.exp-role {
-font-family: 'Playfair Display', serif;
-font-size: 22px;
-font-weight: 700;
-color: #2C1F14;
-margin: 8px 0 14px;
-      }
-.exp-quote {
-border-left: 3px solid #7EB8C9;
-padding-left: 16px;
-font-family: 'Inter', sans-serif;
-font-size: 14px;
-font-style: italic;
-line-height: 1.75;
-color: #2C1F14;
-margin-bottom: 14px;
-      }
+.exp-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.company-pill { display: inline-block; background: #7EB8C9; color: #fff; border-radius: 20px; padding: 4px 12px; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+.exp-date { font-family: 'Inter', sans-serif; font-size: 12px; color: #8A7A6A; }
+.exp-role { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: #2C1F14; margin: 8px 0 14px; }
+.exp-sub { font-family: 'Inter', sans-serif; font-size: 13px; color: #8A7A6A; margin: -8px 0 14px; }
+.exp-quote { border-left: 3px solid #7EB8C9; padding-left: 16px; font-family: 'Inter', sans-serif; font-size: 14px; font-style: italic; line-height: 1.75; color: #2C1F14; margin-bottom: 14px; }
 .exp-card ul { display: grid; gap: 8px; }
-.exp-card li {
-font-family: 'Inter', sans-serif;
-font-size: 13px;
-line-height: 1.7;
-color: #2C1F14;
-padding-left: 4px;
-      }
-.exp-card li::before {
-content: '▸';
-color: #7EB8C9;
-margin-right: 8px;
-      }
-.exp-link {
-display: inline-flex;
-align-items: center;
-gap: 6px;
-margin-top: 18px;
-background: #7EB8C9;
-color: #2C1F14;
-font-family: 'Inter', sans-serif;
-font-size: 12px;
-font-weight: 600;
-letter-spacing: 0.03em;
-padding: 8px 16px;
-border-radius: 6px;
-text-decoration: none;
-transition: opacity 0.15s ease;
-      }
+.exp-card li { font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.7; color: #2C1F14; padding-left: 4px; }
+.exp-card li::before { content: '▸'; color: #7EB8C9; margin-right: 8px; }
+.exp-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 18px; background: #7EB8C9; color: #2C1F14; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.03em; padding: 8px 16px; border-radius: 6px; text-decoration: none; transition: opacity 0.15s ease; }
 .exp-link:hover { opacity: 0.75; }
-.education-grid {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 24px;
-      }
-.edu-card {
-background: #F0EBE0;
-border-radius: 12px;
-padding: 28px 30px;
-      }
-.edu-title {
-font-family: 'Playfair Display', serif;
-font-size: 20px;
-color: #2C1F14;
-margin-bottom: 8px;
-      }
-.edu-meta {
-font-family: 'Inter', sans-serif;
-font-size: 13px;
-color: #8A7A6A;
-margin-bottom: 10px;
-      }
-.edu-details {
-font-family: 'Inter', sans-serif;
-font-size: 13px;
-line-height: 1.7;
-color: #2C1F14;
-      }
-.edu-coursework {
-font-family: 'Inter', sans-serif;
-font-size: 14px;
-line-height: 1.7;
-color: #8A7A6A;
-margin-top: 20px;
-      }
+.education-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.edu-card { background: #F0EBE0; border-radius: 12px; padding: 28px 30px; }
+.edu-title { font-family: 'Playfair Display', serif; font-size: 20px; color: #2C1F14; margin-bottom: 8px; }
+.edu-meta { font-family: 'Inter', sans-serif; font-size: 13px; color: #8A7A6A; margin-bottom: 10px; }
+.edu-details { font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.7; color: #2C1F14; }
+.edu-coursework { font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.7; color: #8A7A6A; margin-top: 20px; }
 .edu-coursework a { color: #2C1F14; font-weight: 600; border-bottom: 1px solid #7EB8C9; }
 .edu-coursework a:hover { color: #7EB8C9; }
-.skills-grid {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 36px;
-      }
-.skills-grid h3 {
-font-family: 'Playfair Display', serif;
-font-size: 20px;
-color: #2C1F14;
-margin-bottom: 14px;
-      }
-.skills-grid p {
-font-family: 'Inter', sans-serif;
-font-size: 14px;
-line-height: 2;
-color: #2C1F14;
-      }
-.language-row {
-display: flex;
-gap: 16px;
-flex-wrap: wrap;
-      }
-.lang-pill {
-background: #F0EBE0;
-border-radius: 10px;
-padding: 10px 16px;
-display: flex;
-flex-direction: column;
-gap: 6px;
-min-width: 140px;
-      }
-.lang-pill strong {
-font-family: 'Inter', sans-serif;
-font-size: 13px;
-font-weight: 500;
-color: #2C1F14;
-      }
-.lang-pill span {
-font-family: 'Inter', sans-serif;
-font-size: 10px;
-color: #8A7A6A;
-      }
-.lang-bar {
-width: 100%;
-height: 3px;
-background: #EDE8DC;
-border-radius: 2px;
-overflow: hidden;
-      }
-.lang-bar > i {
-display: block;
-height: 100%;
-background: #7EB8C9;
-border-radius: 2px;
-      }
-footer {
-background: #2C1F14;
-padding: 60px 40px 32px;
-      }
-.footer-grid {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 24px;
-      }
-.footer-left h2 {
-font-family: 'Playfair Display', serif;
-font-size: 42px;
-color: #F7F3E8;
-margin-bottom: 10px;
-      }
-.footer-left p {
-font-family: 'Inter', sans-serif;
-font-size: 13px;
-color: #8A7A6A;
-      }
-.footer-right {
-display: flex;
-flex-direction: column;
-gap: 10px;
-align-items: flex-end;
-      }
-.footer-right a {
-font-family: 'Inter', sans-serif;
-font-size: 13px;
-color: #7EB8C9;
-      }
-.footer-bottom {
-border-top: 1px solid #3A2A1A;
-margin-top: 32px;
-padding-top: 20px;
-display: flex;
-justify-content: space-between;
-      }
-.footer-bottom span {
-font-family: 'Inter', sans-serif;
-font-size: 11px;
-color: #8A7A6A;
-      }
+.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+.skills-grid h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: #2C1F14; margin-bottom: 14px; }
+.skills-grid p { font-family: 'Inter', sans-serif; font-size: 14px; line-height: 2; color: #2C1F14; }
+.language-row { display: flex; gap: 16px; flex-wrap: wrap; }
+.lang-pill { background: #F0EBE0; border-radius: 10px; padding: 10px 16px; display: flex; flex-direction: column; gap: 6px; min-width: 140px; }
+.lang-pill strong { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #2C1F14; }
+.lang-pill span { font-family: 'Inter', sans-serif; font-size: 10px; color: #8A7A6A; }
+.lang-bar { width: 100%; height: 3px; background: #EDE8DC; border-radius: 2px; overflow: hidden; }
+.lang-bar > i { display: block; height: 100%; background: #7EB8C9; border-radius: 2px; }
+footer { background: #2C1F14; padding: 60px 40px 32px; }
+.footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.footer-left h2 { font-family: 'Playfair Display', serif; font-size: 42px; color: #F7F3E8; margin-bottom: 10px; }
+.footer-left p { font-family: 'Inter', sans-serif; font-size: 13px; color: #8A7A6A; }
+.footer-right { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+.footer-right a { font-family: 'Inter', sans-serif; font-size: 13px; color: #7EB8C9; }
+.footer-bottom { border-top: 1px solid #3A2A1A; margin-top: 32px; padding-top: 20px; display: flex; justify-content: space-between; }
+.footer-bottom span { font-family: 'Inter', sans-serif; font-size: 11px; color: #8A7A6A; }
 @media (max-width: 768px) {
-.site-nav { padding: 16px 6%; }
-.about-section { padding: 60px 6%; }
-.section-divider { margin: 0 6% 40px; }
-.education-grid,
-.skills-grid,
-.footer-grid {
-grid-template-columns: 1fr;
-        }
-.footer-right { align-items: flex-start; }
-.exp-top { flex-direction: column; align-items: flex-start; }
-      }
+  .site-nav { padding: 16px 6%; }
+  .about-section { padding: 44px 6%; }
+  .about-section:first-of-type { padding-top: 56px; }
+  .section-divider { margin: 0 6% 40px; }
+  .section-divider span { font-size: 72px; padding: 0 14px; }
+  .exp-card { padding: 24px 22px; }
+  .pull-quote { font-size: 26px; }
+  .education-grid, .skills-grid, .footer-grid { grid-template-columns: 1fr; }
+  .footer-right { align-items: flex-start; }
+  .exp-top { flex-direction: column; align-items: flex-start; }
+}
 </style>
 </head>
 <body>
@@ -381,7 +102,9 @@ grid-template-columns: 1fr;
 <p class="profile-label">Personal Profile</p>
 <p class="profile-meta">Psychology + Management (STEM), Boston University</p>
 <p class="pull-quote">I am drawn to the teams, places, and brands people choose for how they make them feel, a night at the game, a trip they have waited all year for, a car they have dreamed of owning, a brand that feels like their own, and I use psychology and data to understand what creates that pull and how to build more of it.</p>
-<p class="profile-copy">I started in psychology because I wanted to understand why people make the decisions they make, and that question has shaped everything since, from my honors thesis on how people relate to their screens to studies across five countries and a full merit scholarship back at Boston University for my MS in Management, which I finished in the top 10% of my cohort. Client work taught me to turn that curiosity into results. For NEREID, I pushed to interview real boaters and found that what held them back was uncertainty before they arrived, which reshaped a platform the client now uses. For Fischer Sports, I led a survey of 61 athletes that showed loyalty to a ski brand does not follow people into summer, and for Sprouts, our team built a plan around the schools, neighbors, and weekly routines that decide where a family shops, which executives from Sprouts, TD Garden, and JPMorgan ranked second of 46 teams. Along the way I taught myself to build with AI, and I bring the same habits to every project: start with the people, test the obvious answer against the data, and make the recommendation clear enough that someone can act on it. That is why I keep returning to sports and live entertainment, luxury and automotive brands, and travel, where people choose an experience for the energy and sense of belonging it gives them, and where understanding that choice shapes everything from a campaign to the moment someone walks through the door.</p>
+<p class="profile-copy">I started in psychology because I wanted to understand why people make the decisions they make, and that question has shaped everything since, from my honors thesis on how people relate to their screens to studies across five countries and a full merit scholarship back at Boston University for my MS in Management, which I finished in the top 10% of my cohort.</p>
+<p class="profile-copy">Client work taught me to turn that curiosity into results. For NEREID, I pushed to interview real boaters and found that what held them back was uncertainty before they arrived, which reshaped the recommendations the client is now building into its platform. For Fischer Sports, I led a survey of 61 athletes that showed loyalty to a ski brand does not follow people into summer, and for Sprouts, our team built a plan around the schools, neighbors, and weekly routines that decide where a family shops, which executives from Sprouts, TD Garden, and JPMorgan ranked second of 46 teams.</p>
+<p class="profile-copy">Along the way I taught myself to build with AI, and I bring the same habits to every project: start with the people, test the obvious answer against the data, and make the recommendation clear enough that someone can act on it. That is why I keep returning to sports and live entertainment, luxury and automotive brands, and travel, where people choose an experience for the energy and sense of belonging it gives them, and where understanding that choice shapes everything from a campaign to the moment someone walks through the door.</p>
 </section>
 
 <div class="section-divider"><span>02</span></div>
@@ -441,7 +164,7 @@ grid-template-columns: 1fr;
 
 <article class="exp-card">
 <div class="exp-top">
-<span class="company-pill">Th. Nitsiakos S.A</span>
+<span class="company-pill">Th. Nitsiakos S.A.</span>
 <span class="exp-date">Jun 2024 to Aug 2024</span>
 </div>
 <h4 class="exp-role">Corporate Strategy Intern</h4>
@@ -510,25 +233,11 @@ grid-template-columns: 1fr;
 <h4 class="exp-role">UX and Product Strategy, Boston University Questrom</h4>
 <p class="exp-quote">"I diagnosed three trust breakdowns before designing a single screen, and that order shaped everything that followed."</p>
 <ul>
-<li>Won Best Client Work out of 20 teams, and the client has implemented the redesigned homepage, with the rest in development.</li>
-<li>Diagnosed 3 trust breakdowns across the boater journey through 11 user interviews in 5 countries and analog analysis.</li>
+<li>Won Best Client Work out of 20 teams, and the client is now building our recommendations into its platform.</li>
+<li>Diagnosed 3 trust breakdowns across the boater journey through 10 user interviews in 5 countries and analog analysis.</li>
 <li>Designed the end-to-end experience, including a restructured homepage, a verified booking flow, and a new Arrival Mode feature.</li>
 </ul>
 <a class="exp-link" href="nereid.html">learn more ↗</a>
-</article>
-
-<article class="exp-card">
-<div class="exp-top">
-<span class="company-pill">CareGuard</span>
-<span class="exp-date">Late Jan 2026 to Mar 2026</span>
-</div>
-<h4 class="exp-role">Course Project, Business Experimentation with AI</h4>
-<p class="exp-quote">"CareGuard showed me how much of a product's future is decided in its first few minutes, which is why I built my experiment around whether new users finish setting up."</p>
-<ul>
-<li>Designed and built a care coordination app prototype in Lovable, from user flows to visual design.</li>
-<li>Shaped the product around user interviews with families coordinating care for aging or ill relatives.</li>
-<li>Designed an onboarding A/B test to measure which first experience helped new users get started.</li>
-</ul>
 </article>
 
 <article class="exp-card">
@@ -543,20 +252,6 @@ grid-template-columns: 1fr;
 <li>Built it on user interviews, competitive benchmarking, and feasibility analysis.</li>
 </ul>
 <a class="exp-link" href="fischer.html">learn more ↗</a>
-</article>
-
-<article class="exp-card">
-<div class="exp-top">
-<span class="company-pill">Mote</span>
-<span class="exp-date">Oct 2025 to Dec 2025</span>
-</div>
-<h4 class="exp-role">Independent Project, Brand and Product Design</h4>
-<p class="exp-quote">"Designing Mote pushed me to start with the person who would wear it, beginning with mood boards and brand perception before any interface."</p>
-<ul>
-<li>Created a wearable concept, a sensor for existing jewelry, exploring how intelligence could sit on the body.</li>
-<li>Grounded the design in how someone would want to feel wearing it, through mood boards, brand perception, and empathy work.</li>
-<li>Ran the project independently from concept through visual direction.</li>
-</ul>
 </article>
 
 </div>
@@ -609,8 +304,10 @@ grid-template-columns: 1fr;
 <article class="exp-card">
 <div class="exp-top">
 <span class="company-pill">Tokyo, Japan</span>
+<span class="exp-date">Spring 2024</span>
 </div>
 <h4 class="exp-role">Global Management Experience, QST IM475</h4>
+<p class="exp-sub">A semester course from January to May, with a week of company visits in Tokyo in March.</p>
 <p class="exp-quote">"Sitting across from executives at seven Japanese companies taught me more about how culture shapes business decisions than any case study could."</p>
 <ul>
 <li>Helped around 30 classmates understand e-commerce strategy by researching and presenting Rakuten's strategy, global expansion, and customer retention approach.</li>
@@ -621,7 +318,7 @@ grid-template-columns: 1fr;
 
 <article class="exp-card">
 <div class="exp-top">
-<span class="company-pill">Paris</span>
+<span class="company-pill">Paris, France</span>
 <span class="exp-date">Mar 2023 to May 2023</span>
 </div>
 <h4 class="exp-role">Study Abroad</h4>
@@ -726,11 +423,11 @@ grid-template-columns: 1fr;
 <div class="skills-grid">
 <div>
 <h3>Expertise</h3>
-<p>User Research and Behavioral Analysis<br />Product Requirements and PRD Writing<br />UX Design and Prototyping<br />Go-to-Market Strategy<br />Cross-functional Leadership<br />Data-driven Decision Making</p>
+<p>Go-to-Market and Brand Strategy<br />Consumer and User Research<br />Behavioral Analysis<br />Financial Modeling and Data Analysis<br />UX Design and Prototyping<br />Cross-functional Leadership</p>
 </div>
 <div>
 <h3>Tools</h3>
-<p>Figma<br />Cursor<br />Claude API<br />Lovable<br />Python and Streamlit<br />Netlify<br />Google Analytics<br />HubSpot<br />Notion<br />Miro</p>
+<p>Excel<br />Figma<br />Cursor<br />Claude API<br />Lovable<br />Python and Streamlit<br />Netlify<br />Google Analytics<br />HubSpot<br />Notion<br />Miro</p>
 </div>
 </div>
 </section>
@@ -741,7 +438,7 @@ grid-template-columns: 1fr;
 <div class="language-row">
 <div class="lang-pill"><strong>Greek</strong><span>native</span><div class="lang-bar"><i style="width:100%"></i></div></div>
 <div class="lang-pill"><strong>English</strong><span>fluent</span><div class="lang-bar"><i style="width:95%"></i></div></div>
-<div class="lang-pill"><strong>Spanish</strong><span>intermediate, stronger</span><div class="lang-bar"><i style="width:70%"></i></div></div>
+<div class="lang-pill"><strong>Spanish</strong><span>intermediate</span><div class="lang-bar"><i style="width:70%"></i></div></div>
 <div class="lang-pill"><strong>French</strong><span>intermediate</span><div class="lang-bar"><i style="width:55%"></i></div></div>
 <div class="lang-pill"><strong>German</strong><span>basic</span><div class="lang-bar"><i style="width:25%"></i></div></div>
 </div>
@@ -752,7 +449,7 @@ grid-template-columns: 1fr;
 <div class="footer-grid">
 <div class="footer-left">
 <h2>let's talk.</h2>
-<p>Theodora Kachrimanidi, product, UX, and creative strategy</p>
+<p>Theodora Kachrimanidi, strategy, brand, and customer experience</p>
 </div>
 <div class="footer-right">
 <a href="mailto:tkachr@bu.edu">tkachr@bu.edu</a>
@@ -761,7 +458,6 @@ grid-template-columns: 1fr;
 </div>
 <div class="footer-bottom">
 <span>itstheodok, 2026</span>
-<span>built with claude</span>
 </div>
 </footer>
 <script>
@@ -770,29 +466,27 @@ const cursor = document.createElement('div');
 cursor.style.cssText = 'position:fixed;width:8px;height:8px;background:#7EB8C9;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)';
 document.body.appendChild(cursor);
 document.addEventListener('mousemove', (event) => {
-cursor.style.left = event.clientX + 'px';
-cursor.style.top = event.clientY + 'px';
-const trail = document.createElement('div');
-trail.style.cssText = `position:fixed;width:5px;height:5px;background:#7EB8C9;border-radius:50%;pointer-events:none;z-index:9998;left:${event.clientX}px;top:${event.clientY}px;transform:translate(-50%,-50%);opacity:0.6;transition:opacity 0.4s;`;
-document.body.appendChild(trail);
-setTimeout(() => { trail.style.opacity = 0; }, 50);
-setTimeout(() => trail.remove(), 450);
-      });
+  cursor.style.left = event.clientX + 'px';
+  cursor.style.top = event.clientY + 'px';
+  const trail = document.createElement('div');
+  trail.style.cssText = `position:fixed;width:5px;height:5px;background:#7EB8C9;border-radius:50%;pointer-events:none;z-index:9998;left:${event.clientX}px;top:${event.clientY}px;transform:translate(-50%,-50%);opacity:0.6;transition:opacity 0.4s;`;
+  document.body.appendChild(trail);
+  setTimeout(() => { trail.style.opacity = 0; }, 50);
+  setTimeout(() => trail.remove(), 450);
+});
 const heatDots = [];
 document.addEventListener('mousemove', (event) => {
-const dot = document.createElement('div');
-dot.style.cssText = `position:fixed;width:14px;height:14px;background:#7EB8C9;border-radius:50%;pointer-events:none;z-index:0;left:${event.clientX}px;top:${event.clientY}px;transform:translate(-50%,-50%);opacity:0.12;transition:opacity 4s linear;`;
-document.body.appendChild(dot);
-heatDots.push(dot);
-if (heatDots.length > 60) {
-const oldest = heatDots.shift();
-if (oldest) oldest.remove();
-        }
-requestAnimationFrame(() => {
-dot.style.opacity = '0';
-        });
-setTimeout(() => dot.remove(), 4000);
-      });
+  const dot = document.createElement('div');
+  dot.style.cssText = `position:fixed;width:14px;height:14px;background:#7EB8C9;border-radius:50%;pointer-events:none;z-index:0;left:${event.clientX}px;top:${event.clientY}px;transform:translate(-50%,-50%);opacity:0.12;transition:opacity 4s linear;`;
+  document.body.appendChild(dot);
+  heatDots.push(dot);
+  if (heatDots.length > 60) {
+    const oldest = heatDots.shift();
+    if (oldest) oldest.remove();
+  }
+  requestAnimationFrame(() => { dot.style.opacity = '0'; });
+  setTimeout(() => dot.remove(), 4000);
+});
 </script>
 </body>
 </html>
