@@ -37,7 +37,7 @@ rel="stylesheet"
 
   .cs-quotes { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 32px 0 0; }
   .cs-quote { border-left: 3px solid #7EB8C9; padding: 16px 24px; font-style: italic; font-size: 17px; line-height: 1.6; margin: 0; background: #F5F0E6; border-radius: 0 8px 8px 0; }
-  .cs-quote cite { display: block; font-style: normal; font-size: 13px; color: #8A7A6A; margin-top: 8px; }
+  .cs-quote cite, .cs-quote .src { display: block; font-style: normal; font-size: 13px; color: #8A7A6A; margin-top: 8px; }
 
   /* Findings */
   .cs-findings { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 28px 0 0; }
@@ -206,11 +206,11 @@ rel="stylesheet"
     <div class="cs-quotes">
       <blockquote class="cs-quote">
         "I get most things at Trader Joe's, but I go to Fresh Market for meat."
-        <cite>Shopper interview, Weymouth
+        <span class="src">Shopper interview, Weymouth</span>
       </blockquote>
       <blockquote class="cs-quote">
         "I used to come more when my kids were younger; now I just grab what I need."
-        Shopper interview, Weymouth
+        <span class="src">Shopper interview, Weymouth</span>
       </blockquote>
     </div>
 
