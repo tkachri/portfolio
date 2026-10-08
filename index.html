@@ -4,162 +4,217 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Theodora Kachrimanidi</title>
+  <meta name="description" content="Theodora Kachrimanidi: strategy, brand, and behavioral science." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;1,400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Inter', sans-serif; background: #0A0A0F; color: #F5F5F5; height: 100vh; overflow: hidden; cursor: none; }
+    a { cursor: none; }
 
     #cursor { position: fixed; width: 8px; height: 8px; background: #7EB8C9; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.15s, height 0.15s; }
     #cursor.hover { width: 20px; height: 20px; background: transparent; border: 1px solid #7EB8C9; }
 
-    .bg {
-      position: fixed; inset: 0;
+    /* ================= DESKTOP: lock screen ================= */
+    .desk { position: fixed; inset: 0; }
+    .desk-bg { position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse at 20% 50%, rgba(126,184,201,0.05) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 20%, rgba(126,184,201,0.03) 0%, transparent 50%),
-        #0A0A0F;
-      z-index: 0;
+        radial-gradient(ellipse 60% 45% at 50% 18%, rgba(126,184,201,0.16) 0%, transparent 70%),
+        radial-gradient(ellipse 80% 50% at 50% 110%, rgba(184,85,112,0.10) 0%, transparent 70%),
+        linear-gradient(180deg, #121826 0%, #0C0F17 55%, #0A0A0F 100%); }
+
+    .status { position: absolute; top: 14px; right: 22px; display: flex; gap: 18px; align-items: center; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.8); z-index: 3; }
+    .status svg { width: 20px; height: 20px; }
+
+    /* center-hung scoreboard */
+    .board-wrap { position: absolute; top: 0; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; z-index: 2; animation: drop 1s ease 0.1s both; }
+    .cables { width: 220px; height: clamp(18px, 4vh, 40px); position: relative; }
+    .cables::before, .cables::after { content: ''; position: absolute; top: 0; bottom: 0; width: 1px; background: linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0.35)); }
+    .cables::before { left: 30px; } .cables::after { right: 30px; }
+    .board-cap { width: 300px; height: 10px; background: #1A1F2A; border: 1px solid rgba(255,255,255,0.12); border-bottom: none; border-radius: 4px 4px 0 0; }
+    .scene { width: 300px; height: 150px; perspective: 900px; }
+    .cube { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transform: translateZ(-150px); animation: spin 20s cubic-bezier(.7,0,.3,1) infinite; }
+    .face { position: absolute; inset: 0; background: #05070B; border: 2px solid #1E2430; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 14px 22px; backface-visibility: hidden; overflow: hidden; }
+    .face::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 3px); }
+    .face:nth-child(1) { transform: rotateY(0deg) translateZ(150px); }
+    .face:nth-child(2) { transform: rotateY(90deg) translateZ(150px); }
+    .face:nth-child(3) { transform: rotateY(180deg) translateZ(150px); }
+    .face:nth-child(4) { transform: rotateY(270deg) translateZ(150px); }
+    .face .kicker { font-size: 10px; font-weight: 600; letter-spacing: 0.22em; color: rgba(255,255,255,0.45); margin-bottom: 8px; }
+    .face h2 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: 0.06em; text-transform: uppercase; color: #9ECFDD; text-shadow: 0 0 12px rgba(126,184,201,0.6); margin-bottom: 8px; }
+    .face p { font-size: 13px; line-height: 1.45; color: rgba(255,255,255,0.85); }
+    @keyframes spin {
+      0%, 20% { transform: translateZ(-150px) rotateY(0deg); }
+      25%, 45% { transform: translateZ(-150px) rotateY(-90deg); }
+      50%, 70% { transform: translateZ(-150px) rotateY(-180deg); }
+      75%, 95% { transform: translateZ(-150px) rotateY(-270deg); }
+      100% { transform: translateZ(-150px) rotateY(-360deg); }
     }
+    .ribbon { width: 300px; height: 26px; background: #05070B; border: 2px solid #1E2430; border-top: none; overflow: hidden; display: flex; align-items: center; border-radius: 0 0 4px 4px; }
+    .ribbon-track { display: flex; white-space: nowrap; animation: scroll 32s linear infinite; }
+    .ribbon-track span { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #E8B04A; text-shadow: 0 0 8px rgba(232,176,74,0.5); padding-right: 40px; }
+    @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .glow { width: 260px; height: 50px; margin-top: -6px; background: radial-gradient(ellipse at top, rgba(126,184,201,0.18), transparent 70%); pointer-events: none; }
 
-    .time-block { position: fixed; top: 48px; left: 50%; transform: translateX(-50%); text-align: center; z-index: 2; animation: fadeInSimple 0.8s ease 0.2s both; }
-    .time { font-size: 72px; font-weight: 300; color: #F5F5F5; letter-spacing: -0.03em; line-height: 1; }
-    .date { font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 6px; letter-spacing: 0.04em; }
+    /* clock */
+    .clock { position: absolute; left: 0; right: 0; top: clamp(250px, 37vh, 340px); text-align: center; z-index: 1; animation: fade 0.8s ease 0.3s both; }
+    .clock .d { font-size: 26px; font-weight: 600; color: rgba(214,228,240,0.85); }
+    .clock .t { font-size: clamp(110px, 15vh, 150px); font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: rgba(214,228,240,0.92); }
 
-    .login-card { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; z-index: 2; animation: fadeInUp 0.8s ease 0.5s both; }
+    /* login */
+    .login { position: absolute; left: 50%; bottom: clamp(36px, 6vh, 70px); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; text-align: center; z-index: 2; animation: fade 0.8s ease 0.6s both; }
+    .login .avatar { width: 64px; height: 64px; border-radius: 50%; background: rgba(126,184,201,0.14); border: 1px solid rgba(126,184,201,0.4); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: #9ECFDD; margin-bottom: 10px; }
+    .login .who { font-size: 15px; font-weight: 600; margin-bottom: 12px; }
+    .field { width: 260px; height: 38px; border-radius: 19px; background: rgba(255,255,255,0.14); backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: space-between; padding: 0 6px 0 18px; text-decoration: none; color: rgba(255,255,255,0.75); font-size: 14px; transition: background 0.2s, border-color 0.2s; }
+    .field:hover { background: rgba(255,255,255,0.2); border-color: rgba(126,184,201,0.6); }
+    .field .go { width: 28px; height: 28px; border-radius: 50%; background: #7EB8C9; color: #0A0A0F; display: flex; align-items: center; justify-content: center; }
+    .field .go svg { width: 14px; height: 14px; }
+    .hint { margin-top: 12px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.7); }
+    .hint a { color: rgba(255,255,255,0.7); text-decoration: none; }
+    .hint a:hover { color: #9ECFDD; }
 
-    .avatar { width: 88px; height: 88px; border-radius: 50%; background: rgba(126,184,201,0.08); border: 1px solid rgba(126,184,201,0.2); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: #7EB8C9; margin-bottom: 16px; position: relative; }
-    .avatar::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 1px solid rgba(126,184,201,0.08); }
+    @keyframes drop { from { opacity: 0; transform: translate(-50%, -30px); } to { opacity: 1; transform: translate(-50%, 0); } }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) { .cube, .ribbon-track { animation: none; } }
 
-    .name { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: #F5F5F5; letter-spacing: -0.01em; margin-bottom: 6px; }
-
-    .role { font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
-
-    .disciplines { font-size: 10px; color: rgba(255,255,255,0.18); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; }
-
-    .pill { display: inline-block; padding: 3px 10px; border: 1px solid rgba(126,184,201,0.25); border-radius: 20px; color: rgba(126,184,201,0.7); font-size: 9px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
-
-    .typewriter { font-size: 11px; font-style: italic; color: rgba(255,255,255,0.25); margin-bottom: 24px; min-height: 16px; transition: opacity 0.4s; text-align: center; max-width: 300px; line-height: 1.5; }
-
-    .enter-btn { display: flex; align-items: center; gap: 8px; padding: 9px 24px; background: #7EB8C9; border: none; border-radius: 20px; color: #0A0A0F; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; cursor: none; letter-spacing: 0.02em; transition: all 0.2s; text-decoration: none; margin-bottom: 28px; }
-    .enter-btn:hover { background: #9ECFDD; transform: scale(1.02); }
+    /* ================= PHONE: original layout ================= */
+    .mob { display: none; }
+    .m-bg { position: fixed; inset: 0; background: radial-gradient(ellipse at 20% 50%, rgba(126,184,201,0.05) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(126,184,201,0.03) 0%, transparent 50%), #0A0A0F; z-index: 0; }
+    .time-block { position: fixed; top: 48px; left: 50%; transform: translateX(-50%); text-align: center; z-index: 2; }
+    .time-block .time { font-size: 48px; font-weight: 300; letter-spacing: -0.03em; line-height: 1; }
+    .time-block .date { font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 6px; letter-spacing: 0.04em; }
+    .login-card { position: fixed; top: 52%; left: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; text-align: center; z-index: 2; width: 90%; }
+    .login-card .avatar { width: 88px; height: 88px; border-radius: 50%; background: rgba(126,184,201,0.08); border: 1px solid rgba(126,184,201,0.2); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: #7EB8C9; margin-bottom: 16px; }
+    .login-card .name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .login-card .role { font-size: 11px; color: rgba(255,255,255,0.55); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+    .login-card .disciplines { font-size: 10px; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
+    .login-card .pill { display: inline-block; padding: 3px 10px; border: 1px solid rgba(126,184,201,0.3); border-radius: 20px; color: rgba(126,184,201,0.8); font-size: 9px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
+    .login-card .typewriter { font-size: 12px; font-style: italic; color: rgba(255,255,255,0.4); margin-bottom: 24px; min-height: 18px; transition: opacity 0.4s; max-width: 300px; line-height: 1.5; }
+    .enter-btn { display: flex; align-items: center; gap: 8px; padding: 9px 24px; background: #7EB8C9; border-radius: 20px; color: #0A0A0F; font-size: 13px; font-weight: 500; text-decoration: none; margin-bottom: 28px; }
     .enter-btn svg { width: 14px; height: 14px; }
+    .contact-links { display: flex; gap: 16px; align-items: center; }
+    .contact-links a { font-size: 11px; color: rgba(255,255,255,0.45); text-decoration: none; }
+    .contact-links span { color: rgba(255,255,255,0.15); font-size: 10px; }
+    .bottom-bar { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%); display: flex; gap: 28px; z-index: 2; }
+    .bottom-bar a { display: flex; flex-direction: column; align-items: center; gap: 5px; text-decoration: none; color: rgba(255,255,255,0.4); font-size: 10px; letter-spacing: 0.04em; }
+    .bottom-bar svg { width: 18px; height: 18px; opacity: 0.55; }
 
-    .contact-links { display: flex; gap: 20px; align-items: center; }
-    .contact-links a { font-size: 11px; color: rgba(255,255,255,0.3); text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
-    .contact-links a:hover { color: #7EB8C9; }
-    .contact-links span { color: rgba(255,255,255,0.1); font-size: 10px; }
-
-    .bottom-bar { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%); display: flex; gap: 32px; z-index: 2; animation: fadeInSimple 0.8s ease 0.8s both; }
-    .bottom-bar a { display: flex; flex-direction: column; align-items: center; gap: 5px; text-decoration: none; color: rgba(255,255,255,0.3); font-size: 10px; letter-spacing: 0.04em; transition: color 0.2s; cursor: none; }
-    .bottom-bar a:hover { color: rgba(255,255,255,0.7); }
-    .bottom-bar svg { width: 18px; height: 18px; opacity: 0.4; transition: opacity 0.2s; }
-    .bottom-bar a:hover svg { opacity: 0.8; }
-
-    @keyframes fadeInUp { from { opacity: 0; transform: translate(-50%, calc(-50% + 12px)); } to { opacity: 1; transform: translate(-50%, -50%); } }
-    @keyframes fadeInSimple { from { opacity: 0; } to { opacity: 1; } }
-
-    @media (max-width: 768px) {
-      .time { font-size: 48px; }
-      .name { font-size: 18px; }
-      .bottom-bar { gap: 20px; }
+    @media (max-width: 900px) {
+      body { cursor: auto; }
+      a { cursor: pointer; }
+      #cursor, .desk { display: none; }
+      .mob { display: block; }
     }
   </style>
 </head>
 <body>
 
   <div id="cursor"></div>
-  <div class="bg"></div>
 
-  <div class="time-block">
-    <div class="time" id="clock">00:00</div>
-    <div class="date" id="datestr"></div>
-  </div>
+  <!-- ===== DESKTOP ===== -->
+  <div class="desk">
+    <div class="desk-bg"></div>
 
-  <div class="login-card">
-    <div class="avatar">TK</div>
-    <div class="name">Theodora Kachrimanidi</div>
-    <div class="role">Product · Creative Strategy · UX</div>
-    <div class="disciplines">research · brand · behavioral science · 0→1</div>
-    <div class="pill">Available Fall 2026</div>
-    <div class="typewriter" id="typewriter"></div>
-    <a href="projects.html" class="enter-btn">
-      Enter
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M5 12h14M12 5l7 7-7 7"/>
-      </svg>
-    </a>
-    <div class="contact-links">
-      <a href="mailto:tkachr@bu.edu">tkachr@bu.edu</a>
-      <span>·</span>
-      <a href="https://linkedin.com/in/theodorakachrimanidi" target="_blank">LinkedIn</a>
-      <span>·</span>
-      <a href="about.html">About</a>
+    <div class="status" aria-hidden="true">
+      <span>U.S.</span>
+      <svg viewBox="0 0 28 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="22" height="12" rx="3"/><rect x="3.5" y="6.5" width="15" height="7" rx="1.5" fill="currentColor" stroke="none"/><path d="M25 8v4"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 18.5a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5zM12 13c-2.1 0-4 .8-5.4 2.2l1.6 1.6c1-1 2.3-1.5 3.8-1.5s2.8.6 3.8 1.5l1.6-1.6C16 13.8 14.1 13 12 13zm0-5.5c-3.6 0-6.9 1.4-9.3 3.8l1.6 1.6C6.3 10.9 9 9.8 12 9.8s5.7 1.1 7.7 3.1l1.6-1.6C18.9 8.9 15.6 7.5 12 7.5z"/></svg>
+    </div>
+
+    <div class="board-wrap" aria-label="What I bring">
+      <div class="cables"></div>
+      <div class="board-cap"></div>
+      <div class="scene">
+        <div class="cube">
+          <div class="face"><div class="kicker">WHAT I BRING · 1</div><h2>Strategy</h2><p>Consumer insight turned into a plan leaders can act on</p></div>
+          <div class="face"><div class="kicker">WHAT I BRING · 2</div><h2>Brand</h2><p>Building the pull that makes people choose you, and come back</p></div>
+          <div class="face"><div class="kicker">WHAT I BRING · 3</div><h2>Behavioral Science</h2><p>Psychology honors, applied to why fans and customers choose</p></div>
+          <div class="face"><div class="kicker">WHAT I BRING · 4</div><h2>Analytics</h2><p>Pricing, regression, and lifetime value models in Excel</p></div>
+        </div>
+      </div>
+      <div class="ribbon">
+        <div class="ribbon-track">
+          <span>Sprouts · 2nd of 46 · Best Creative Award</span><span>NEREID · Best Client Work of 20 teams</span><span>Fischer Sports · Top 3 of 20</span><span>Top 10% of MS cohort</span><span>Available now · Boston and New York</span>
+          <span>Sprouts · 2nd of 46 · Best Creative Award</span><span>NEREID · Best Client Work of 20 teams</span><span>Fischer Sports · Top 3 of 20</span><span>Top 10% of MS cohort</span><span>Available now · Boston and New York</span>
+        </div>
+      </div>
+      <div class="glow"></div>
+    </div>
+
+    <div class="clock">
+      <div class="d" id="d-date">Thu Oct 8</div>
+      <div class="t" id="d-time">4:29</div>
+    </div>
+
+    <div class="login">
+      <div class="avatar">TK</div>
+      <div class="who">Theodora Kachrimanidi</div>
+      <a class="field" href="projects.html">
+        <span>Enter portfolio</span>
+        <span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+      <div class="hint"><a href="about.html">About</a> · <a href="mailto:tkachr@bu.edu">tkachr@bu.edu</a> · <a href="https://linkedin.com/in/theodorakachrimanidi" target="_blank" rel="noreferrer">LinkedIn</a></div>
     </div>
   </div>
 
-  <div class="bottom-bar">
-    <a href="#">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M12 3v1m0 16v1M4.22 4.22l.7.7m12.16 12.16.7.7M3 12h1m16 0h1M4.92 19.08l.7-.7M18.36 5.64l.7-.7"/>
-        <circle cx="12" cy="12" r="4"/>
-      </svg>
-      Sleep
-    </a>
-    <a href="#">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M21 12a9 9 0 11-6.219-8.56"/>
-      </svg>
-      Restart
-    </a>
-    <a href="#">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M18.36 6.64A9 9 0 1 1 12 3v9"/>
-      </svg>
-      Shut Down
-    </a>
+  <!-- ===== PHONE ===== -->
+  <div class="mob">
+    <div class="m-bg"></div>
+    <div class="time-block">
+      <div class="time" id="m-time">00:00</div>
+      <div class="date" id="m-date"></div>
+    </div>
+    <div class="login-card">
+      <div class="avatar">TK</div>
+      <div class="name">Theodora Kachrimanidi</div>
+      <div class="role">Strategy · Brand · Behavioral Science</div>
+      <div class="disciplines">consumer insight · customer experience · analytics</div>
+      <div class="pill">Available now</div>
+      <div class="typewriter" id="typewriter"></div>
+      <a href="projects.html" class="enter-btn">Enter <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <div class="contact-links">
+        <a href="mailto:tkachr@bu.edu">tkachr@bu.edu</a><span>·</span>
+        <a href="https://linkedin.com/in/theodorakachrimanidi" target="_blank" rel="noreferrer">LinkedIn</a><span>·</span>
+        <a href="about.html">About</a>
+      </div>
+    </div>
+    <div class="bottom-bar">
+      <a href="projects.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h6l2 2h10v10H3z"/></svg>Work</a>
+      <a href="about.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>About</a>
+      <a href="mailto:tkachr@bu.edu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>Email</a>
+    </div>
   </div>
 
   <script>
     const cursor = document.getElementById('cursor');
-    document.addEventListener('mousemove', e => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-    });
-    document.querySelectorAll('a, button').forEach(el => {
+    document.addEventListener('mousemove', e => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
+    document.querySelectorAll('a').forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
     });
 
-    function updateClock() {
-      const now = new Date();
-      const h = now.getHours().toString().padStart(2, '0');
-      const m = now.getMinutes().toString().padStart(2, '0');
-      document.getElementById('clock').textContent = h + ':' + m;
-      const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-      const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-      document.getElementById('datestr').textContent = days[now.getDay()] + ', ' + months[now.getMonth()] + ' ' + now.getDate();
+    const daysS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const monsS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const daysL = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const monsL = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    function tick() {
+      const n = new Date();
+      const mm = n.getMinutes().toString().padStart(2, '0');
+      document.getElementById('d-time').textContent = ((n.getHours() % 12) || 12) + ':' + mm;
+      document.getElementById('d-date').textContent = daysS[n.getDay()] + ' ' + monsS[n.getMonth()] + ' ' + n.getDate();
+      document.getElementById('m-time').textContent = n.getHours().toString().padStart(2, '0') + ':' + mm;
+      document.getElementById('m-date').textContent = daysL[n.getDay()] + ', ' + monsL[n.getMonth()] + ' ' + n.getDate();
     }
-    updateClock();
-    setInterval(updateClock, 1000);
+    tick(); setInterval(tick, 1000);
 
-    const phrases = [
-      'building products that feel as good as they work',
-      'creative strategy meets behavioral science',
-      'from user research to brand experience',
-    ];
+    const phrases = ['understanding why people choose what they choose', 'turning consumer insight into strategy', 'behavioral science meets brand and data'];
     let pi = 0;
     const tw = document.getElementById('typewriter');
     tw.textContent = phrases[0];
-    tw.style.opacity = 1;
     setInterval(() => {
       tw.style.opacity = 0;
-      setTimeout(() => {
-        pi = (pi + 1) % phrases.length;
-        tw.textContent = phrases[pi];
-        tw.style.opacity = 1;
-      }, 400);
+      setTimeout(() => { pi = (pi + 1) % phrases.length; tw.textContent = phrases[pi]; tw.style.opacity = 1; }, 400);
     }, 3500);
   </script>
 </body>
